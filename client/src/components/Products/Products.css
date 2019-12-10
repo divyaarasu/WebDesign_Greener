@@ -11,12 +11,36 @@
 
 .product{
     padding: 10rem 0.5rem 0.5rem 0.5rem;
-}
-
-.card-img-top{
-    padding: 1.5rem;
+    margin: 0%;
 }
 
 .rP{
     padding: 0.5rem;
+}
+
+.card-body{
+    padding: 0.5rem;
+}
+
+.card-img-top{
+    padding: 0.5rem;
+    height: 14vw;
+}
+
+.btn-p {
+    margin: 0rem 9rem 0rem 0rem;
+    background-color: grey;
+    color: honeydew;
+}
+
+.btn-secondary{
+    background-color: forestgreen;
+}
+
+.card-title{
+    text-align: center;
+    font-weight: bolder;
+    color: green;
+    text-shadow: 2px 2px lightgrey;
+    font-size: x-large;
 }
