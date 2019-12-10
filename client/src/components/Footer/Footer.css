@@ -1,0 +1,27 @@
+footer {
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    /* position: fixed; */
+    height: 11%;
+    background-color: #7DA89E;
+}
+
+footer ul.footerleft {
+    margin-left: 27em;
+    margin-top: .1em;
+}
+
+footer ul.footerleft li {
+    display: inline;
+    margin-right: 1em;
+}
+
+footer a {
+    color: #222;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}

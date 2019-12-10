@@ -1,0 +1,22 @@
+.video-background{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.product{
+    padding: 10rem 0.5rem 0.5rem 0.5rem;
+}
+
+.card-img-top{
+    padding: 1.5rem;
+}
+
+.rP{
+    padding: 0.5rem;
+}
