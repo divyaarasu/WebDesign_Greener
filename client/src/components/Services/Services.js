@@ -1,7 +1,9 @@
 import React from 'react';
 import './Services.css';
 import rd3 from 'react-d3-library';
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
 class Services extends React.Component {
     render() {
@@ -44,4 +46,18 @@ class Services extends React.Component {
     }
 };
 
-export default Services;
+Services.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Services);
+
+
+
+// export default Services;

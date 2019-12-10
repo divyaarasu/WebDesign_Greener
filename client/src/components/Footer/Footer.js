@@ -3,9 +3,9 @@ import './Footer.css';
 
 function Footer() {
     return(
-        <footer class="footer">
+        <footer className="footer">
     
-    <ul class="footerleft" >
+    <ul className="footerleft" >
                     <li>
                         <a href="" id="coolbutton" aria-hidden="true">FAQ </a>                   
                     </li>
@@ -32,11 +32,11 @@ function Footer() {
                         <a href=""id="coolbutton" aria-hidden="true">Contact Us </a>
                     </li>
                 </ul>
-              <div class="text-center center-block " >
-                <a href=""><i id="social-fb" class="fa fa-facebook-square fa-2x social space"></i></a>
-                <a href=""><i id="social-tw" class="fa fa-twitter-square fa-2x social space"></i></a>
-                <a href=""><i id="social-gp" class="fa fa-instagram fa-2x social space"></i></a>
-                <a href=""><i id="social-em" class="fa fa-envelope-square fa-2x social space"></i></a>
+              <div className="text-center center-block " >
+                <a href=""><i id="social-fb" className="fa fa-facebook-square fa-2x social space"></i></a>
+                <a href=""><i id="social-tw" className="fa fa-twitter-square fa-2x social space"></i></a>
+                <a href=""><i id="social-gp" className="fa fa-instagram fa-2x social space"></i></a>
+                <a href=""><i id="social-em" className="fa fa-envelope-square fa-2x social space"></i></a>
             </div>      
     
 </footer>
