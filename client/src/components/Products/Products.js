@@ -76,21 +76,25 @@ class Products extends React.Component {
         <video class="video-fluid z-depth-1 video-background" autoplay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
           <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
         </video>
-        <div class="container">
-          <div className="row">
-            {this.state.products.map((p, i) => (
-              <div className="col-sm-4 product">
-                <Card>
-                  <Card.Img variant="top" src={this.state.products[i].Img} />
-                  <Card.Body>
-                    <Link to="/product" className="link">
-                      <Card.Title>{this.state.products[i].Title}</Card.Title>
-                      <Card.Text>
-                        {this.state.products[i].Desc}<br />
-                        <i>Seller:</i>{this.state.products[i].SellerName}
-                        <b>{this.state.products[i].Price}</b><br />
-                      </Card.Text>
-                    </Link>
+
+
+    <div class="container mt-5">
+      <div className="row">
+        {this.state.products.map((p,i) => (
+          <div className="col-sm-4 product">
+            
+              <Card>
+              <Link to="/product" className="link">
+              <Card.Img className="imgTop" variant="top" src={this.state.products[i].Img} />
+              </Link>
+              <Card.Body className="cardBody">
+              
+                <Card.Title>{this.state.products[i].Title}</Card.Title>
+                    <Card.Text>
+                      {this.state.products[i].Desc}<br/>
+                      <i>Seller:</i>{this.state.products[i].SellerName}
+                      <b>{this.state.products[i].Price}</b><br/>
+                    </Card.Text>
                     <Button variant="p">Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,20 +121,7 @@ class Products extends React.Component {
             ))}
           </div>
         </div>
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-              </div>
-            </div>
-          </div>
+        <div class="modal-body">
         </div>
       </div>
     );
