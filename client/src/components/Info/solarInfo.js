@@ -1,14 +1,14 @@
 import React from 'react';
 import './Info.css';
-import wind1 from '../../assets/images/wind1.jpg'
-import wind2 from '../../assets/images/wind2.jpg'
+import wind1 from '../../assets/images/solar1.jpg'
+import wind2 from '../../assets/images/solar2.jpg'
 import{BrowserRouter as Router,Link} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
-function windInfo() {
+function solarInfo() {
     return (
         <div >
         
-        <h1>Wind Energy</h1>
+        <h1>Solar Energy</h1>
         <div id="wind">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
@@ -33,4 +33,4 @@ function windInfo() {
         </div>
         )};
 
-        export default windInfo;
+        export default solarInfo;

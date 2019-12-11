@@ -25,6 +25,9 @@ import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
 import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
+import solarInfo from './components/Info/solarInfo';
+import biogasInfo from './components/Info/biogasInfo';
+import recycleInfo from './components/Info/recycleInfo';
 import Product from './components/Products/Product';
 import BuyNow from './components/Products/BuyNow';
 
@@ -62,10 +65,12 @@ const routing = (
         <Route path="/products/product" component={Jobs}/>   
         <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
+        <Route path="/solarInfo" component={solarInfo} />
+        <Route path="/biogasInfo" component={biogasInfo} />
+        <Route path="/reuseInfo" component={recycleInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/buyNow" component={BuyNow} />
-        
+        <Route path="/buyNow" component={BuyNow} />        
       </Switch>
         <Footer></Footer>
       </div>
