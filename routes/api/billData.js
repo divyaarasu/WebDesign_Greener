@@ -17,8 +17,10 @@ router.post("/submitbill", (req, res) => {
           year: req.body.year,
           watts: req.body.watts
         });
-        newbill.save().then(console.log(res));
-});
+        newbill.save().then(res.json({
+          success: true
+        }))
+        });
 router.get("/submitbill", (req, res) => {
     // Form validation
     Bill.find({}, function(err, result) {
