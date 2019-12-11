@@ -12,3 +12,18 @@
 #awarness{
     text-align: center;
 }
+#button{
+    display: flex;
+    justify-content: flex-end;
+  }
+#expl{
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  #b{
+    
+    background-image: url("img_tree.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  
+}
