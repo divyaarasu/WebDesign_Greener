@@ -8,56 +8,117 @@ import img4 from '../../assets/images/shampoo.jpg'
 import img5 from '../../assets/images/detergent.jpg'
 import img6 from '../../assets/images/plates.jpg'
 import {Link} from  "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { submitProducts } from "../../actions/productsActions";
+import { logoutUser } from "../../actions/authActions";
 
 
 class Products extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       products:[{
-        Title:"Kitchen Compost Bin",
-        Img:img1,
-        Price:"$"+5,
-        Desc:"Instead of the trash can, is a great eco-friendly change to make at home.",
-        Rating:4,
-        SellerName:"a"
+        title:"Kitchen Compost Bin",
+        image1:img1,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"Instead of the trash can, is a great eco-friendly change to make at home.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       },{
-        Title:"Food Storage Bag",
-        Img:img2,
-        Price:"$"+6,
-        Desc:"Your plastic food-storage bag use stops here. Available in a variety of sizes.",
-        Rating:4,
-        SellerName:"b"
+        title:"Food Storage Bag",
+        image1:img2,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"Your plastic food-storage bag use stops here. Available in a variety of sizes.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       },{
-        Title:"Hydro Flask",
-        Img:img3,
-        Price:"$"+15,
-        Desc:"A durable, non-disposable water bottle is what you should be using on the daily.",
-        Rating:4,
-        SellerName:"c"
+        title:"Hydro Flask",
+        image1:img3,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"A durable, non-disposable water bottle is what you should be using on the daily.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       },{
-        Title:"Bamboo Cutlery Set",
-        Img:img4,
-        Price:"$"+18,
-        Desc:"Disposable flatware is often a double whammy of plastic use wrapped up in even more plastic.",
-        Rating:4,
-        SellerName:"d"
+        title:"Bamboo Cutlery Set",
+        image1:img4,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"Disposable flatware is often a double whammy of plastic use wrapped up in even more plastic.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       },{
-        Title:"All Purpose Spaghetti Scrub",
-        Img:img5,
-        Price:"$"+20,
-        Desc:"Goodbye Detergent! This product works astonishingly well, and is much less wasteful.",
-        Rating:4,
-        SellerName:"e"
+        title:"All Purpose Spaghetti Scrub",
+        image1:img5,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"Goodbye Detergent! This product works astonishingly well, and is much less wasteful.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       },{
-        Title:"Compostable Plates",
-        Img:img6,
-        Price:"$"+21,
-        Desc:"Not only are they just as durable, but they have the added bonus of being dye-free.",
-        Rating:4,
-        SellerName:"f"
+        title:"Compostable Plates",
+        image1:img6,
+        image2:"",
+        image3:"",
+        image4:"",
+        price:"$"+5,
+        desc1:"Not only are they just as durable, but they have the added bonus of being dye-free.",
+        desc2:"",
+        desc3:"",
+        desc4:"",
+        rating:4,
+        seller:"a"
       }]
     }
+
+    this.getProductsData();
+  }
+
+  getProductsData(){
+    
+    const productsData = {
+      title: this.state.products.title,
+      image1: this.state.products.image1,
+      image2: this.state.products.image2,
+      image3: this.state.products.image3,
+      image4: this.state.products.image4,
+      price: this.state.products.price,
+      desc1:this.state.products.desc1,
+      desc2: this.state.products.desc2,
+      desc3: this.state.products.desc3,
+      desc4: this.state.products.desc4,
+      rating: this.state.products.rating,
+      seller: this.state.products.seller
+    };
+    this.props.submitProducts(productsData);
   }
 
   render(){
@@ -76,15 +137,15 @@ class Products extends React.Component{
             
               <Card>
               <Link to="/product" className="link">
-              <Card.Img className="imgTop" variant="top" src={this.state.products[i].Img} />
+              <Card.Img className="imgTop" variant="top" src={this.state.products[i].image1} />
               </Link>
               <Card.Body className="cardBody">
               
-                <Card.Title>{this.state.products[i].Title}</Card.Title>
+                <Card.Title>{this.state.products[i].title}</Card.Title>
                     <Card.Text>
-                      {this.state.products[i].Desc}<br/>
-                      <i>Seller:</i>{this.state.products[i].SellerName}
-                      <b>{this.state.products[i].Price}</b><br/>
+                      {this.state.products[i].desc1}<br/>
+                      <i>Seller:</i>{this.state.products[i].seller}
+                      <b>{this.state.products[i].price}</b><br/>
                     </Card.Text>
                     <Button variant="p">Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
@@ -99,9 +160,9 @@ class Products extends React.Component{
                             </button>
                           </div>
                           <div class="modal-body">
-                            {this.state.products[i].Title}<br/>
+                            {this.state.products[i].title}<br/>
                             <img src={img1} alt="Smiley face" height="320" width="320"></img><br/>
-                            {this.state.products[i].Desc}
+                            {this.state.products[i].desc1}
                           </div>
                         </div>
                       </div>
@@ -137,4 +198,17 @@ class Products extends React.Component{
   }
 }
 
-export default Products;
+Products.propTypes = {
+  submitProducts: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { submitProducts, logoutUser }
+)(Products);
+
+//export default Products;
