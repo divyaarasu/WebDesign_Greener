@@ -1,0 +1,11 @@
+main {
+    padding: 50px;
+}
+
+label {
+    float: left;
+    width: 150px;
+}
+.error {
+    color: red;
+}

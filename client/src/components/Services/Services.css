@@ -1,0 +1,46 @@
+.plastic {
+    background-image: url("../../assets/images/plastic.jpg");
+    border-radius: 50%;
+    display: inline-block;
+    height: 15rem;
+    width: 15rem;
+    margin: 4rem 4rem;
+    font-size: 5.3rem;
+    text-align: center;
+  }
+  .metal {
+    background-image: url("../../assets/images/metal1.jpg");
+    border-radius: 50%;
+    display: inline-block;
+    height: 15rem;
+    width: 15rem;
+    margin: 4rem 4rem;
+    font-size: 5.3rem;
+    text-align: center;
+  }
+  .paper {
+    background-image: url("../../assets/images/paper.jpg");
+    border-radius: 50%;
+    display: inline-block;
+    height: 15rem;
+    width: 15rem;
+    margin: 4rem 4rem;
+    font-size: 5.3rem;
+    text-align: center;
+  }
+ .plastic:hover {
+     opacity: 0.7;
+     cursor: pointer;
+ }
+ .metal:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.paper:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.button-spacing {
+    margin-right: 2rem;
+    margin-top: 1rem;
+}

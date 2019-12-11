@@ -1,10 +1,27 @@
 import React from 'react';
 import './Services.css';
-import rd3 from 'react-d3-library';
+import rd3 from 'rd3';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+const BarChart = rd3.BarChart;
 
+
+var barData = [
+  {
+    "values": [
+      { x: "January", y:  91},
+      { x: "March", y: 290},
+      { x: "May", y: 787},
+      { x: "Ap", y:  91},
+      { x: "Marddch", y: 290},
+      { x: "Mssay", y: 787},
+      { x: "Jansuary", y:  91},
+      { x: "Mxarch", y: 290},
+    
+    ]
+  },
+];
 class Services extends React.Component {
     render() {
         return (
@@ -29,18 +46,55 @@ class Services extends React.Component {
       </select>
     </div>
   </div>
-  <div class="form-group row">
+  <div class="form-group">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Select Year</label>
+    <div class="col-sm-10">
+      <select id="inputState" class="form-control" required>
+      <option>2000</option>
+      <option>2001</option>
+      <option>2002</option>
+      <option>2003</option>
+      <option>2004</option>
+      <option>2005</option>
+      <option>2006</option>
+      <option>2007</option>
+      <option>2008</option>
+      <option>2009</option>
+      <option>2010</option>
+      <option>2011</option>
+      <option>2012</option>
+      <option>2013</option>
+      <option>2014</option>
+      <option>2015</option>
+      <option>2016</option>
+      <option>2017</option>
+      <option>2018</option>
+      <option>2019</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
     <label for="inputPassword" class="col-sm-2 col-form-label">Enter kWh</label>
-    <div class="col-sm-10 input-group">
-      <input type="number" class="form-control" id="inputWatt" />
+    <div class="col-sm-10">
       <div class="input-group-append">
+      <input type="number" class="form-control" id="inputWatt" />
           <span class="input-group-text" id="inputGroupPrepend2">kWh</span>
         </div>
     </div>
-    <button type="button" class="btn btn-primary">Submit</button>
-    <button type="button" class="btn btn-success">Generate Graph</button>
   </div>
+  <button type="button" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-success">Generate Graph</button>
 </form>
+<br></br>
+<BarChart
+      data={barData}
+      width={1000}
+      height={300}
+      title="Bar Chart"
+      xAxisLabel="Month"
+      yAxisLabel="kWh"
+      yAxisTickCount={6}
+      />
 </div>
         )
     }
