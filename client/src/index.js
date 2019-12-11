@@ -59,6 +59,9 @@ const routing = (
         <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
         <Route path="/windInfo" component={windInfo} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        
       </Switch>
         <Footer></Footer>
       </div>
