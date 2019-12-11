@@ -58,6 +58,7 @@ const routing = (
         <Route path="/jobs" component={Jobs}/>
         <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
+        <Route path="/products/product" component={Jobs}/>   
         <Route path="/windInfo" component={windInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
