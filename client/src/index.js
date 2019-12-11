@@ -53,6 +53,7 @@ const routing = (
         <Route path="/info" component={Info} />
         <Route path="/products" component={Products} />
         <Route path="/jobs" component={Jobs}/>
+        <Route path="/products/product" component={Jobs}/>
         <PrivateRoute exact path="/services" component={Services} />
       
         <Route path="/windInfo" component={windInfo} />

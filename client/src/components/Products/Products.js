@@ -1,6 +1,13 @@
 import React from 'react';
 import './Products.css';
-import { Jumbotron, Carousel, Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Carousel, Card, Button, Container, Row, Col, Modal} from 'react-bootstrap';
+import img1 from '../../assets/images/dustbin.jpg'
+import img2 from '../../assets/images/bag.jpg'
+import img3 from '../../assets/images/bottleProduct.jpg'
+import img4 from '../../assets/images/shampoo.jpg'
+import img5 from '../../assets/images/detergent.jpg'
+import img6 from '../../assets/images/plates.jpg'
+
 
 class Products extends React.Component{
   constructor(){
@@ -8,45 +15,49 @@ class Products extends React.Component{
     this.state={
       products:[{
         Title:"Kitchen Compost Bin",
-        Img:"../../assets/images/dustbin.jpg",
+        Img:img1,
+        Price:"$"+5,
         Desc:"Instead of the trash can, is a great eco-friendly change to make at home.",
         Rating:4,
         SellerName:"a"
       },{
         Title:"Food Storage Bag",
-        Img:"../../assets/images/bag.jpg",
+        Img:img2,
+        Price:"$"+6,
         Desc:"Your plastic food-storage bag use stops here. Available in a variety of sizes.",
         Rating:4,
         SellerName:"b"
       },{
         Title:"Hydro Flask",
-        Img:"../../assets/images/bottleProduct.jpg",
+        Img:img3,
+        Price:"$"+15,
         Desc:"A durable, non-disposable water bottle is what you should be using on the daily.",
         Rating:4,
         SellerName:"c"
       },{
         Title:"Bamboo Cutlery Set",
-        Img:"../../assets/images/shampoo.jpg",
+        Img:img4,
+        Price:"$"+18,
         Desc:"Disposable flatware is often a double whammy of plastic use wrapped up in even more plastic.",
         Rating:4,
         SellerName:"d"
       },{
         Title:"All Purpose Spaghetti Scrub",
-        Img:"../../assets/images/detergent.jpg",
+        Img:img5,
+        Price:"$"+20,
         Desc:"Goodbye Detergent! This product works astonishingly well, and is much less wasteful.",
         Rating:4,
         SellerName:"e"
       },{
         Title:"Compostable Plates",
-        Img:"../../assets/images/plates.jpg",
+        Img:img6,
+        Price:"$"+21,
         Desc:"Not only are they just as durable, but they have the added bonus of being dye-free.",
         Rating:4,
         SellerName:"f"
       }]
     }
   }
-
-  
 
   render(){
     return(
@@ -58,17 +69,65 @@ class Products extends React.Component{
 
 
     <div class="container">
+      <div className="row">
         {this.state.products.map((p,i) => (
-          ((i+1)%4==0) ? (<div className="row">
-          <div className="col-sm-3 product">
-              Hey!
-              </div>
-            </div>) : (<div className="col-sm-3 product">
-              Hey!
-            </div>)
+          <div className="col-sm-4 product">
+              <Card>
+              <Card.Img variant="top" src={this.state.products[i].Img} />
+              <Card.Body>
+                <Card.Title>{this.state.products[i].Title}</Card.Title>
+                    <Card.Text>
+                      {this.state.products[i].Desc}<br/>
+                      <i>Seller:</i>{this.state.products[i].SellerName}
+                      <b>{this.state.products[i].Price}</b><br/>
+                    </Card.Text>
+                    <Button variant="p">Add to Cart</Button>
+                    <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
+
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            {this.state.products[i].Title}<br/>
+                            <img src={img1} alt="Smiley face" height="320" width="320"></img><br/>
+                            {this.state.products[i].Desc}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  <Button variant="secondary">Buy Now</Button>
+              </Card.Body>
+            </Card>
+          </div>
         ))}
       </div>
+    </div>
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
       </div>
+    </div>
+</div>
+
+    
+    </div>
     );
   }
 }
