@@ -69,14 +69,17 @@ class Products extends React.Component{
         </video>
 
 
-    <div class="container">
+    <div class="container mt-5">
       <div className="row">
         {this.state.products.map((p,i) => (
           <div className="col-sm-4 product">
-            <Link to="/product" className="link">
+            
               <Card>
-              <Card.Img variant="top" src={this.state.products[i].Img} />
-              <Card.Body>
+              <Link to="/product" className="link">
+              <Card.Img className="imgTop" variant="top" src={this.state.products[i].Img} />
+              </Link>
+              <Card.Body className="cardBody">
+              
                 <Card.Title>{this.state.products[i].Title}</Card.Title>
                     <Card.Text>
                       {this.state.products[i].Desc}<br/>
@@ -107,7 +110,7 @@ class Products extends React.Component{
                   <Button variant="secondary">Buy Now</Button>
               </Card.Body>
             </Card>
-            </Link>
+           
           </div>
         ))}
       </div>
@@ -123,7 +126,6 @@ class Products extends React.Component{
           </button>
         </div>
         <div class="modal-body">
-          
         </div>
       </div>
     </div>
