@@ -26,6 +26,7 @@ import Services from './components/Services/Services';
 import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
 import Product from './components/Products/Product';
+import BuyNow from './components/Products/BuyNow';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -63,6 +64,7 @@ const routing = (
         <Route path="/windInfo" component={windInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/buyNow" component={BuyNow} />
         
       </Switch>
         <Footer></Footer>

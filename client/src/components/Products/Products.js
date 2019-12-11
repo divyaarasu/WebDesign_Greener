@@ -8,6 +8,9 @@ import img4 from '../../assets/images/shampoo.jpg'
 import img5 from '../../assets/images/detergent.jpg'
 import img6 from '../../assets/images/plates.jpg'
 import {Link} from  "react-router-dom";
+import PropTypes from "prop-types";
+import { NavLink, withRouter } from 'react-router-dom'
+import { connect } from "react-redux";
 
 
 class Products extends React.Component{
@@ -60,6 +63,15 @@ class Products extends React.Component{
     }
   }
 
+  buyNow = () => {
+    if(this.props.auth.isAuthenticated)
+    this.props.history.push("/buyNow");
+    else
+      {
+        this.props.history.push("/login");
+      }
+  }
+
   render(){
     return(
         <div>
@@ -73,16 +85,19 @@ class Products extends React.Component{
       <div className="row">
         {this.state.products.map((p,i) => (
           <div className="col-sm-4 product">
-            <Link to="/product" className="link">
+           
               <Card>
               <Card.Img variant="top" src={this.state.products[i].Img} />
               <Card.Body>
+              <Link to="/product" className="link">
                 <Card.Title>{this.state.products[i].Title}</Card.Title>
                     <Card.Text>
                       {this.state.products[i].Desc}<br/>
                       <i>Seller:</i>{this.state.products[i].SellerName}
                       <b>{this.state.products[i].Price}</b><br/>
                     </Card.Text>
+                    
+            </Link>
                     <Button variant="p">Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
 
@@ -104,10 +119,9 @@ class Products extends React.Component{
                       </div>
                     </div>
 
-                  <Button variant="secondary">Buy Now</Button>
+                  <Button variant="secondary" onClick={this.buyNow}>Buy Now</Button>
               </Card.Body>
             </Card>
-            </Link>
           </div>
         ))}
       </div>
@@ -134,5 +148,15 @@ class Products extends React.Component{
     );
   }
 }
+Products.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
-export default Products;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+)(withRouter(Products));
