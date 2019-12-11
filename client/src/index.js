@@ -56,11 +56,14 @@ const routing = (
         <Route path="/info" component={Info} />
         <Route path="/products" component={Products} />
         <Route path="/jobs" component={Jobs}/>
-        <Route path="/product" component={Product}/>
-        <PrivateRoute exact path="/services" component={Services} />
-      
+        <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
+        <Route path="/products/product" component={Jobs}/>   
+        <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        
       </Switch>
         <Footer></Footer>
       </div>
