@@ -1,6 +1,5 @@
 import React from 'react';
 import './Services.css';
-import { Modal, Button } from 'react-bootstrap'
 
 var divStyle;
 class Garbage extends React.Component {
@@ -11,16 +10,17 @@ class Garbage extends React.Component {
         this.handleChangeWaste = this.handleChangeWaste.bind(this);
         this.handleChangeType = this.handleChangeType.bind(this);
         this.handleChangeWeight = this.handleChangeWeight.bind(this);
+        this.handleTimeChange = this.handleTimeChange.bind(this);
       }
       buttonSet = (type) => {
-        if(type == "pickup") {
+        if(type === "pickup") {
             return (
                 <div>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="11AM" onClick={this.handleTimeChange}>11AM</button>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="3PM" onClick={this.handleTimeChange}>3PM</button>
                 </div>
             )
-        } else if(type == "dropoff") {
+        } else if(type === "dropoff") {
             return (
             <div>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="10AM" onClick={this.handleTimeChange}>10AM</button>
@@ -48,6 +48,7 @@ class Garbage extends React.Component {
       }
     render() {
         return (
+            <div class="bg">
             <div class="container" id="backgroundImg" style={divStyle}>
 <input class="plastic" value="Plastic" onClick={this.handleChangeWaste}></input>
   <input class="metal" value="Metal" onClick={this.handleChangeWaste}></input>
@@ -77,7 +78,7 @@ class Garbage extends React.Component {
         </div>
         <button type="button" class="btn btn-success" data-toggle="alert">Submit</button>
         </div>
-
+        </div>
         );
     }
 };

@@ -3,6 +3,7 @@ import './Services.css';
 import rd3 from 'rd3';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { submitBill } from "../../actions/billActions";
 import { logoutUser } from "../../actions/authActions";
 const BarChart = rd3.BarChart;
 
@@ -23,14 +24,54 @@ var barData = [
   },
 ];
 class Services extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userid: this.props.auth.user.id,
+      month: '',
+      year: '',
+      watts: ''
+    };
+    this.handleChangeMonth = this.handleChangeMonth.bind(this);
+    this.handleChangeYear = this.handleChangeYear.bind(this);
+    this.handleChangeWatts = this.handleChangeWatts.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onSubmit = (e) => {
+    e.preventDefault();
+    const billData = {
+      userid: this.props.auth.user.id,
+      month: this.state.month,
+      year: this.state.year,
+      watts: this.state.watts
+    };
+    this.props.submitBill(billData);
+  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps);
+
+  //   }
+
+  handleChangeMonth = event => {
+    this.setState({month: event.target.value});
+    console.log(this.props.auth.user.id);
+  };
+  handleChangeYear = event => {
+    this.setState({year: event.target.value});
+  };
+  handleChangeWatts = event => {
+    this.setState({watts: event.target.value});
+  };
     render() {
+      const { user } = this.props.auth;
         return (
             <div class="container">
   <form>
   <div class="form-group needs-validation novalidate">
     <label for="staticEmail" class="col-sm-2 col-form-label">Select Month</label>
     <div class="col-sm-10">
-      <select id="inputState" class="form-control" required>
+      <select id="inputState" class="form-control" value={this.state.month} onChange={this.handleChangeMonth} required>
+      <option></option>
       <option>January</option>
       <option>February</option>
       <option>March</option>
@@ -49,7 +90,8 @@ class Services extends React.Component {
   <div class="form-group">
     <label for="staticEmail" class="col-sm-2 col-form-label">Select Year</label>
     <div class="col-sm-10">
-      <select id="inputState" class="form-control" required>
+      <select id="inputState" class="form-control" value={this.state.year} onChange={this.handleChangeYear} required>
+      <option></option>
       <option>2000</option>
       <option>2001</option>
       <option>2002</option>
@@ -77,12 +119,12 @@ class Services extends React.Component {
     <label for="inputPassword" class="col-sm-2 col-form-label">Enter kWh</label>
     <div class="col-sm-10">
       <div class="input-group-append">
-      <input type="number" class="form-control" id="inputWatt" />
+      <input type="number" class="form-control" id="inputWatt" value={this.state.watts} onChange={this.handleChangeWatts}/>
           <span class="input-group-text" id="inputGroupPrepend2">kWh</span>
         </div>
     </div>
   </div>
-  <button type="button" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
   <button type="button" class="btn btn-success">Generate Graph</button>
 </form>
 <br></br>
@@ -101,6 +143,7 @@ class Services extends React.Component {
 };
 
 Services.propTypes = {
+  submitBill: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -109,7 +152,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { submitBill, logoutUser }
 )(Services);
 
 
