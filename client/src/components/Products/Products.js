@@ -7,6 +7,7 @@ import img3 from '../../assets/images/bottleProduct.jpg'
 import img4 from '../../assets/images/shampoo.jpg'
 import img5 from '../../assets/images/detergent.jpg'
 import img6 from '../../assets/images/plates.jpg'
+import {Link} from  "react-router-dom";
 
 
 class Products extends React.Component{
@@ -72,6 +73,7 @@ class Products extends React.Component{
       <div className="row">
         {this.state.products.map((p,i) => (
           <div className="col-sm-4 product">
+            <Link to="/product" className="link">
               <Card>
               <Card.Img variant="top" src={this.state.products[i].Img} />
               <Card.Body>
@@ -105,6 +107,7 @@ class Products extends React.Component{
                   <Button variant="secondary">Buy Now</Button>
               </Card.Body>
             </Card>
+            </Link>
           </div>
         ))}
       </div>
