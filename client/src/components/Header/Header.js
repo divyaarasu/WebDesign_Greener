@@ -1,35 +1,74 @@
 import React from 'react';
 import './Header.css';
-import { Button, Navbar, Nav, NavDropdown, FormControl,Dropdown } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { Button, Navbar, Nav, NavDropdown, FormControl } from 'react-bootstrap'
+import { NavLink, withRouter } from 'react-router-dom'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import { loginUser } from "../../actions/authActions";
+//import classnames from "classnames";
 
 class Header extends React.Component {
-    state = {
-        register: {
-            name: "",
-            email: "",
-            password: "",
-            password2: "",
-            errors: {}
+    constructor() {
+        super();
+      this.state = {
+        rname: "",
+        remail: "",
+        rpassword: "",
+        rpassword2: "",
+        errors: {},
+
+        lpassword: "",
+        lemail: "",
         }
     }
 
-    onRegisterChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-    };
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/services"); // push user to dashboard when they login
+          }
+
+        if (nextProps.errors) {
+          this.setState({
+            errors: nextProps.errors
+          });
+        }
+      }
+
+   onRegisterChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+        
+   };
+
+   onLoginChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+    
+};
 
     onRegister = e => {
         e.preventDefault();
         const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2
+            name: this.state.rname,
+            email: this.state.remail,
+            password: this.state.rpassword,
+            password2: this.state.rpassword2
         };
+        this.props.registerUser(newUser, this.props.history); 
         console.log(newUser);
     };
 
-    render() {
+    onLogin = e => {
+        e.preventDefault();
+        const userData = {
+            email: this.state.lemail,
+            password: this.state.lpassword
+        };
+        this.props.loginUser(userData); 
+        console.log(userData);
+    };
+
+    render() {        
+    const { errors } = this.state;
         return (
             <div className="a">
                 <Navbar className="nav" expand="md" sticky="top">
@@ -50,123 +89,132 @@ class Header extends React.Component {
                         </Nav>
                     </Navbar.Collapse>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         SignIn </button>
-                    <i class="fa fa-user userIcon" data-toggle="modal" data-target="#userModal"><span class="badge badge-danger badgeClass">2</span></i>
+                    <i className="fa fa-user userIcon" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i>
                 </Navbar>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Sign In</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <div class="login-form">
-                                    <form action="/examples/actions/confirmation.php" method="post">
-
-                                        <div class="text-center social-btn">
-                                            <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
-                                            <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
-                                            <a href="#" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+                            <div className="modal-body">
+                                <div className="login-form">
+                                    <form onSubmit={this.onLogin}>
+                                        <div className="text-center social-btn">
+                                            <a href="#" className="btn btn-primary btn-block"><i className="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
+                                            <a href="#" className="btn btn-info btn-block"><i className="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
+                                            <a href="#" className="btn btn-danger btn-block"><i className="fa fa-google"></i> Sign in with <b>Google</b></a>
                                         </div>
-                                        <div class="text-center"><i><br /></i></div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+                                        <div className="text-center"><i><br /></i></div>
+                                        <div className="form-group">
+                                            <div className="input-group">
+                                                <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                                                <input type="email" className="form-control" 
+                                                onChange={this.onLoginChange}
+                                                value={this.state.lemail}
+                                                error={errors.lemail}
+                                                id="lemail"
+                                                name="lemail" placeholder="Email" required="required" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                                <input type="password" class="form-control" name="password" placeholder="Password" required="required" />
+                                        <div className="form-group">
+                                            <div className="input-group">
+                                                <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                                                <input type="password" className="form-control" 
+                                                onChange={this.onLoginChange}
+                                                value={this.state.lpassword}
+                                                error={errors.lpassword}
+                                                id="lpassword"
+                                                name="lpassword" placeholder="Password" required="required" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-block login-btn">Sign in</button>
+                                        <div className="form-group">
+                                            <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
                                         </div>
-                                        <div class="clearfix">
-                                            <label class="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-                                            <a href="#" class="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
+                                        <div className="clearfix">
+                                            <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
+                                            <a href="#" className="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
                                         </div>
 
                                     </form>
-                                    <div class="hint-text small">Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal" class="text-success">Register Now!</a></div>
+                                    <div className="hint-text small">Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal" className="text-success">Register Now!</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog " role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div className="modal fade" id="registerModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog " role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Register</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <form onCLick="onRegister">
-                                    <p class="hint-text">Create your account. It's free and only takes a minute.</p>
-                                    <div class="form-group">
-                                        <div class="col-xs-6"><input type="text"
+                            <div className="modal-body">
+                                <form onSubmit={this.onRegister}>
+                                    <p className="hint-text">Create your account. It's free and only takes a minute.</p>
+                                    <div className="form-group">
+                                        <div className="col-xs-6"><input type="text"
                                             onChange={this.onRegisterChange}
-                                            value={this.state.register.name}
-                                            error={this.state.register.errors.name}
-                                            id="name"
-                                            class="form-control" name="name"
+                                            value={this.state.rname}
+                                            error={errors.rname}
+                                            id="rname"
+                                            className="form-control" name="rname"
                                             placeholder="Name" required="required" /></div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control"
+                                    <div className="form-group">
+                                        <input type="email" className="form-control"
                                             onChange={this.onRegisterChange}
-                                            value={this.state.register.email}
-                                            error={this.state.register.errors.email}
-                                            id="email"
-                                            name="email" placeholder="Email" required="required" />
+                                            value={this.state.remail}
+                                            error={errors.remail}
+                                            id="remail"
+                                            name="remail" placeholder="Email" required="required" />
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control"
+                                    <div className="form-group">
+                                        <input type="password" className="form-control"
                                             onChange={this.onRegisterChange}
-                                            value={this.state.register.password}
-                                            error={this.state.register.errors.password}
-                                            id="password"
-                                            name="password" placeholder="Password" required="required" />
+                                            value={this.state.rpassword}
+                                            error={errors.rpassword}
+                                            id="rpassword"
+                                            name="rpassword" placeholder="Password" required="required" />
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control"
+                                    <div className="form-group">
+                                        <input type="password" className="form-control"
                                             onChange={this.onRegisterChange}
-                                            value={this.state.register.password2}
-                                            error={this.state.register.errors.password2}
-                                            id="password2"
-                                            name="password2" placeholder="Confirm Password" required="required" />
+                                            value={this.state.rpassword2}
+                                            error={errors.rpassword2}
+                                            id="rpassword2"
+                                            name="rpassword2" placeholder="Confirm Password" required="required" />
                                     </div>
-                                    <div class="form-group">
-                                        <label class="checkbox-inline"><input type="checkbox" required="required" /> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+                                    <div className="form-group">
+                                        <label className="checkbox-inline"><input type="checkbox" required="required" /> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+                                    <div className="form-group">
+                                        <button type="submit" className="btn btn-success btn-lg btn-block">Register Now</button>
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div className="modal fade" id="forgotPasswordModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" className="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -179,5 +227,21 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+Header.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+export default connect(
+    mapStateToProps,
+    { loginUser }
+  )(withRouter(Header));
+
+// export default Header;
 
