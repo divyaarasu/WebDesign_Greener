@@ -23,6 +23,7 @@ import Login from "./components/Auth/Login";
 import Products from './components/Products/Products';
 import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
+import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
 
 
@@ -48,18 +49,17 @@ if (localStorage.jwtToken) {
 const routing = (
   <Provider store={store}>
     <Router>
-      <div>
-        <Header></Header>
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/info" component={Info} />
-          <Route path="/products" component={Products} />
-          <Route path="/jobs" component={Jobs} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute exact path="/services" component={Services} />
-          <Route path="/windInfo" component={windInfo} />
-        </Switch>
+    <div>
+    <Header></Header>
+    <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/info" component={Info} />
+        <Route path="/products" component={Products} />
+        <Route path="/jobs" component={Jobs}/>
+        <PrivateRoute exact path="/services" component={Services}/>
+        <Route path="/collection" component={Garbage}/>
+        <Route path="/windInfo" component={windInfo} />
+      </Switch>
         <Footer></Footer>
       </div>
     </Router>

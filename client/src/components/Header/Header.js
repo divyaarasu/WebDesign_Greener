@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { NavLink, withRouter } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -60,11 +60,15 @@ class Header extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                           <NavLink className="navLink" to="/products">Products</NavLink>
-                           <NavLink className="navLink" to="/services">Analysis</NavLink>
-                           <NavLink className="navLink" to="/info">Awareness</NavLink>
-                           <NavLink className="navLink" to="/donate">Donate</NavLink>
-                           <NavLink className="navLink" to="/jobs">Jobs</NavLink>
+                        <NavLink className="navLink" to="/products">Products</NavLink>
+                            {/* <NavLink className="navLink" to="/services">Analysis</NavLink> */}
+                            <NavDropdown title="Services" id="basic-nav-dropdown">
+        <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
+        <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
+      </NavDropdown>
+ 
+                            <NavLink className="navLink" to="/info">Awareness</NavLink>
+                            <NavLink className="navLink" to="/jobs">Donate/Jobs</NavLink>
                             <NavLink className="navLink userIconList" to="#link"><i className="fa fa-user" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i></NavLink>
                         </Nav>
                     

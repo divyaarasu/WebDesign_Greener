@@ -10,6 +10,10 @@ const BillSchema = new Schema({
     type: String,
     required: true
   },
+  year: {
+    type: Number,
+    required: true
+  },
   watts: {
     type: Number,
     required: true
