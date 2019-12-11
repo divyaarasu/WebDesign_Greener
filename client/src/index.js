@@ -18,6 +18,8 @@ import * as serviceWorker from './serviceWorker';
 import Info from './components/Info/Info';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 import Products from './components/Products/Products';
 import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
@@ -33,7 +35,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-// Check for expired token
+  // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
@@ -46,23 +48,24 @@ if (localStorage.jwtToken) {
 const routing = (
   <Provider store={store}>
     <Router>
-    <div>
-    <Header></Header>
-    <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/info" component={Info} />
-        <Route path="/products" component={Products} />
-        <Route path="/jobs" component={Jobs}/>
-        <PrivateRoute exact path="/services" component={Services} />
-      
-        <Route path="/windInfo" component={windInfo} />
-      </Switch>
+      <div>
+        <Header></Header>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/info" component={Info} />
+          <Route path="/products" component={Products} />
+          <Route path="/jobs" component={Jobs} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <PrivateRoute exact path="/services" component={Services} />
+          <Route path="/windInfo" component={windInfo} />
+        </Switch>
         <Footer></Footer>
-        </div>
+      </div>
     </Router>
   </Provider>
-  )
-  
+)
+
 
 
 ReactDOM.render(routing, document.getElementById('root'));
