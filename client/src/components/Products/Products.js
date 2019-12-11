@@ -1,6 +1,6 @@
 import React from 'react';
 import './Products.css';
-import { Jumbotron, Carousel, Card, Button, Container, Row, Col, Modal} from 'react-bootstrap';
+import { Jumbotron, Carousel, Card, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import img1 from '../../assets/images/dustbin.jpg'
 import img2 from '../../assets/images/bag.jpg'
 import img3 from '../../assets/images/bottleProduct.jpg'
@@ -121,12 +121,18 @@ class Products extends React.Component{
     this.props.submitProducts(productsData);
   }
 
-  render(){
-    return(
-        <div>
+  buyNow = () => {
+    if (this.props.auth.isAuthenticated)
+      this.props.history.push("/buyNow");
+    else
+      this.props.history.push("/login");
+  }
 
+  render() {
+    return (
+      <div>
         <video class="video-fluid z-depth-1 video-background" autoplay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
-        <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+          <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
         </video>
 
 
@@ -149,7 +155,6 @@ class Products extends React.Component{
                     </Card.Text>
                     <Button variant="p">Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
-
                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -167,36 +172,23 @@ class Products extends React.Component{
                         </div>
                       </div>
                     </div>
-
-                  <Button variant="secondary">Buy Now</Button>
-              </Card.Body>
-            </Card>
-           
+                    <Button variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                  </Card.Body>
+                </Card>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-
-  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
         <div class="modal-body">
         </div>
       </div>
-    </div>
-</div>
-
-    
-    </div>
     );
   }
 }
+Products.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
 Products.propTypes = {
   submitProducts: PropTypes.func.isRequired,
