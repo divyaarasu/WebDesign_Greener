@@ -25,7 +25,7 @@ import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
 import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
-
+import Product from './components/Products/Product';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -59,6 +59,7 @@ const routing = (
         <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
         <Route path="/products/product" component={Jobs}/>   
+        <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
