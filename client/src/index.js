@@ -25,6 +25,9 @@ import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
 import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
+import solarInfo from './components/Info/solarInfo';
+import biogasInfo from './components/Info/biogasInfo';
+import recycleInfo from './components/Info/recycleInfo';
 
 
 // Check for token to keep user logged in
@@ -59,6 +62,10 @@ const routing = (
         <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
         <Route path="/windInfo" component={windInfo} />
+        <Route path="/solarInfo" component={solarInfo} />
+        <Route path="/biogasInfo" component={biogasInfo} />
+        <Route path="/reuseInfo" component={recycleInfo} />
+        
       </Switch>
         <Footer></Footer>
       </div>
