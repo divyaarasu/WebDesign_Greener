@@ -15,6 +15,7 @@ import Header from './components/Header/Header';
 import Products from './components/Products/Products';
 import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
+import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
 
 
@@ -28,6 +29,7 @@ const routing = (
         <Route path="/products" component={Products} />
         <Route path="/jobs" component={Jobs}/>
         <Route path="/services" component={Services}/>
+        <Route path="/collection" component={Garbage}/>
         <Route path="/windInfo" component={windInfo} />
       </Switch>
         <Footer></Footer>

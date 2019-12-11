@@ -14,6 +14,7 @@ router.post("/submitbill", (req, res) => {
         const newbill = new Bill({
           userid: req.body.userid,
           month: req.body.month,
+          year: req.body.year,
           watts: req.body.watts
         });
         newbill.save().then(console.log(res));

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import { Button, Navbar, Nav, NavDropdown, FormControl } from 'react-bootstrap'
+import { Button, Navbar, Nav, NavDropdown, FormControl,Dropdown } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
 class Header extends React.Component {
@@ -38,7 +38,12 @@ class Header extends React.Component {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                         <NavLink className="navLink" to="/products">Products</NavLink>
-                            <NavLink className="navLink" to="/services">Analysis</NavLink>
+                            {/* <NavLink className="navLink" to="/services">Analysis</NavLink> */}
+                            <NavDropdown title="Services" id="basic-nav-dropdown">
+        <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
+        <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
+      </NavDropdown>
+ 
                             <NavLink className="navLink" to="/info">Awareness</NavLink>
                             <NavLink className="navLink" to="/jobs">Donate/Jobs</NavLink>
                             <NavLink className="navLink userIconList" to="#link"><i className="fa fa-user" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i></NavLink>
