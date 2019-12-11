@@ -20,8 +20,14 @@
     text-align: justify;
     text-justify: inter-word;
   }
+<<<<<<< HEAD
   #z {
     background-image: url("../../assets/images/green.jpg");
+=======
+  #b{
+    
+/*  background-image: url("img_tree.gif");*/
+>>>>>>> 09520e7a65b4dd6317b7768078ca23fd87c57e25
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: 120% 110%;

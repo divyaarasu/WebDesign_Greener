@@ -21,8 +21,8 @@ class Header extends React.Component {
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
-      };
-    
+    };
+
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
@@ -60,26 +60,26 @@ class Header extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                        <NavLink className="navLink" to="/products">Products</NavLink>
-                            {/* <NavLink className="navLink" to="/services">Analysis</NavLink> */}
-                            <NavDropdown title="Services" id="basic-nav-dropdown">
-        <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
-        <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
-      </NavDropdown>
- 
-                            <NavLink className="navLink" to="/info">Awareness</NavLink>
-                            <NavLink className="navLink" to="/jobs">Donate/Jobs</NavLink>
-                            <NavLink className="navLink userIconList" to="#link"><i className="fa fa-user" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i></NavLink>
+                            <Nav.Link className="navLink" href="/products">Products</Nav.Link>                            
+                            <NavDropdown title={
+                                <span className="navLink">Services</span>} id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
+                                <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
+                            </NavDropdown>
+                            <Nav.Link className="navLink" href="/info">Awareness</Nav.Link>
+                            <Nav.Link className="navLink" href="/donate">Donate</Nav.Link>
+                            <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
+                            <Nav.Link className="navLink userIconList" to="#link"><i className="fa fa-user" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i></Nav.Link>
                         </Nav>
-                    
-                    {(this.props.auth.isAuthenticated) ?
-                        (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark"  onClick={this.onLogoutClick}>
-                            Logout
+
+                        {(this.props.auth.isAuthenticated) ?
+                            (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark" onClick={this.onLogoutClick}>
+                                Logout
                         </button></p>)
-                        : (<button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-                            <i className="fa fa-user userIcon"></i> Sign In
+                            : (<button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                                <i className="fa fa-user userIcon"></i> Sign In
                         </button>)}
-                        </Navbar.Collapse>
+                    </Navbar.Collapse>
 
                 </Navbar>
 

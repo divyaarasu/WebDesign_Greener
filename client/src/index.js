@@ -25,10 +25,14 @@ import Jobs from './components/Jobs/Jobs';
 import Services from './components/Services/Services';
 import Garbage from './components/Services/Garbage';
 import windInfo from './components/Info/windInfo';
+<<<<<<< HEAD
 import solarInfo from './components/Info/solarInfo';
 import biogasInfo from './components/Info/biogasInfo';
 import recycleInfo from './components/Info/recycleInfo';
 
+=======
+import Product from './components/Products/Product';
+>>>>>>> 09520e7a65b4dd6317b7768078ca23fd87c57e25
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -61,10 +65,17 @@ const routing = (
         <Route path="/jobs" component={Jobs}/>
         <PrivateRoute exact path="/services" component={Services}/>
         <Route path="/collection" component={Garbage}/>
+        <Route path="/products/product" component={Jobs}/>   
+        <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
+<<<<<<< HEAD
         <Route path="/solarInfo" component={solarInfo} />
         <Route path="/biogasInfo" component={biogasInfo} />
         <Route path="/reuseInfo" component={recycleInfo} />
+=======
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+>>>>>>> 09520e7a65b4dd6317b7768078ca23fd87c57e25
         
       </Switch>
         <Footer></Footer>
