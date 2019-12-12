@@ -21,6 +21,7 @@ router.post("/submitbill", (req, res) => {
           success: true
         }))
         });
+
 router.get("/submitbill", (req, res) => {
     // Form validation
     Bill.find({}, function(err, result) {
@@ -28,4 +29,5 @@ router.get("/submitbill", (req, res) => {
     console.log(result);
     })
 });
+
 module.exports = router;

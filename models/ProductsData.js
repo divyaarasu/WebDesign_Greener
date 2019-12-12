@@ -11,16 +11,16 @@ const ProductsSchema = new Schema({
     type: String,
     required: true
   },
-  image2:{
+  image2: {
     type:String,
     required: true
   },
-  image3:{
+  image3: {
     type:String,
     required:true
   },
-  image4:{
-    tyoe:String,
+  image4: {
+    type:String,
     required:true
   },
   price: {
@@ -44,7 +44,7 @@ const ProductsSchema = new Schema({
       required:true
   },
   rating:{
-      type:String,
+      type:Number,
       required:true
   },
   seller:{

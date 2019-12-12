@@ -7,11 +7,11 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 // Load User model
-const Products = require("../../models/Products");
+const Products = require("../../models/ProductsData");
 
 router.post("/submitProducts", (req, res) => {
     // Form validation
-        const newProducts = new newProducts({
+        const newProducts = new Products({
           title: req.body.title,
           image1: req.body.image1,
           image2: req.body.image2,
@@ -25,11 +25,12 @@ router.post("/submitProducts", (req, res) => {
           rating:req.body.rating,
           seller:req.body.seller
         });
+        console.log(newProducts);   
         newProducts.save().then(res.json({
           success: true
         }))
         });
-        
+
 router.get("/submitProducts", (req, res) => {
     // Form validation
     Products.find({}, function(err, result) {
