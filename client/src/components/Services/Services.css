@@ -9,7 +9,7 @@
     text-align: center;
   }
   .metal {
-    background-image: url("../../assets/images/metal1.jpg");
+    background-image: url("../../assets/images/metal.jpg");
     border-radius: 50%;
     display: inline-block;
     height: 15rem;
@@ -43,4 +43,7 @@
 .button-spacing {
     margin-right: 2rem;
     margin-top: 1rem;
+}
+.bg {
+    background-image: url("../../assets/images/garbage1.jpg");
 }
