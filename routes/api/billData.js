@@ -21,6 +21,7 @@ router.post("/submitbill", (req, res) => {
           success: true
         }))
         });
+
 router.get("/submitbill", (req, res) => {
   // userid: req.query.id
     Bill.find({userid: req.query.id}, function(err, result) {
@@ -30,4 +31,5 @@ router.get("/submitbill", (req, res) => {
       .json(result)
     });
 });
+
 module.exports = router;

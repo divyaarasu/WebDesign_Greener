@@ -7,11 +7,12 @@ const users = require("./routes/api/users");
 const bill = require("./routes/api/billData");
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
+const products = require("./routes/api/productsData");
 
 const app = express();
 
 app.use(cors());
-// Bodyparser middleware
+// Bodyparser middleware 
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -38,6 +39,7 @@ app.use("/api/users", users);
 app.use("/api/billdata", bill);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
+app.use("/api/productsData",products);
 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there

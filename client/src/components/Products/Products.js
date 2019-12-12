@@ -15,17 +15,19 @@ import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
 
 
+
 class Products extends React.Component{
   constructor(props){
     super(props)
+
     this.state={
       products:[{
         title:"Kitchen Compost Bin",
-        image1:img1,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
+        image1:"../../assets/images/dustbin.jpg",
+        image2:"../../assets/images/dustbin.jpg",
+        image3:"../../assets/images/dustbin.jpg",
+        image4:"../../assets/images/dustbin.jpg",
+        price:5,
         desc1:"Instead of the trash can, is a great eco-friendly change to make at home.",
         desc2:"",
         desc3:"",
@@ -34,7 +36,7 @@ class Products extends React.Component{
         seller:"a"
       },{
         title:"Food Storage Bag",
-        image1:img2,
+        image1:"http://localhost:3000/static/media/bag.d2faff51.jpg",
         image2:"",
         image3:"",
         image4:"",
