@@ -20,85 +20,86 @@ class Products extends React.Component{
     super(props)
 
     this.state={
-      products:[{
-        title:"Kitchen Compost Bin",
-        image1:"../../assets/images/dustbin.jpg",
-        image2:"../../assets/images/dustbin.jpg",
-        image3:"../../assets/images/dustbin.jpg",
-        image4:"../../assets/images/dustbin.jpg",
-        price:5,
-        desc1:"Instead of the trash can, is a great eco-friendly change to make at home.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      },{
-        title:"Food Storage Bag",
-        image1:"http://localhost:3000/static/media/bag.d2faff51.jpg",
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
-        desc1:"Your plastic food-storage bag use stops here. Available in a variety of sizes.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      },{
-        title:"Hydro Flask",
-        image1:img3,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
-        desc1:"A durable, non-disposable water bottle is what you should be using on the daily.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      },{
-        title:"Bamboo Cutlery Set",
-        image1:img4,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
-        desc1:"Disposable flatware is often a double whammy of plastic use wrapped up in even more plastic.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      },{
-        title:"All Purpose Spaghetti Scrub",
-        image1:img5,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
-        desc1:"Goodbye Detergent! This product works astonishingly well, and is much less wasteful.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      },{
-        title:"Compostable Plates",
-        image1:img6,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
-        desc1:"Not only are they just as durable, but they have the added bonus of being dye-free.",
-        desc2:"",
-        desc3:"",
-        desc4:"",
-        rating:4,
-        seller:"a"
-      }]
+      products:[]
+      // products:[{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // },{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // },{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // },{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // },{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // },{
+      //   title:"",
+      //   image1:"",
+      //   image2:"",
+      //   image3:"",
+      //   image4:"",
+      //   price:0,
+      //   desc1:"",
+      //   desc2:"",
+      //   desc3:"",
+      //   desc4:"",
+      //   rating:0,
+      //   seller:""
+      // }]
     }
 
     this.getProductsData();
@@ -121,6 +122,15 @@ class Products extends React.Component{
       seller: this.state.products.seller
     };
     this.props.submitProducts(productsData);
+
+    e.preventDefault();
+    axios
+    .get("/api/productsData/submitProducts").then((response) => {
+    const r = response.data;
+    this.setState({products : r})
+  });
+
+
   }
 
   buyNow = () => {
