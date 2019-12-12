@@ -29,6 +29,7 @@ import solarInfo from './components/Info/solarInfo';
 import biogasInfo from './components/Info/biogasInfo';
 import recycleInfo from './components/Info/recycleInfo';
 import Product from './components/Products/Product';
+import donate from './components/Donate/donate'
 import BuyNow from './components/Products/BuyNow';
 
 // Check for token to keep user logged in
@@ -70,7 +71,8 @@ const routing = (
         <Route path="/reuseInfo" component={recycleInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/buyNow" component={BuyNow} />        
+        <Route path="/buyNow" component={BuyNow} />   
+        <Route path="/donate" component={donate} />  
       </Switch>
         <Footer></Footer>
       </div>
