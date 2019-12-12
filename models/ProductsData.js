@@ -19,11 +19,7 @@ const ProductsSchema = new Schema({
     type:String,
     required:true
   },
-<<<<<<< HEAD:models/Products.js
-  image4:{
-=======
   image4: {
->>>>>>> 660c895edf636e8d2c44214f4e4e79a969b19424:models/ProductsData.js
     type:String,
     required:true
   },

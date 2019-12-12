@@ -44,9 +44,10 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, resu) => {
-  Cart.findOne({ user: "5def381c2e01c4995c4244ed" }, function (err, result) {
+  console.log( req.query.id);
+  Cart.findOne({ user: req.query.id }, function (err, result) {
     if (err) throw err;
-    console.log(result);
+    console.log( req.query.id);
     return (resu.send(result));
   })
 });
