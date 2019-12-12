@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import './Products.css';
 import { Jumbotron, Carousel, Card, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import img1 from '../../assets/images/dustbin.jpg'
@@ -126,6 +127,12 @@ class Products extends React.Component{
       this.props.history.push("/buyNow");
     else
       this.props.history.push("/login");
+  }
+
+  addToCart = async () => {
+    await axios.post('/api/cart', this.state.postData);
+
+    this.setState({ snackbarOpen: true });
   }
 
   render() {
