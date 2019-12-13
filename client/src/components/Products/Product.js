@@ -5,10 +5,20 @@ import img from '../../assets/images/cardLayoutportal.jpg'
 import img1 from '../../assets/images/bambooCar1.jpg'
 import img2 from '../../assets/images/bambooCar2.jpg'
 import img3 from '../../assets/images/bambooCar3.jpg'
+import Products from '../Products/Products'
 
 
 
 class Product extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state={
+            products:props.location.state.p
+        }
+        const products = props.location.state.p
+        console.log(products);
+    }
 
     render() {
         return (
@@ -19,39 +29,39 @@ class Product extends React.Component {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={img}
+                                    src={process.env.PUBLIC_URL + this.state.products.image1}
                                     alt="First slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={img1}
-                                    alt="First slide"
+                                    src={process.env.PUBLIC_URL + this.state.products.image2}
+                                    alt="Second slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={img2}
+                                    src={process.env.PUBLIC_URL + this.state.products.image3}
                                     alt="Third slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={img3}
-                                    alt="Third slide"
+                                    src={process.env.PUBLIC_URL + this.state.products.image4}
+                                    alt="Fourth slide"
                                 />
                             </Carousel.Item>
                         </Carousel>
                     </div>
                     <div className="col-md-6">
                         <div className="row m mt-3">
-                            <h2>Kitchen Compost Bin</h2>
+                            <h2>{this.state.products.title}</h2>
                         </div>
                         <div className="row m">
-                            <h2>$6</h2> &nbsp; &nbsp; <h4><del>$10</del></h4> &nbsp; &nbsp; <h2 className="text-success">40% off</h2>
+                            <h2>${this.state.products.price}</h2> &nbsp; &nbsp; <h4><del>$10</del></h4> &nbsp; &nbsp; <h2 className="text-success">50% off</h2>
                         </div>
                         <div className="row m">
                             <h3 class="text-warning"><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star-o"></i></span></h3>
@@ -72,25 +82,24 @@ class Product extends React.Component {
                             </Form>
                         </div>
                         <div className="row mt-2 m">
-                            <h5>Seller: &nbsp; <i>H.M Woodworks</i></h5>
+                            <h5>Seller: &nbsp; <i>{this.state.products.seller}</i></h5>
                         </div>
                         <div className="row m mt-2">
                             <ul>
                                 <li>
-                                    Comes with:
-                                    Bamboo Utensils | Bamboo Travel Cutlery Set | Reusable Utensils With Case | Camping Utensils To-Go | Bamboo Flatware Set | Travel Utensil Set | Eco Friendly Zero Waste Fork Spoon Knife Set Tiny Panda
+                                {this.state.products.desc1}
                                 </li>
                                 <li>
-                                    GUARANTEED QUALITY This STYLISH BLACK bamboo utensil set was created after extensive research. The case of the travel cutlery set is made from black canvas. The bamboo utensils, the toothbrush and its case are all made of 100% natural bamboo. These materials are specially chosen for their strong, sturdy, durable and eco friendly characters. If you are not 100% content with this product we offer you a FULL MONEY BACK GUARANTEE.
+                                {this.state.products.desc2}
                                 </li>
                                 <li>
-                                    HELPS PROTECT THE ENVIRONMENT Say no to plastic! Tiny Panda’s zero waste products are completely made out of durable, eco friendly and biodegradable materials. We choose to use bamboo especially because it is a sustainable solution to plastic pollution.. With these travel utensils with case you can reduce your plastic footprint. The change starts with the (wo)man in the mirror.
+                                {this.state.products.desc3}
                                 </li>
                                 <li>
-                                    GREAT AS A GIFT Inspire your friends and family to stop using disposable plastics. With this stylish gift you can help others contribute to a cleaner environment.
+                                {this.state.products.desc3}
                                 </li>
                                 <li>
-                                    BONUS This reusable utensil travel set includes a bamboo charcoal toothbrush with a very stylish and luxury bamboo case. This biodegradable toothbrush is perfect for use whilst camping, traveling, backpacking or for those who like to keep their teeth clean after a meal. For more specific information about this product please read the product description below. NOW WITH EXTRA BAMBOO TEASPOON!!
+                                {this.state.products.desc4}
                                 </li>
                             </ul>
                         </div>

@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const bill = require("./routes/api/billData");
+<<<<<<< HEAD
+=======
+const garbage = require("./routes/api/garbageData");
+>>>>>>> 71078681f3048f9ee23257f98c7dab7b36144ea0
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
@@ -38,6 +42,10 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/billdata", bill);
+<<<<<<< HEAD
+=======
+app.use("/api/garbageData", garbage);
+>>>>>>> 71078681f3048f9ee23257f98c7dab7b36144ea0
 app.use("/api/cart", cart);
 app.use("/api/order", order);
 app.use("/api/productsData",products);
