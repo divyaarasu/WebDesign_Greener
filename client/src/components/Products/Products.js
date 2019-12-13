@@ -142,9 +142,16 @@ class Products extends React.Component{
       this.props.history.push("/login");
   }
 
-  addToCart = async () => {
+  addToCart = async (product) => {
     if (this.props.auth.isAuthenticated) {
-    //await axios.post('/api/cart', this.state.postData);
+      const reqBody = {
+        user: this.props.auth.user.id,
+        productID: product._id,
+        productName: product.title,
+        productPrice: product.price,
+        quantity: req.body.quantity
+      }
+    await axios.post('/api/cart', reqBody);
     this.setState({ showCartAlert: true });
     }
     else
@@ -158,7 +165,9 @@ class Products extends React.Component{
   render() {
     return (
       <div>
-      {(this.state.showCartAlert ? (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart! </Alert>) : '')}
+      {(this.state.showCartAlert ? 
+        (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>) 
+        : '')}
         <video class="video-fluid z-depth-1 video-background" autoplay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
           <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
         </video>
@@ -181,7 +190,7 @@ class Products extends React.Component{
                       <i>Seller:</i>{this.state.products[i].seller}
                       <b>{this.state.products[i].price}</b><br/>
                     </Card.Text>
-                    <Button variant="p" onClick={this.addToCart}>Add to Cart</Button>
+                    <Button variant="p" onClick={this.addToCart(this)}>Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
