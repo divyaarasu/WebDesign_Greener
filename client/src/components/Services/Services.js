@@ -6,9 +6,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitBill, getBillData } from "../../actions/billActions";
 import { logoutUser } from "../../actions/authActions";
+import {Alert} from "react-bootstrap";
 const BarChart = rd3.BarChart;
 var barData = [];
 var al = false;
+var r;
 const wattsRegExp =  /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/
 // const formValid = ({formErrors, ...rest}) => {
 //   let valid = true;
@@ -42,6 +44,8 @@ class Services extends React.Component {
       year: '',
       watts: '',
       billData: [],
+      alertS: false,
+      alertF: false,
       formErrors: {
         month:'',
         year: '',
@@ -73,6 +77,7 @@ class Services extends React.Component {
   }
   onSubmit = (e) => {
     e.preventDefault();
+    let formErrors = this.state.formErrors;
     if(this.state.month!="" && this.state.year !="" && wattsRegExp.test(this.state.watts)) {
       const billData = {
         userid: this.props.auth.user.id,
@@ -81,11 +86,16 @@ class Services extends React.Component {
         watts: this.state.watts
       };
       this.props.submitBill(billData);
-      this.setState = ({month: '', year: '', watts: ''});
-      alert("Bill Data submitted successfully");
+      this.setState({month: '', year: '', watts: '', alertS: true});
     } else {
-      alert("Please fill all fields to submit bill data");
+      this.setState({alertF: true});
     }
+  }
+  closeAlertS = () => {
+    this.setState({ alertS: false });
+  }
+  closeAlertF = () => {
+    this.setState({ alertF: false });
   }
 
   generateGraph = (e) => {
@@ -97,6 +107,7 @@ class Services extends React.Component {
       }
   }).then((response) => {
     const r = response.data;
+    console.log(response);
     r.sort((a, b) => {
       return a.year - b.year;
     });
@@ -105,9 +116,6 @@ class Services extends React.Component {
       this.forceUpdate();
     })
   });
-  }
-  setShow = (b) => {
-
   }
   handleChange = (event) => {
     const {name, value} = event.target;
@@ -158,6 +166,12 @@ class Services extends React.Component {
     render() {
         return (
             <div class="container">
+              {(this.state.alertS ? 
+                (<Alert variant="success" onClose={() => this.closeAlertS()} dismissible>Bill Data submitted successfully.</Alert>) 
+                : '')}
+                {(this.state.alertF ? 
+                (<Alert variant="danger" onClose={() => this.closeAlertF()} dismissible>Please fill all fields.</Alert>) 
+                : '')}
   <form>
   <div class="form-group">
     <label for="staticEmail" class="col-sm-2 col-form-label">Select Month</label>

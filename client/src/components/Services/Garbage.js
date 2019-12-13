@@ -1,16 +1,26 @@
 import React from 'react';
 import './Services.css';
-
-var divStyle;
+import PropTypes from "prop-types";
+import { logoutUser } from "../../actions/authActions";
+import { connect } from "react-redux";
+import {Alert} from "react-bootstrap";
+import { submitGarbageData } from "../../actions/garbageActions";
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+const mapStyles = {
+    width: '80%',
+    height: '80%'
+  };
 class Garbage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {wasteType: '', pickType: '', weight: '', time: ''};
+        this.state = {userid: this.props.auth.user.id,wasteType: '', pickType: '', weight: '', time: '', alertS: false, alertF: false};
     
         this.handleChangeWaste = this.handleChangeWaste.bind(this);
         this.handleChangeType = this.handleChangeType.bind(this);
         this.handleChangeWeight = this.handleChangeWeight.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
       }
       buttonSet = (type) => {
         if(type === "pickup") {
@@ -30,29 +40,76 @@ class Garbage extends React.Component {
             )
         }
     }
+    onSubmit = (e) => {
+        e.preventDefault();
+        if(this.state.wasteType!="" && this.state.weight !="") {
+          const gData = {
+            userid: this.props.auth.user.id,
+            wasteType: this.state.wasteType,
+            weight: this.state.weight
+          };
+          this.props.submitGarbageData(gData);
+          this.setState({wasteType: '', weight: '', alertS: true});
+        } else {
+            this.setState({alertF: true});
+        }
+      }
+    handleChange = (event) => {
+        const {name, value} = event.target;
+        let formErrors = this.state.formErrors;
+    
+        switch(name) {
+          case "wasteType":
+            //formErrors.month =  value.length > 0 ? "" : "Waste type cannot be empty";
+            this.setState({wasteType: event.target.value})
+            break;
+          case "weight":
+            // formErrors.year = value.length > 0 ? "" : "Weight cannot be empty";
+            // if(value.length == 0){
+            //   document.getElementById("inputY").style.borderColor = "red";
+            // }else {
+            //   document.getElementById("inputY").style.borderColor = "";
+            // }
+            this.setState({weight: event.target.value})
+            break;
+          default:
+            break;
+        }
+        //this.setState({formErrors, [name]: value});
+      };
     handleTimeChange(event) {
     this.setState({time: event.target.value});
+    document.getElementById("time").innerHTML = "Pickup/Drop time set to " + event.target.value;
       }
       handleChangeWaste(event) {
         this.setState({wasteType: event.target.value});
-        // document.getElementById("backgroundImg").style.backgroundImage = "url('../../assets/images/plastic.jpg')";
-        divStyle = {
-            background: 'url("../../assets/images/plastic.jpg")'
-        }
       }
       handleChangeType(event) {
         this.setState({pickType: event.target.value});
+        document.getElementById("time").innerHTML = "";
       }
       handleChangeWeight(event) {
         this.setState({weight: event.target.value});
       }
+      closeAlertS = () => {
+        this.setState({ alertS: false });
+      }
+      closeAlertF = () => {
+        this.setState({ alertF: false });
+      }
     render() {
         return (
             <div class="bg">
-            <div class="container" id="backgroundImg" style={divStyle}>
-<input class="plastic" value="Plastic" onClick={this.handleChangeWaste}></input>
-  <input class="metal" value="Metal" onClick={this.handleChangeWaste}></input>
-  <input class="paper" value="Paper" onClick={this.handleChangeWaste}></input>
+                {(this.state.alertS ? 
+                (<Alert variant="success" onClose={() => this.closeAlertS()} dismissible>Request submitted successfully.</Alert>) 
+                : '')}
+                {(this.state.alertF ? 
+                (<Alert variant="danger" onClose={() => this.closeAlertF()} dismissible>Please all fields.</Alert>) 
+                : '')}
+            <div class="container" id="backgroundImg">
+<input class="plastic" name="wasteType" value="Plastic" onClick={this.handleChange}></input>
+  <input class="metal" name="wasteType" value="Metal" onClick={this.handleChange}></input>
+  <input class="paper" name="wasteType" value="Paper" onClick={this.handleChange}></input>
 
   <div class="form-group">
     <label for="inputPassword" class="col-sm-2 col-form-label">Waste Type</label>
@@ -62,7 +119,7 @@ class Garbage extends React.Component {
         <label for="inputPassword" class="col-sm-2 col-form-label">Approximate weight</label>
     <div class="col-sm-10">
     <div class="input-group-append">
-      <input type="number" class="form-control" id="inputWatt" onChange={this.handleChangeWeight} min="1" max="20"/>
+      <input type="number" name="weight"class="form-control" id="inputWatt" onChange={this.handleChange} min="1" max="20"/>
       <span class="input-group-text" id="inputGroupPrepend2">Kg</span>
       </div>
         </div>
@@ -75,12 +132,38 @@ class Garbage extends React.Component {
   <label class="form-check-label" for="inlineRadio2">Drop-Off</label>
 </div>
 {this.buttonSet(this.state.pickType)}
+<div id="time"></div>
         </div>
-        <button type="button" class="btn btn-success" data-toggle="alert">Submit</button>
+        <button id="btnSub" type="button" class="btn btn-success" data-toggle="alert" onClick={this.onSubmit}>Submit</button>
+        <hr></hr>
+        <h3>Our Drop Off store location</h3>
+        <Map
+          google={this.props.google}
+          zoom={14}
+          style={mapStyles}
+          initialCenter={{ lat: 42.3367, lng:  -71.0875}}
+        >
+            <Marker position={{ lat: 42.3367, lng:  -71.0875}} />
+        </Map>
         </div>
         </div>
         );
     }
 };
 
-export default Garbage;
+Garbage.propTypes = {
+    submitGarbageData: PropTypes.func.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+  export default connect(
+    mapStateToProps,
+    { submitGarbageData, logoutUser }
+  )(
+    GoogleApiWrapper({
+        apiKey: ("AIzaSyDiqjm-md1hFlBudX6E31MQiCWZNsqPgAA")
+    })(Garbage)
+)
