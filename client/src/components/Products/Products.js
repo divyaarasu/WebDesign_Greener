@@ -160,7 +160,7 @@ class Products extends React.Component{
           <div className="col-sm-4 product">
             
               <Card>
-              <Link to="/product" className="link">
+              <Link to={{ pathname:"/product",state:{p : p} }} className="link">
               <Card.Img className="imgTop" variant="top" src={this.state.products[i].image1} />
               </Link>
               <Card.Body className="cardBody">
