@@ -1,9 +1,9 @@
 import React from 'react';
 import { Jumbotron, Carousel, Card, Button, Container, Row, Col } from 'react-bootstrap';
-import carousel1 from '../../assets/images/carousel1.jpeg'
+import carousel1 from '../../assets/images/carouselN2.jpg'
 import carousel2 from '../../assets/images/carousel2.jpg'
 import carousel3 from '../../assets/images/carousel3.jpg'
-import carousel4 from '../../assets/images/carousel4.jpg'
+import carousel4 from '../../assets/images/carouselN1.jpeg'
 import card1 from '../../assets/images/cardlayouteproducts.jpeg'
 import card2 from '../../assets/images/cardlayouteanalysis.jpeg'
 import card3 from '../../assets/images/cardLayoutInfo.jpg'
