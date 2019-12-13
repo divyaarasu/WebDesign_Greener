@@ -8,7 +8,8 @@ import { submitGarbageData } from "../../actions/garbageActions";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 const mapStyles = {
     width: '80%',
-    height: '80%'
+    height: '80%',
+    marginLeft: '-15px'
   };
 class Garbage extends React.Component {
     constructor(props) {

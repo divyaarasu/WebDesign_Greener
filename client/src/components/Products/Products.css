@@ -18,11 +18,11 @@
     padding: 0.5rem;
 }
 
-.card-body{
+.cardBody{
     padding: 0.5rem;
 }
 
-.card-img-top{
+.imgTop{
     padding: 0.5rem;
     height: 14vw;
 }
@@ -45,22 +45,34 @@
     font-size: x-large;
 }
 
-.row{
-    margin-top: 10rem;
-}
-
 i{
     margin-right: 0.1rem;
 }
 
 b{
-    margin-left: 16rem;
+    margin-left: 20rem;
 }
 
 .btn-bt{
     margin-right: 1rem;
 }
 
-.link{
-    text-decoration: none;
+hr{
+    margin-block-start:0rem;
+    margin-block-end:0rem;
+    margin-left: 0rem;
+    padding: 0rem;
+}   
+
+.m{
+  margin-left: 0.7rem;
+}
+
+.dd{
+    margin-left: 1rem;
+}
+
+ul{
+    margin: 0rem;
+    padding: 0.5rem;
 }
