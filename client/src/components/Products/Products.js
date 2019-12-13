@@ -156,6 +156,7 @@ class Products extends React.Component{
   }
 
   addToCart = async (product) => {
+    console.log(product);
     if (this.props.auth.isAuthenticated) {
       const reqBody = {
         user: this.props.auth.user.id,
@@ -176,7 +177,7 @@ class Products extends React.Component{
   }
 
   render() {
-    console.log(this.state.products)
+  //  console.log(this.state.products)
     return (
       <div>
       {(this.state.showCartAlert ? 
@@ -204,7 +205,7 @@ class Products extends React.Component{
                       <i>Seller:</i>{this.state.products[i].seller}
                       <b>{"$"+this.state.products[i].price}</b><br/>
                     </Card.Text>
-                    <Button variant="p" onClick={this.addToCart.bind(this)}>Add to Cart</Button>
+                    <Button variant="p" onClick={this.addToCart.bind(this, this.state.products[i])}>Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
                     <div class="modal fade" id="exampleModal1" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
