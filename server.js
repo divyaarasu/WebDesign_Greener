@@ -6,6 +6,8 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const bill = require("./routes/api/billData");
 const garbage = require("./routes/api/garbageData");
+const cart = require('./routes/api/cart');
+const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
 
 const app = express();
@@ -37,6 +39,8 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/billdata", bill);
 app.use("/api/garbageData", garbage);
+app.use("/api/cart", cart);
+app.use("/api/order", order);
 app.use("/api/productsData",products);
 
 
