@@ -1,13 +1,40 @@
 import React from 'react';
 import PaypalButton from '../../components/Jobs/pay';
 import qr from '../../assets/images/QR Code.png';
+import rd3 from 'rd3';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
+import { donationReq } from "../../actions/donationActions";
 const CLIENT = {
   sandbox: 'AXLG5l9gXCMut3IBoDyqmqKyq0fP5tl4E1V_U0UInnEtNymfLXmNKVrMbDYL0Ehoelv98tYl3t-j-p8R',
   
 };
 const ENV = 'sandbox';
 class donate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userid: this.props.auth.user.id,
+      amount: ''
+    };
+    this.handleChangeAmount = this.handleChangeAmount.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onSubmit = (e) => {
+    e.preventDefault();
+    const donationData = {
+      userid: this.props.auth.user.id,
+      amount: this.state.amount
+    };
+    this.props.donationReq(donationData);
+  }
+  handleChangeAmount = event => {
+    this.setState({amount: event.target.value});
+  };
+
   render() {
+    const { user } = this.props.auth;
     const onSuccess = (payment) =>
       console.log('Successful payment!', payment);
     const onError = (error) =>
@@ -27,7 +54,7 @@ class donate extends React.Component {
 </form>
 
       <form>
-            <input type="text"name="Amount" placeholder="Amount"  />
+            <input type="text"name="Amount" placeholder="Amount" onBlur={this.onSubmit} value={this.state.amount} onChange={this.handleChangeAmount}/>
             
             
             
@@ -46,4 +73,8 @@ class donate extends React.Component {
     );
   }
 }
-export default donate;
+
+export default connect(
+  
+  { donationReq, logoutUser }
+)(donate);
