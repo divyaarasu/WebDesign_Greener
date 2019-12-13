@@ -35,7 +35,11 @@ router.get("/submitProducts", (req, res) => {
     // Form validation
     Products.find({}, function(err, result) {
     if (err) throw err;
-    console.log(result);
+    console.log(res);
+    return res
+      .status(200)
+      .json(result)
+    
     })
 });
 module.exports = router;

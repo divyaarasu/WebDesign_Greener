@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
+import axios from "axios";
 
 
 
@@ -20,7 +21,8 @@ class Products extends React.Component{
     super(props)
 
     this.state={
-      products:[]
+      products : []
+      //products:[]
       // products:[{
       //   title:"",
       //   image1:"",
@@ -106,28 +108,31 @@ class Products extends React.Component{
   }
 
   getProductsData(){
-    
-    const productsData = {
-      title: this.state.products.title,
-      image1: this.state.products.image1,
-      image2: this.state.products.image2,
-      image3: this.state.products.image3,
-      image4: this.state.products.image4,
-      price: this.state.products.price,
-      desc1:this.state.products.desc1,
-      desc2: this.state.products.desc2,
-      desc3: this.state.products.desc3,
-      desc4: this.state.products.desc4,
-      rating: this.state.products.rating,
-      seller: this.state.products.seller
-    };
-    this.props.submitProducts(productsData);
 
-    e.preventDefault();
+    // const productsData = {
+    //   title: this.state.products.title,
+    //   image1: this.state.products.image1,
+    //   image2: this.state.products.image2,
+    //   image3: this.state.products.image3,
+    //   image4: this.state.products.image4,
+    //   price: this.state.products.price,
+    //   desc1:this.state.products.desc1,
+    //   desc2: this.state.products.desc2,
+    //   desc3: this.state.products.desc3,
+    //   desc4: this.state.products.desc4,
+    //   rating: this.state.products.rating,
+    //   seller: this.state.products.seller
+    // };
+    // this.props.submitProducts(productsData);
+
+    var products;
+
     axios
     .get("/api/productsData/submitProducts").then((response) => {
-    const r = response.data;
-    this.setState({products : r})
+
+      this.setState({products: response.data})
+      
+    
   });
 
 
@@ -141,6 +146,7 @@ class Products extends React.Component{
   }
 
   render() {
+    console.log(this.state.products)
     return (
       <div>
         <video class="video-fluid z-depth-1 video-background" autoplay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
@@ -163,7 +169,7 @@ class Products extends React.Component{
                     <Card.Text>
                       {this.state.products[i].desc1}<br/>
                       <i>Seller:</i>{this.state.products[i].seller}
-                      <b>{this.state.products[i].price}</b><br/>
+                      <b>{"$"+this.state.products[i].price}</b><br/>
                     </Card.Text>
                     <Button variant="p">Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
