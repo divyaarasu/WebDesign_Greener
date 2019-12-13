@@ -171,7 +171,7 @@ class Products extends React.Component{
                       <i>Seller:</i>{this.state.products[i].seller}
                       <b>{"$"+this.state.products[i].price}</b><br/>
                     </Card.Text>
-                    <Button variant="p">Add to Cart</Button>
+                    <Button variant="p"><i class="fa fa-shopping-cart"></i>Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -190,7 +190,7 @@ class Products extends React.Component{
                         </div>
                       </div>
                     </div>
-                    <Button variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                    <Button className="buy" variant="secondary" onClick={this.buyNow}>Buy Now</Button>
                   </Card.Body>
                 </Card>
               </div>
