@@ -29,7 +29,9 @@ import solarInfo from './components/Info/solarInfo';
 import biogasInfo from './components/Info/biogasInfo';
 import recycleInfo from './components/Info/recycleInfo';
 import Product from './components/Products/Product';
+import donate from './components/Donate/donate';
 import BuyNow from './components/Products/BuyNow';
+import Cart from './components/Products/Cart';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -70,7 +72,9 @@ const routing = (
         <Route path="/reuseInfo" component={recycleInfo} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/buyNow" component={BuyNow} />        
+        <PrivateRoute exact path="/buyNow" component={BuyNow} />   
+        <Route path="/donate" component={donate} />  
+        <PrivateRoute exact path="/cart" component={Cart}/>
       </Switch>
         <Footer></Footer>
       </div>

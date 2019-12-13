@@ -46,6 +46,7 @@
 }
 .bg {
     background-image: url("../../assets/images/garbage1.jpg");
+    height: 80rem;
 }
 #errorMsg {
   color: red;
