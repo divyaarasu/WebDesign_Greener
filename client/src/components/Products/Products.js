@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
-import axios from "axios";
 
 
 

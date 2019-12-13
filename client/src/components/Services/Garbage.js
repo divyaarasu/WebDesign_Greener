@@ -14,7 +14,22 @@ const mapStyles = {
 class Garbage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {userid: this.props.auth.user.id,wasteType: '', pickType: '', weight: '', time: '', alertS: false, alertF: false};
+        this.state = {
+        userid: this.props.auth.user.id,wasteType: '',
+        pickType: '',
+        weight: '',
+        time: '',
+        alertS: false,
+        alertF: false,
+        stores: [{ latitude: 42.3367, longitude:  -71.0875},
+            {latitude: 42.3375534, longitude: -71.0923795},
+            {latitude: 442.3375534, longitude: -71.0923795},
+            {latitude: 42.3441765, longitude: -71.0907051},
+            {latitude: 42.3425868, longitude: -71.1351013},
+            {latitude: 42.3312538, longitude: -71.1234369},
+            {latitude: 42.3436572, longitude: -71.0567736}
+        ]
+    };
     
         this.handleChangeWaste = this.handleChangeWaste.bind(this);
         this.handleChangeType = this.handleChangeType.bind(this);
@@ -26,14 +41,14 @@ class Garbage extends React.Component {
       buttonSet = (type) => {
         if(type === "pickup") {
             return (
-                <div>
+                <div class="rGroup">
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="11AM" onClick={this.handleTimeChange}>11AM</button>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="3PM" onClick={this.handleTimeChange}>3PM</button>
                 </div>
             )
         } else if(type === "dropoff") {
             return (
-            <div>
+            <div class="rGroup">
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="10AM" onClick={this.handleTimeChange}>10AM</button>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="3PM" onClick={this.handleTimeChange}>3PM</button>
                 <button type="button" class="btn btn-lg btn-danger button-spacing" value="7PM" onClick={this.handleTimeChange}>7PM</button>
@@ -43,7 +58,7 @@ class Garbage extends React.Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        if(this.state.wasteType!="" && this.state.weight !="") {
+        if(this.state.wasteType!="" && this.state.weight !="" && this.state.weight >0 && this.state.time !="" && this.state.pickType !="") {
           const gData = {
             userid: this.props.auth.user.id,
             wasteType: this.state.wasteType,
@@ -105,25 +120,23 @@ class Garbage extends React.Component {
                 (<Alert variant="success" onClose={() => this.closeAlertS()} dismissible>Request submitted successfully.</Alert>) 
                 : '')}
                 {(this.state.alertF ? 
-                (<Alert variant="danger" onClose={() => this.closeAlertF()} dismissible>Please all fields.</Alert>) 
+                (<Alert variant="danger" onClose={() => this.closeAlertF()} dismissible>Please all fields correctly</Alert>) 
                 : '')}
             <div class="container" id="backgroundImg">
 <input class="plastic" name="wasteType" value="Plastic" onClick={this.handleChange}></input>
   <input class="metal" name="wasteType" value="Metal" onClick={this.handleChange}></input>
   <input class="paper" name="wasteType" value="Paper" onClick={this.handleChange}></input>
 
-  <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Waste Type</label>
+  <div class="form-group gForm">
+    <label class="col-sm-2 col-form-label">Waste Type</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="inputWatt" value={this.state.wasteType} disabled/>
         </div>
-        <label for="inputPassword" class="col-sm-2 col-form-label">Approximate weight</label>
+        <label class="col-sm-2 col-form-label weightClass">Approx. weight (kg)</label>
     <div class="col-sm-10">
-    <div class="input-group-append">
       <input type="number" name="weight"class="form-control" id="inputWatt" onChange={this.handleChange} min="1" max="20"/>
-      <span class="input-group-text" id="inputGroupPrepend2">Kg</span>
-      </div>
         </div>
+        <div class="rGroup">
         <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="pickup" onClick={this.handleChangeType}/>
   <label class="form-check-label" for="inlineRadio1">Pick-Up</label>
@@ -132,19 +145,29 @@ class Garbage extends React.Component {
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="dropoff" onClick={this.handleChangeType}/>
   <label class="form-check-label" for="inlineRadio2">Drop-Off</label>
 </div>
+</div>
 {this.buttonSet(this.state.pickType)}
-<div id="time"></div>
+<div id="time" class="rGroup"></div>
         </div>
         <button id="btnSub" type="button" class="btn btn-success" data-toggle="alert" onClick={this.onSubmit}>Submit</button>
         <hr></hr>
-        <h3>Our Drop Off store location</h3>
+        <h3 class="dropStore">Our Drop Off store location</h3>
         <Map
           google={this.props.google}
           zoom={14}
           style={mapStyles}
           initialCenter={{ lat: 42.3367, lng:  -71.0875}}
         >
-            <Marker position={{ lat: 42.3367, lng:  -71.0875}} />
+            {
+                     this.state.stores.map((store, index) => (
+                        <Marker key={index} id={index} position={{
+                            lat: store.latitude,
+                            lng: store.longitude}} />
+                     ))
+                    
+                    }
+        
+            {/* <Marker position={{ lat: 42.3367, lng:  -71.0875}} /> */}
         </Map>
         </div>
         </div>

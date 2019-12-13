@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { submitBill, getBillData } from "../../actions/billActions";
 import { logoutUser } from "../../actions/authActions";
 import {Alert} from "react-bootstrap";
+import carousel4 from '../../assets/images/carousel4.jpg'
 const BarChart = rd3.BarChart;
 var barData = [];
 var al = false;
@@ -165,16 +166,17 @@ class Services extends React.Component {
   };
     render() {
         return (
-            <div class="container">
-              {(this.state.alertS ? 
+          <div class="billBg">
+            {(this.state.alertS ? 
                 (<Alert variant="success" onClose={() => this.closeAlertS()} dismissible>Bill Data submitted successfully.</Alert>) 
                 : '')}
                 {(this.state.alertF ? 
                 (<Alert variant="danger" onClose={() => this.closeAlertF()} dismissible>Please fill all fields.</Alert>) 
                 : '')}
+            <div class="container containerClass">
   <form>
   <div class="form-group">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Select Month</label>
+    <label class="col-sm-2 col-form-label txtLabel">Select Month</label>
     <div class="col-sm-10">
       <select id="inputM" name="month" class="form-control" value={this.state.month} onChange={this.handleChange}>
       <option></option>
@@ -195,7 +197,7 @@ class Services extends React.Component {
     </div>
   </div>
   <div class="form-group">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Select Year</label>
+    <label class="col-sm-2 col-form-label txtLabel">Select Year</label>
     <div class="col-sm-10">
       <select id="inputY" name="year" class="form-control" value={this.state.year} onChange={this.handleChange}>
       <option></option>
@@ -224,17 +226,16 @@ class Services extends React.Component {
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Enter kWh</label>
+    <label class="col-sm-2 col-form-label txtLabel">Enter Watts (kWh)</label>
     <div class="col-sm-10">
-      <div class="input-group-append">
       <input type="number" name="watts" class="form-control" id="inputW" value={this.state.watts} onChange={this.handleChange}/>
-          <span class="input-group-text" id="inputGroupPrepend2">kWh</span>
-        </div>
         <span id="errorMsg">{this.state.formErrors.watts}</span>
     </div>
   </div>
-  <button type="button" class="btn btn-primary" onClick={this.onSubmit}>Submit</button>
-  <button type="button" class="btn btn-success" onClick={this.generateGraph}>Generate Graph</button>
+  <div class="form-group btnPadding">
+  <button type="button" class="btn btn-primary btnSpace" onClick={this.onSubmit}>Submit</button>
+  <button type="button" class="btn btn-success btnSpace" onClick={this.generateGraph}>Generate Graph</button>
+  </div>
 </form>
 <br></br>
 <div>
@@ -247,6 +248,7 @@ class Services extends React.Component {
   yAxisLabel="kWh"
   yAxisTickCount={6}
 />
+</div>
 </div>
 </div>
         )
