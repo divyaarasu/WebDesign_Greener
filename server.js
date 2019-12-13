@@ -5,11 +5,15 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const bill = require("./routes/api/billData");
-const donate= require("./routes/api/Donationdata");
+const cart = require('./routes/api/cart');
+const order = require('./routes/api/order');
+const products = require("./routes/api/productsData");
+const donations=require("./routes/api/Donationdata")
+
 const app = express();
 
 app.use(cors());
-// Bodyparser middleware
+// Bodyparser middleware 
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -34,7 +38,10 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/billdata", bill);
-app.use("/api/Donationdata", donate);
+app.use("/api/cart", cart);
+app.use("/api/order", order);
+app.use("/api/productsData",products);
+app.use("/api/Donationdata",donations);
 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there

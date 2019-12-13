@@ -1,13 +1,25 @@
 import React from 'react';
 import './Products.css';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
-class BuyNow extends React.Component{
+class BuyNow extends React.Component {
 
-    render(){
-        return(
-            <p>hi in buy now!</p>
+    render() {
+        return (
+            <p>hi in buy now</p>
         );
     }
 }
-
-export default BuyNow;
+BuyNow.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+export default connect(
+    mapStateToProps,
+    { logoutUser }
+)(BuyNow);

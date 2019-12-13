@@ -3,8 +3,7 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
-  SET_CURRENT_USER,
-  USER_LOADING
+  REQ_USER_DATA,
 } from "./types";
 
 
@@ -22,3 +21,23 @@ export const submitBill = (billData) => dispatch => {
         })
       );
   };
+
+  export const getBillData = (userid) => dispatch => {
+      axios
+      .get("/api/billData/submitbill",{
+        params: {
+          id: userid
+        }
+    })
+      .then((response) => dispatch => ({
+        type: REQ_USER_DATA,
+        payload: response.data
+        //   return response.data;
+      }))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err
+        })
+      );
+  }

@@ -14,9 +14,15 @@ class Header extends React.Component {
         this.state = {
             lpassword: "",
             lemail: "",
-            errors: {}
+            errors: {},
+            showModal: false 
         }
     }
+
+
+    close(){
+        this.setState({ showModal: false });
+      }
 
     onLogoutClick = e => {
         e.preventDefault();
@@ -48,6 +54,7 @@ class Header extends React.Component {
             password: this.state.lpassword
         };
         this.props.loginUser(userData);
+        this.close();
     };
 
     render() {
@@ -83,7 +90,7 @@ class Header extends React.Component {
 
                 </Navbar>
 
-                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div show={this.state.showModal} className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">

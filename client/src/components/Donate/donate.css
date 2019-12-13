@@ -1,0 +1,26 @@
+.column {
+    width:50%;
+      margin-left: auto;
+  margin-right: auto;
+  }
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  #title{
+      text-align: center;
+  }
+  #qr{
+      width:50%;
+      margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  }
+  #dbtn{
+    width:50%;
+    margin-left: auto;
+margin-right: auto;
+text-align: center;
+  }
+  

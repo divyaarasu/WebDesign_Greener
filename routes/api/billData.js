@@ -21,11 +21,15 @@ router.post("/submitbill", (req, res) => {
           success: true
         }))
         });
+
 router.get("/submitbill", (req, res) => {
-    // Form validation
-    Bill.find({}, function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    })
+  // userid: req.query.id
+    Bill.find({userid: req.query.id}, function(err, result) {
+      if (err) throw err;
+      return res
+      .status(200)
+      .json(result)
+    });
 });
+
 module.exports = router;

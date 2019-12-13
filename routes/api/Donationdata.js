@@ -5,21 +5,26 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const Donation = require("../../models/donationdata");
 
+
 router.post("/donationreq", (req, res) => {
-    // Form validation
-        const newdonation = new Donation({
-          userid: req.body.userid,
-          amount: req.body.amount
-        });
-        newdonation.save().then(res.json({
-            success: true
-          }))
-          });
-          router.get("/donationreq", (req, res) => {
-            // Form validation
-            Donation.find({}, function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            })
-        });
-        module.exports = router;
+  // Form validation
+  const newdonation = new Donation({
+    userid: req.body.userid,
+    amount: req.body.amount
+  });
+  newdonation.save().then(res.json({
+    success: true
+  }))
+});
+
+
+router.get("/donationreq", (req, res) => {
+  // Form validation
+  Donation.find({ userid: req.query.id }, function (err, result) {
+    if (err) throw err;
+    return res
+      .status(200)
+      .json(result)
+  });
+});
+module.exports = router;

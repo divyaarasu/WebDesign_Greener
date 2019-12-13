@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from "axios";
 import './Products.css';
-import { Jumbotron, Carousel, Card, Button, Container, Row, Col, Modal } from 'react-bootstrap';
+import { Alert, Carousel, Card, Button, Container, Row, Col, Modal } from 'react-bootstrap';
 import img1 from '../../assets/images/dustbin.jpg'
 import img2 from '../../assets/images/bag.jpg'
 import img3 from '../../assets/images/bottleProduct.jpg'
@@ -14,17 +15,20 @@ import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
 
 
+
 class Products extends React.Component{
   constructor(props){
     super(props)
+
     this.state={
+      showCartAlert:false,
       products:[{
         title:"Kitchen Compost Bin",
-        image1:img1,
-        image2:"",
-        image3:"",
-        image4:"",
-        price:"$"+5,
+        image1:"../../assets/images/dustbin.jpg",
+        image2:"../../assets/images/dustbin.jpg",
+        image3:"../../assets/images/dustbin.jpg",
+        image4:"../../assets/images/dustbin.jpg",
+        price:5,
         desc1:"Instead of the trash can, is a great eco-friendly change to make at home.",
         desc2:"",
         desc3:"",
@@ -33,7 +37,7 @@ class Products extends React.Component{
         seller:"a"
       },{
         title:"Food Storage Bag",
-        image1:img2,
+        image1:"http://localhost:3000/static/media/bag.d2faff51.jpg",
         image2:"",
         image3:"",
         image4:"",
@@ -102,6 +106,9 @@ class Products extends React.Component{
     this.getProductsData();
   }
 
+
+  
+
   getProductsData(){
     
     const productsData = {
@@ -128,9 +135,30 @@ class Products extends React.Component{
       this.props.history.push("/login");
   }
 
+  cart = () => {
+    if (this.props.auth.isAuthenticated)
+      this.props.history.push("/cart");
+    else
+      this.props.history.push("/login");
+  }
+
+  addToCart = async () => {
+    if (this.props.auth.isAuthenticated) {
+    //await axios.post('/api/cart', this.state.postData);
+    this.setState({ showCartAlert: true });
+    }
+    else
+    this.props.history.push("/login");
+  }
+
+  closeAlertCart = () => {
+    this.setState({ showCartAlert: false });
+  }
+
   render() {
     return (
       <div>
+      {(this.state.showCartAlert ? (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart! </Alert>) : '')}
         <video class="video-fluid z-depth-1 video-background" autoplay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
           <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
         </video>
@@ -153,7 +181,7 @@ class Products extends React.Component{
                       <i>Seller:</i>{this.state.products[i].seller}
                       <b>{this.state.products[i].price}</b><br/>
                     </Card.Text>
-                    <Button variant="p">Add to Cart</Button>
+                    <Button variant="p" onClick={this.addToCart}>Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">

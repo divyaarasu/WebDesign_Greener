@@ -72,6 +72,7 @@ class PaypalButton extends React.Component {
             paymentToken: data.paymentToken,
             returnUrl: data.returnUrl,
           };
+          console.log("in paypal")
           console.log(payment);
           onSuccess(payment);
         });
