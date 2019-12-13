@@ -29,28 +29,28 @@ class Product extends React.Component {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={this.state.products.image1}
+                                    src={process.env.PUBLIC_URL + this.state.products.image1}
                                     alt="First slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={this.state.products.image2}
+                                    src={process.env.PUBLIC_URL + this.state.products.image2}
                                     alt="Second slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={this.state.products.image3}
+                                    src={process.env.PUBLIC_URL + this.state.products.image3}
                                     alt="Third slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={this.state.products.image4}
+                                    src={process.env.PUBLIC_URL + this.state.products.image4}
                                     alt="Fourth slide"
                                 />
                             </Carousel.Item>

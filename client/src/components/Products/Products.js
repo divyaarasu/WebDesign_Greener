@@ -1,14 +1,10 @@
 import React from 'react';
 import axios from "axios";
 import './Products.css';
-import { Alert, Carousel, Card, Button, Container, Row, Col, Modal } from 'react-bootstrap';
+import './Cart.css';
+import { Alert, Card, Button } from 'react-bootstrap';
 import img1 from '../../assets/images/dustbin.jpg'
-import img2 from '../../assets/images/bag.jpg'
-import img3 from '../../assets/images/bottleProduct.jpg'
-import img4 from '../../assets/images/shampoo.jpg'
-import img5 from '../../assets/images/detergent.jpg'
-import img6 from '../../assets/images/plates.jpg'
-import {Link} from  "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitProducts } from "../../actions/productsActions";
@@ -16,129 +12,25 @@ import { logoutUser } from "../../actions/authActions";
 
 
 
-class Products extends React.Component{
-  constructor(props){
+class Products extends React.Component {
+  constructor(props) {
     super(props)
 
-    this.state={
-      products : []
-      //products:[]
-      // products:[{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // },{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // },{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // },{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // },{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // },{
-      //   title:"",
-      //   image1:"",
-      //   image2:"",
-      //   image3:"",
-      //   image4:"",
-      //   price:0,
-      //   desc1:"",
-      //   desc2:"",
-      //   desc3:"",
-      //   desc4:"",
-      //   rating:0,
-      //   seller:""
-      // }]
+    this.state = {
+      products: []
     }
 
     this.getProductsData();
   }
 
 
-  
 
-  getProductsData(){
 
-    // const productsData = {
-    //   title: this.state.products.title,
-    //   image1: this.state.products.image1,
-    //   image2: this.state.products.image2,
-    //   image3: this.state.products.image3,
-    //   image4: this.state.products.image4,
-    //   price: this.state.products.price,
-    //   desc1:this.state.products.desc1,
-    //   desc2: this.state.products.desc2,
-    //   desc3: this.state.products.desc3,
-    //   desc4: this.state.products.desc4,
-    //   rating: this.state.products.rating,
-    //   seller: this.state.products.seller
-    // };
-    // this.props.submitProducts(productsData);
-
-    var products;
-
+  getProductsData() {
     axios
-    .get("/api/productsData/submitProducts").then((response) => {
-
-      this.setState({products: response.data})
-      
-    
-  });
-
-
+      .get("/api/productsData/submitProducts").then((response) => {
+        this.setState({ products: response.data })
+    });
   }
 
   buyNow = () => {
@@ -165,11 +57,11 @@ class Products extends React.Component{
         productPrice: product.price,
         quantity: 1
       }
-    await axios.post('/api/cart', reqBody);
-    this.setState({ showCartAlert: true });
+      await axios.post('/api/cart', reqBody);
+      this.setState({ showCartAlert: true });
     }
     else
-    this.props.history.push("/login");
+      this.props.history.push("/login");
   }
 
   closeAlertCart = () => {
@@ -177,33 +69,33 @@ class Products extends React.Component{
   }
 
   render() {
-  //  console.log(this.state.products)
+    //  console.log(this.state.products)
     return (
       <div>
-      {(this.state.showCartAlert ? 
-        (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>) 
-        : '')}
+        {(this.state.showCartAlert ?
+          (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>)
+          : '')}
         <video class="video-fluid z-depth-1 video-background" autoPlay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
           <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
         </video>
 
 
-    <div class="container mt-5">
-      <div className="row">
-        {this.state.products.map((p,i) => (
-          <div className="col-sm-4 product">
-            
-              <Card>
-              <Link to={{ pathname:"/product",state:{p : p} }} className="link">
-              <Card.Img className="imgTop" variant="top" src={this.state.products[i].image1} />
-              </Link>
-              <Card.Body className="cardBody">
-              
-                <Card.Title>{this.state.products[i].title}</Card.Title>
+        <div class="container mt-5">
+          <div className="row">
+            {this.state.products.map((p, i) => (
+              <div className="col-sm-4 product">
+
+                <Card>
+                  <Link to={{ pathname: "/product", state: { p: p } }} className="link">
+                    <Card.Img className="imgTop" variant="top" src={process.env.PUBLIC_URL + this.state.products[i].image1} />
+                  </Link>
+                  <Card.Body className="cardBody">
+
+                    <Card.Title>{this.state.products[i].title}</Card.Title>
                     <Card.Text>
-                      {this.state.products[i].desc1}<br/>
+                      {this.state.products[i].desc1}<br />
                       <i>Seller:</i>{this.state.products[i].seller}
-                      <b>{"$"+this.state.products[i].price}</b><br/>
+                      <b>{"$" + this.state.products[i].price}</b><br />
                     </Card.Text>
                     <Button variant="p" onClick={this.addToCart.bind(this, this.state.products[i])}>Add to Cart</Button>
                     <Button variant="bt" data-toggle="modal" data-target="#exampleModal1">Quick View</Button>
@@ -217,14 +109,14 @@ class Products extends React.Component{
                             </button>
                           </div>
                           <div class="modal-body">
-                            {this.state.products[i].title}<br/>
-                            <img src={img1} alt="Smiley face" height="320" width="320"></img><br/>
+                            {this.state.products[i].title}<br />
+                            <img src={img1} alt="Smiley face" height="320" width="320"></img><br />
                             {this.state.products[i].desc1}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <Button variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                    <Button className="buy" variant="secondary" onClick={this.buyNow}>Buy Now</Button>
                   </Card.Body>
                 </Card>
               </div>
