@@ -161,7 +161,7 @@ class Products extends React.Component{
             
               <Card>
               <Link to={{ pathname:"/product",state:{p : p} }} className="link">
-              <Card.Img className="imgTop" variant="top" src={this.state.products[i].image1} />
+              <Card.Img className="imgTop" variant="top" src={process.env.PUBLIC_URL+this.state.products[i].image1} />
               </Link>
               <Card.Body className="cardBody">
               
