@@ -9,7 +9,8 @@
     text-align: center;
   }
   .metal {
-    background-image: url("../../assets/images/metal.jpg");
+    background-image: url("../../assets/images/metal1.jpeg");
+    background-position: center;
     border-radius: 50%;
     display: inline-block;
     height: 15rem;
@@ -46,8 +47,60 @@
 }
 .bg {
     background-image: url("../../assets/images/garbage1.jpg");
-    height: 80rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 85rem;
 }
 #errorMsg {
   color: red;
+}
+.billBg {
+  background-image: url("../../assets/images/bulb3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 35.5rem;
+}
+.rd3-basic-chart {
+  margin-left: -6rem;
+  padding-bottom: 3rem;
+}
+.rd3-chart {
+  background-color: #FFFFFF;
+}
+.rd3-barchart-bar {
+  fill: teal;
+}
+.rd3-chart-title {
+  color: whitesmoke;
+}
+.txtLabel {
+  color: whitesmoke;
+  font-weight: bold;
+  padding-right: 0;
+}
+.containerClass {
+  padding-top: 5rem;
+  padding-left: 12rem;
+}
+.btnPadding {
+  margin-left: 1rem;
+  margin-top: 3rem;
+}
+.btnSpace {
+  margin-right: 2rem;
+}
+.gForm {
+  margin-left: 10rem;
+}
+#btnSub {
+  margin: 1rem 11rem;
+}
+.rGroup {
+  margin: 1rem 1rem;
+}
+.weightClass {
+  padding-right: 0;
+}
+.dropStore {
+  margin: 1rem 0;
 }
