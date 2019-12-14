@@ -1,7 +1,7 @@
 import React from 'react';
 import './Info.css';
 import wind1 from '../../assets/images/biogas1.jpg'
-import wind2 from '../../assets/images/biogas2.jpg'
+import wind2 from '../../assets/images/biogas6.jpg'
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 function biogasInfo() {
