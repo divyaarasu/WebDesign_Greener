@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import './Auth.css';
+import { Alert, Card, Button } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser, sendMail } from "../../actions/authActions";
@@ -17,8 +18,10 @@ class Register extends Component {
       phone: "",
       address: "",
       zip: "",
-
-      errors: {}
+      isErr:false,
+      onSuccess:false,
+      errors: {},
+      errorMessage:""
     };
   }
 
@@ -30,14 +33,15 @@ class Register extends Component {
         email: this.state.email
       };
       this.props.sendMail(mData);
-      this.props.history.push("/login");     
+      this.setState({onSuccess:true});  
     }
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
+      this.setState({ isErr:true,
+        errorMessage:  nextProps.errors.errorMessage
       });
     }
   }
@@ -62,14 +66,26 @@ class Register extends Component {
    
     this.props.registerUser(newUser, this.props.history);
   };
+  closeErrAlertCart = () => {
+    this.setState({ isErr: false });
+  }
 
   render() {
     const { errors } = this.state;
 
     return (
+      <div> {(this.state.isErr ?
+        (<Alert variant="danger" onClose={() => this.closeErrAlertCart()} dismissible>{this.state.errorMessage}</Alert>)
+        : '')}
+        {(this.state.onSuccess ?
+          (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible> Success! <Link to="/login">Login</Link> to continue</Alert>)
+          : '')}
       <div className="container allCenter">
+     
         <div className="row">
+       
           <div className="col s8 offset-s2">
+          
             <div className="col s12" style={{  }}>
               <h4>
                 <b>Register below</b>
@@ -207,7 +223,7 @@ class Register extends Component {
             </form>
           </div>
         </div>
-      </div>
+      </div></div>
     );
   }
 }

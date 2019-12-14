@@ -27,6 +27,10 @@ label {
 
 }
 
+.container {
+    min-height: 38rem;
+  }
+
 .input-line {
     background: none;
     border: none;
