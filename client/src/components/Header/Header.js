@@ -78,7 +78,7 @@ class Header extends React.Component {
                             <Nav.Link className="navLink" href="/products">Products</Nav.Link>
                             <NavDropdown title={
                                 <span className="navLink">Services</span>} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
+                                <NavDropdown.Item href="/services">Bill Tracking</NavDropdown.Item>
                                 <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link className="navLink" href="/info">Awareness</Nav.Link>

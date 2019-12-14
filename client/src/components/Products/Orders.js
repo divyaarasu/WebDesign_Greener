@@ -68,7 +68,7 @@ class Orders extends React.Component {
             console.log('Cancelled payment!', data);
 
         return (
-            <div class="ReviewOrder">
+            <div class="">
 
                 <h1 className="head">Review Order</h1>
 

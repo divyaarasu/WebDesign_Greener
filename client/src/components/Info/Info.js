@@ -12,7 +12,7 @@ function Info() {
       <div id="bg">
       <div id="b">
       
-      <div id="awarness"><h3><i>Awareness</i></h3></div>
+      <div id="awarness"><h3>Awareness</h3></div> <br></br>
       <div class="row">
   <div class="col-sm-5 col-md-6">
   <img
