@@ -9,6 +9,8 @@ const garbage = require("./routes/api/garbageData");
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
+const donations=require("./routes/api/Donationdata")
+
 const nodemailer = require("nodemailer");
 const app = express();
 
@@ -42,6 +44,7 @@ app.use("/api/garbageData", garbage);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
 app.use("/api/productsData",products);
+app.use("/api/Donationdata",donations);
 app.post("/api/sendmail", (req, res) => {
   var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -91,3 +94,4 @@ app.post("/api/sendmail", (req, res) => {
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 app.listen(port, () => console.log(`Greener Server: Up and running on port ${port} !`));
+
