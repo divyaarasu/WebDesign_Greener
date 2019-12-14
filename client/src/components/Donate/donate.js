@@ -88,10 +88,11 @@ class donate extends React.Component {
     const onCancel = (data) =>
       console.log('Cancelled payment!', data);
     return (
+      <div id="full">
       <div className="container">
            <div id="dbtn">
             <div id="title">
-              <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
+              <h4 id="topic"><q>No one is useless in this world who lightens the burdens of another.</q></h4>
             </div><br></br>
             <form>
               <div class="form-group">
@@ -112,7 +113,7 @@ class donate extends React.Component {
               />
             </form><br></br>
 
-          <strong>Your Donations</strong>
+          <strong id="topic">Your Donations</strong>
           {this.state.donationExists ?
             <table id="donationTable">
               <thead>
@@ -132,8 +133,9 @@ class donate extends React.Component {
                 })}
               </tbody>
             </table> :
-            <p>You do not have any donations at this time! Start sharing today!</p>
+            <p id="topic">You do not have any donations at this time! Start sharing today!</p>
           }
+        </div>
         </div>
         </div>
     )
