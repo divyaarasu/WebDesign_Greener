@@ -76,7 +76,6 @@ class Header extends React.Component {
                             <Nav.Link className="navLink" href="/info">Awareness</Nav.Link>
                             <Nav.Link className="navLink" href="/donate">Donate</Nav.Link>
                             <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
-                            <Nav.Link className="navLink userIconList" to="#link"><i className="fa fa-user" data-toggle="modal" data-target="#userModal"><span className="badge badge-danger badgeClass">2</span></i></Nav.Link>
                         </Nav>
 
                         {(this.props.auth.isAuthenticated) ?

@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { submitBill, getBillData } from "../../actions/billActions";
 import { logoutUser } from "../../actions/authActions";
 import {Alert} from "react-bootstrap";
-import carousel4 from '../../assets/images/carousel4.jpg'
 const BarChart = rd3.BarChart;
 var barData = [];
 var al = false;
@@ -142,12 +141,12 @@ class Services extends React.Component {
         this.setState({year: event.target.value})
         break;
       case "watts":
-        formErrors.watts = value>0 && wattsRegExp.test(value) ? "" : "Watts cannot be empty, negative numbers or contain special characters";
-        // if(wattsRegExp.test(value)){
-        //   document.getElementById("inputW").style.borderColor = "red";
-        // }else {
-        //   document.getElementById("inputW").style.borderColor = "";
-        // }
+        formErrors.watts = value>0 && value.length>0 ? "" : "Watts cannot be empty, negative numbers or contain special characters";
+        if(value.length===0 || value<=0){
+          document.getElementById("inputW").style.borderColor = "red";
+        }else {
+          document.getElementById("inputW").style.borderColor = "";
+        }
         this.setState({watts: event.target.value})
           break;
       default:
@@ -243,7 +242,7 @@ class Services extends React.Component {
   data={barData}
   width={1000}
   height={300}
-  title="Bar Chart"
+  title="Your electricity usage"
   xAxisLabel="Month"
   yAxisLabel="kWh"
   yAxisTickCount={6}
