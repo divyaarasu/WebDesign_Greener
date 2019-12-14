@@ -94,8 +94,12 @@ class donate extends React.Component {
               <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
             </div><br></br>
             <form>
-              <input type="text" id="inputM" className="input-line" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
-              <span id="errorMsg">{this.state.formErrors.amount}</span>
+              <div class="form-group">
+    <div class="col-sm-4 amountClass">
+      <input type="number" name="amount" class="form-control" id="inputM" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount}/>
+        <span id="errorMsg">{this.state.formErrors.amount}</span>
+    </div>
+  </div>
               <div><br></br></div><PaypalButton
                 client={CLIENT}
                 env={ENV}
