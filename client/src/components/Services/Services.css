@@ -1,3 +1,7 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .plastic {
     background-image: url("../../assets/images/plastic.jpg");
     border-radius: 50%;
@@ -49,7 +53,7 @@
     background-image: url("../../assets/images/garbage1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 85rem;
+    min-height: 92rem;
 }
 #errorMsg {
   color: red;
@@ -103,4 +107,8 @@
 }
 .dropStore {
   margin: 1rem 0;
+}
+.gLabel {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
