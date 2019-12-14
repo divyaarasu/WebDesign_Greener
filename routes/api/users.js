@@ -72,9 +72,11 @@ console.log("req",req)
       if (isMatch) {
         // User matched
         // Create JWT Payload
+        console.log(user.email);
         const payload = {
           id: user.id,
-          name: user.name
+          name: user.name,
+          email: user.email
         };
 
         // Sign token
