@@ -116,7 +116,9 @@ function HomePage() {
                       <Card.Body>
                           <Card.Title> The time is NOW </Card.Title>
                             <Card.Text>
+                            <br></br>
                                 Understand why global sustainability is the need of the hour.
+                                <br></br> Learn the importance of renewable resources like wind, solar, biogas and other reusables<br></br>
                             </Card.Text>
                       </Card.Body>
                 </Card>
