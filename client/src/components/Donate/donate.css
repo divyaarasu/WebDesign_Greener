@@ -10,6 +10,13 @@
 
 .container {
   min-height: 38rem;
+  
+}
+#topic{
+  color: black;
+}
+#full{
+  background: linear-gradient(to bottom, #F7F8FF 0%, #ebb8b0 100%);
 }
 
 .column {
@@ -58,7 +65,7 @@ text-align: center;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #7DA89E;
     color: white;
   }
 #donatebg{
