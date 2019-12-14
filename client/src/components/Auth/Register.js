@@ -25,7 +25,12 @@ class Register extends Component {
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      const mData = {
+        name: this.state.name,
+        email: this.state.email
+      };
+      this.props.sendMail(mData);
+      this.props.history.push("/login");     
     }
   }
 
@@ -53,11 +58,8 @@ class Register extends Component {
       address: this.state.address,
       zip: this.state.zip,
     };
-    const mData = {
-      name: this.state.name,
-      email: this.state.email
-    };
-    this.props.sendMail(mData);
+   
+   
     this.props.registerUser(newUser, this.props.history);
   };
 
@@ -65,124 +67,136 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="container">
-       <br/><div className="row input-fields">
+      <div className="container allCenter">
+        <div className="row">
           <div className="col s8 offset-s2">
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12" style={{  }}>
               <h4>
-                <b>Register</b> below
-              </h4><br/>
-              <p className="grey-text text-darken-1">
+                <b>Register below</b>
+              </h4>
+              <p className="subheading">
                 Already have an account? <Link to="/login">Log in</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-             <div className="row">
-              <label>Name</label>
+              <div className="row">
+                <label className={classnames("", {
+                  "error": errors.name
+                })}>Name *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.name}
-                  error={errors.name}
-                  id="name"
-                  type="text"
-                  className={classnames("input-line", {
-                    "input-line-error": errors.name
-                  })}
-                />
-                <span className="error">{errors.name}</span>
+                    onChange={this.onChange}
+                    value={this.state.name}
+                    error={errors.name}
+                    id="name"
+                    type="text"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.name
+                    })}
+                  /></label> </div>
+              <div className="row">
+                <span className="error-msg">{errors.name}</span>
               </div>
-             <br/><div className="row">
-              <label>Email</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.email
+                })}>Email *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  className={classnames("", {
-                    invalid: errors.email
-                  })}
-                />
-                <span className="error">{errors.email}</span>
+                    onChange={this.onChange}
+                    value={this.state.email}
+                    error={errors.email}
+                    id="email"
+                    type="email"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.email
+                    })}
+                  /></label></div><div className="row">
+                <span className="error-msg">{errors.email}</span>
               </div>
-             <br/><div className="row">
-              <label>Password</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.password
+                })}>Password *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password
-                  })}
-                />
-                <span className="error">{errors.password}</span>
+                    onChange={this.onChange}
+                    value={this.state.password}
+                    error={errors.password}
+                    id="password"
+                    type="password"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.password
+                    })}
+                  /></label></div><div className="row">
+                <span className="error-msg">{errors.password}</span>
               </div>
-             <br/><div className="row">
-              <label>Confirm Password</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.password
+                })}>Confirm Password *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password2
-                  })}
-                />
-                <span className="error">{errors.password2}</span>
+                    onChange={this.onChange}
+                    value={this.state.password2}
+                    error={errors.password2}
+                    id="password2"
+                    type="password"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.password2
+                    })}
+                  /></label></div><div className="row">
+                <span className="error-msg">{errors.password2}</span>
               </div>
-             <br/><div className="row">
-              <label>Phone</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.phone
+                })}>Phone *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.phone}
-                  error={errors.phone}
-                  id="phone"
-                  type="phone"
-                  className={classnames("", {
-                    invalid: errors.phone
-                  })}
-                />
-              
-                <span className="error">{errors.phone}</span>
+                    onChange={this.onChange}
+                    value={this.state.phone}
+                    error={errors.phone}
+                    id="phone"
+                    type="phone"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.phone
+                    })}
+                  /></label>
+              </div><div className="row">
+                <span className="error-msg">{errors.phone}</span>
               </div>
-             <br/><div className="row">
-              <label>Address</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.address
+                })}>Address *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.address}
-                  error={errors.address}
-                  id="address"
-                  type="text"
-                  className={classnames("", {
-                    invalid: errors.address
-                  })}
-                />
-                <span className="error">{errors.address}</span>
+                    onChange={this.onChange}
+                    value={this.state.address}
+                    error={errors.address}
+                    id="address"
+                    type="text"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.address
+                    })}
+                  /></label></div><div className="row">
+                <span className="error-msg">{errors.address}</span>
               </div>
-             <br/><div className="row">
-              <label>Zip Code</label>
+              <br /><div className="row">
+                <label className={classnames("", {
+                  "error": errors.zip
+                })}>Zip Code *
                 <input
-                  onChange={this.onChange}
-                  value={this.state.zip}
-                  error={errors.zip}
-                  id="zip"
-                  type="text"
-                  className={classnames("", {
-                    invalid: errors.zip
-                  })}
-                />
-                <span className="error">{errors.zip}</span>
+                    onChange={this.onChange}
+                    value={this.state.zip}
+                    error={errors.zip}
+                    id="zip"
+                    type="text"
+                    className={classnames("input-line", {
+                      "input-line-error": errors.zip
+                    })}
+                  /></label></div><div className="row">
+                <span className="error-msg">{errors.zip}</span>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12" style={{  paddingTop:"1rem"}}>
                 <button
                   style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginLeft: "16rem"
                   }}
                   type="submit"
                   className="btn btn-primary"

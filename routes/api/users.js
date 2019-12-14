@@ -72,12 +72,7 @@ console.log("req",req)
       if (isMatch) {
         // User matched
         // Create JWT Payload
-<<<<<<< HEAD
         const payload = {   
-=======
-        console.log(user.email);
-        const payload = {
->>>>>>> 747940f9d8ff00a5f567b8c80378e2d91002c1ff
           id: user.id,
           name: user.name,
           email: user.email
