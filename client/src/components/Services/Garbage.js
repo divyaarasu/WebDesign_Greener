@@ -28,7 +28,11 @@ class Garbage extends React.Component {
             {latitude: 42.3425868, longitude: -71.1351013},
             {latitude: 42.3312538, longitude: -71.1234369},
             {latitude: 42.3436572, longitude: -71.0567736}
-        ]
+        ],
+        formErrors: {
+            wType: '',
+            weigh: ''
+        }
     };
     
         this.handleChangeWaste = this.handleChangeWaste.bind(this);
@@ -58,7 +62,7 @@ class Garbage extends React.Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        if(this.state.wasteType!="" && this.state.weight !="" && this.state.weight >0 && this.state.time !="" && this.state.pickType !="") {
+        if(this.state.wasteType!=="" && this.state.weight !=="" && this.state.weight >0 && this.state.time !=="" && this.state.pickType !=="") {
           const gData = {
             userid: this.props.auth.user.id,
             wasteType: this.state.wasteType,
@@ -85,16 +89,22 @@ class Garbage extends React.Component {
     
         switch(name) {
           case "wasteType":
-            //formErrors.month =  value.length > 0 ? "" : "Waste type cannot be empty";
+                formErrors.wType =  value.length > 0 ? "" : "Waste type cannot be empty";
+                console.log(value);
+                if(value.length === 0){
+                  document.getElementById("inputWaste").style.borderColor = "red";
+                }else {
+                  document.getElementById("inputWaste").style.borderColor = "";
+                }
             this.setState({wasteType: event.target.value})
             break;
           case "weight":
-            // formErrors.year = value.length > 0 ? "" : "Weight cannot be empty";
-            // if(value.length == 0){
-            //   document.getElementById("inputY").style.borderColor = "red";
-            // }else {
-            //   document.getElementById("inputY").style.borderColor = "";
-            // }
+            formErrors.weigh = value.length > 0 && value>0 ? "" : "Weight cannot be negative or empty";
+            if(value.length === 0 || value<=0){
+              document.getElementById("inputWeight").style.borderColor = "red";
+            }else {
+              document.getElementById("inputWeight").style.borderColor = "";
+            }
             this.setState({weight: event.target.value})
             break;
           default:
@@ -137,22 +147,24 @@ class Garbage extends React.Component {
   <input class="paper" name="wasteType" value="Paper" onClick={this.handleChange}></input>
 
   <div class="form-group gForm">
-    <label class="col-sm-2 col-form-label">Waste Type</label>
+    <label class="col-sm-2 col-form-label gLabel">Waste Type</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputWatt" value={this.state.wasteType} disabled/>
+      <input type="text" class="form-control" id="inputWaste" value={this.state.wasteType} disabled/>
+      <span id="errorMsg">{this.state.formErrors.wType}</span>
         </div>
-        <label class="col-sm-2 col-form-label weightClass">Approx. weight (kg)</label>
+        <label class="col-sm-3 col-form-label weightClass gLabel">Approx. weight (kg)</label>
     <div class="col-sm-10">
-      <input type="number" name="weight"class="form-control" id="inputWatt" onChange={this.handleChange} min="1" max="20"/>
+      <input type="number" name="weight"class="form-control" id="inputWeight" onChange={this.handleChange} min="1" max="20" value={this.state.weight}/>
+      <span id="errorMsg">{this.state.formErrors.weigh}</span>
         </div>
         <div class="rGroup">
         <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="pickup" onClick={this.handleChangeType}/>
-  <label class="form-check-label" for="inlineRadio1">Pick-Up</label>
+  <label class="form-check-label gLabel" for="inlineRadio1">Pick-Up</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="dropoff" onClick={this.handleChangeType}/>
-  <label class="form-check-label" for="inlineRadio2">Drop-Off</label>
+  <label class="form-check-label gLabel" for="inlineRadio2">Drop-Off</label>
 </div>
 </div>
 {this.buttonSet(this.state.pickType)}

@@ -1,5 +1,9 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .plastic {
-    background-image: url("../../assets/images/plastic.jpg");
+    background-image: url("../../assets/images/plasticCr.jpeg");
     border-radius: 50%;
     display: inline-block;
     height: 15rem;
@@ -9,7 +13,7 @@
     text-align: center;
   }
   .metal {
-    background-image: url("../../assets/images/metal1.jpeg");
+    background-image: url("../../assets/images/metalR.png");
     background-position: center;
     border-radius: 50%;
     display: inline-block;
@@ -20,7 +24,7 @@
     text-align: center;
   }
   .paper {
-    background-image: url("../../assets/images/paper.jpg");
+    background-image: url("../../assets/images/paperCr.jpg");
     border-radius: 50%;
     display: inline-block;
     height: 15rem;
@@ -49,7 +53,7 @@
     background-image: url("../../assets/images/garbage1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 85rem;
+    min-height: 92rem;
 }
 #errorMsg {
   color: red;
@@ -103,4 +107,7 @@
 }
 .dropStore {
   margin: 1rem 0;
+}
+.gLabel {
+  font-size: 1.1rem;
 }

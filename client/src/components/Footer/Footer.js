@@ -34,7 +34,7 @@ function Footer() {
                 </ul>
               <div className="text-center center-block " >
                 <a href=""><i id="social-fb" className="fa fa-facebook-square fa-2x social space"></i></a>
-                <a href=""><i id="social-tw" className="fa fa-twitter-square fa-2x social space"></i></a>
+                <a href="https://twitter.com/Greener18660194"><i id="social-tw" className="fa fa-twitter-square fa-2x social space"></i></a>
                 <a href=""><i id="social-gp" className="fa fa-instagram fa-2x social space"></i></a>
                 <a href=""><i id="social-em" className="fa fa-envelope-square fa-2x social space"></i></a>
             </div>      
