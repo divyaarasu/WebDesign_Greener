@@ -15,9 +15,10 @@ class Header extends React.Component {
         this.state = {
             password: "",
             email: "",
-            errors: {},
+            errors: "",
             showModal: false,
-            show: false
+            show: false,
+            err:[]
         }
     }
 
@@ -38,18 +39,20 @@ class Header extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         if (nextProps.auth.isAuthenticated) {
             this.handleClose();
-            //this.props.history.push("/"); // push user to dashboard when they login
         }
 
-        if (nextProps.errors) {
-            console.log("here")
-            this.setState({
-                errors: nextProps.errors
-            });
+        if (nextProps.errors) {    
+            console.log(nextProps);   
+            this.setState({ err: "Please fix errors and try again"  });     
+            this.setStateErr(nextProps.errors.response.data.errorMessage);
         }
+    }
+
+    setStateErr = (err) => {
+        //this.setState({ err: err  });
+        console.log(this.state);
     }
 
     onLoginChange = e => {
@@ -64,15 +67,9 @@ class Header extends React.Component {
             password: this.state.password
         };
         this.props.loginUser(userData);
-        if (this.props.auth.isAuthenticated) {
-
-            this.handleClose();
-        } else {
-
-        }
     };
     render() {
-        const { errors } = this.state;
+        //const { errors } = this.state;
         const { user } = this.props.auth;
 
         return (
@@ -120,7 +117,7 @@ class Header extends React.Component {
                                         <input type="email" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.email}
-                                            error={errors.email}
+                                            error={this.state.errors.email}
                                             id="email"
                                             name="email" 
                                             placeholder="Email"
@@ -133,13 +130,15 @@ class Header extends React.Component {
                                         <input type="password" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.password}
-                                            error={errors.password}
+                                            error={this.state.errors.password}
                                             id="password"
                                             name="password" 
                                             placeholder="Password" 
                                             required="required" />
                                     </div>
                                 </div>
+                                {(this.state.phErr) ?
+                                    (<span className="error">Enter a valid Phone number</span>) : ''}
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
                                 </div>
