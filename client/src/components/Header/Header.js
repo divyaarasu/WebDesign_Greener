@@ -15,10 +15,10 @@ class Header extends React.Component {
         this.state = {
             password: "",
             email: "",
-            errors: "",
+            error: "",
             showModal: false,
             show: false,
-            err:[]
+            isErr:""
         }
     }
 
@@ -41,20 +41,15 @@ class Header extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
             this.handleClose();
+            this.setState({ isErr:false});
         }
 
-        if (nextProps.errors) {    
-            console.log(nextProps);   
-            this.setState({ err: "Please fix errors and try again"  });     
-            this.setStateErr(nextProps.errors.response.data.errorMessage);
+        if (nextProps.errors.response) {  
+            this.setState({ isErr:true, error: nextProps.errors.response.data.errorMessage });  
         }
     }
 
-    setStateErr = (err) => {
-        //this.setState({ err: err  });
-        console.log(this.state);
-    }
-
+    
     onLoginChange = e => {
         this.setState({ [e.target.name]: e.target.value });
 
@@ -117,7 +112,6 @@ class Header extends React.Component {
                                         <input type="email" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.email}
-                                            error={this.state.errors.email}
                                             id="email"
                                             name="email" 
                                             placeholder="Email"
@@ -130,15 +124,14 @@ class Header extends React.Component {
                                         <input type="password" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.password}
-                                            error={this.state.errors.password}
                                             id="password"
                                             name="password" 
                                             placeholder="Password" 
                                             required="required" />
                                     </div>
                                 </div>
-                                {(this.state.phErr) ?
-                                    (<span className="error">Enter a valid Phone number</span>) : ''}
+                                {(this.state.isErr) ?
+                                    (<span className="error">{this.state.error}</span>) : ''}
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
                                 </div>

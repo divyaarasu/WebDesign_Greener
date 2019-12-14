@@ -64,7 +64,7 @@ console.log("req",req)
   User.findOne({ email }).then(user => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ errorMessage: "Email not found" });
+      return res.status(404).json({ errorMessage: "Email not found, please register" });
     }
 
     // Check password
