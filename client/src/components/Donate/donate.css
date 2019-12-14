@@ -12,15 +12,15 @@
       text-align: center;
   }
   #qr{
-      width:50%;
-      margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+    float: left;
   }
   #dbtn{
     width:50%;
     margin-left: auto;
 margin-right: auto;
 text-align: center;
+  }
+  #hist{
+    float:right;
   }
   

@@ -10,7 +10,8 @@ router.post("/donationreq", (req, res) => {
   // Form validation
   const newdonation = new Donation({
     userid: req.body.userid,
-    amount: req.body.amount
+    amount: req.body.amount,
+    date:req.body.date
   });
   newdonation.save().then(res.json({
     success: true
