@@ -114,7 +114,7 @@ class Products extends React.Component {
                       </div>
                     </div>
                     <Link to={{ pathname: "/Orders", state: { p: p } }} className="link">
-                    <Button className="buy" variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                    <Button className="buy" variant="secondary">Buy Now</Button>
                     </Link>
                   </Card.Body>
                 </Card>
