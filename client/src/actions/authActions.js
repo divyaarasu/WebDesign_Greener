@@ -21,6 +21,19 @@ export const registerUser = (userData, history) => dispatch => {
       })
     );
 };
+export const sendMail = (mData) => dispatch => {
+  axios
+  .post("/api/newusermail", mData)
+  .then((response)=> {
+    console.log(response);
+  })
+  .catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err
+    })
+  );
+};
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios

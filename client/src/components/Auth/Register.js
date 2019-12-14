@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import './Auth.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { registerUser, sendMail } from "../../actions/authActions";
 import classnames from "classnames";
 
 class Register extends Component {
@@ -50,7 +50,11 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-
+    const mData = {
+      name: this.state.name,
+      email: this.state.email
+    };
+    this.props.sendMail(mData);
     this.props.registerUser(newUser, this.props.history);
   };
 
@@ -193,6 +197,7 @@ class Register extends Component {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
+  sendMail: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -204,5 +209,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { registerUser }
+  { registerUser, sendMail }
 )(withRouter(Register));
