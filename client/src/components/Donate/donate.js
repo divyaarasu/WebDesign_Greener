@@ -20,7 +20,10 @@ class donate extends React.Component {
       amount: '',
       date: Date.now(),
       donationExists: false,
-      userDonation: []
+      userDonation: [],
+      formErrors: {
+        amount:''
+      }
 
     };
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -29,7 +32,20 @@ class donate extends React.Component {
   }
 
   handleChangeAmount = event => {
-    this.setState({ amount: event.target.value });
+    
+    const a =event.target.value;
+    
+    let formErrors = this.state.formErrors;
+
+    formErrors.amount =  a > 0 ? "" : "Please Enter a valid Amount";
+        if(a< 0){
+          document.getElementById("inputM").style.borderColor = "red";
+        }else {
+          document.getElementById("inputM").style.borderColor = "";
+        }
+        this.setState({ amount: event.target.value });
+        
+    
   };
 
   loadDonationHistory = async () => {
@@ -78,8 +94,8 @@ class donate extends React.Component {
               <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
             </div><br></br>
             <form>
-              <input type="text" className="input-line" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
-
+              <input type="text" id="inputM" className="input-line" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
+              <span id="errorMsg">{this.state.formErrors.amount}</span>
               <div><br></br></div><PaypalButton
                 client={CLIENT}
                 env={ENV}

@@ -2,7 +2,7 @@ import React from 'react';
 import './Info.css';
 import wind from '../../assets/images/wind.jpg'
 import solar from '../../assets/images/solar.jpg'
-import biogas from '../../assets/images/biogas.jpg'
+import biogas from '../../assets/images/biogas5.jpg'
 import recycle from '../../assets/images/reuse.jpg'
 import{BrowserRouter as Router,Link} from 'react-router-dom';
 
