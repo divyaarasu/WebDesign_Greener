@@ -36,6 +36,7 @@ router.post('/', (req, res) => {
       } else {
         Cart.create({
           user: user,
+          dateCreated:Date.now(),
           items: [item]
         })
           .then(() => res.end());

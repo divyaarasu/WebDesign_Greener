@@ -43,7 +43,6 @@ app.use("/api/garbageData", garbage);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
 app.use("/api/productsData",products);
-
 app.use("/api/Donationdata",donations);
 app.post("/api/sendmail", (req, res) => {
   var transporter = nodemailer.createTransport({

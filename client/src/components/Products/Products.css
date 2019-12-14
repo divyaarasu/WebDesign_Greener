@@ -7,7 +7,9 @@
     width: auto;
     height: auto;
     z-index: -1;
+    transform: translateX(calc((100% - 100vw) / 2));
 }
+
 
 .product{
     padding: 1rem 0.5rem 0.5rem 0.5rem;
@@ -79,4 +81,34 @@ ul{
 
 .buy{
     margin-left: -0.6rem;
+}
+
+.head{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.img{
+    height: 10rem;
+    width: 16rem;
+}
+
+.c{
+    border: 0rem;
+}
+
+.text{
+    text-align: left;
+}
+
+.checkoutBtn{
+    margin-top: -5rem;
+}
+
+.cc{
+    padding: 0rem;
+}
+
+.imgPTop{
+    height: 35rem;
 }

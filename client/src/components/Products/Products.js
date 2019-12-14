@@ -11,7 +11,6 @@ import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
 
 
-
 class Products extends React.Component {
   constructor(props) {
     super(props)
@@ -22,9 +21,6 @@ class Products extends React.Component {
 
     this.getProductsData();
   }
-
-
-
 
   getProductsData() {
     axios
@@ -71,12 +67,12 @@ class Products extends React.Component {
   render() {
     //  console.log(this.state.products)
     return (
-      <div>
+      <div class="videoBack">
         {(this.state.showCartAlert ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>)
           : '')}
         <video class="video-fluid z-depth-1 video-background" autoPlay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
-          <source src="https://mdbootstrap.com/img/video/Sail-Away.mp4" type="video/mp4" />
+          <source src="Background_09.mov" type="video/mp4" />
         </video>
 
 
@@ -116,7 +112,9 @@ class Products extends React.Component {
                         </div>
                       </div>
                     </div>
-                    <Button className="buy" variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                    <Link to={{ pathname: "/Orders", state: { p: p } }} className="link">
+                    <Button className="buy" variant="secondary">Buy Now</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </div>

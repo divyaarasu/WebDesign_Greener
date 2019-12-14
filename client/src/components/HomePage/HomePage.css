@@ -26,6 +26,12 @@
     box-shadow: 2px 2px 4px #000000;
 }
 
+.twitter-cardlayout {
+    width: 66rem !important;
+    font-size: smaller;
+    box-shadow: 2px 2px 4px #000000;
+}
+
 .card-body a {
     text-decoration: none;
     color: black;

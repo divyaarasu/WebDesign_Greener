@@ -21,12 +21,15 @@ router.post("/register", (req, res) => {
     }
   User.findOne({ email: req.body.email }).then(user => {
       if (user) {
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json({ errorMessage: "Email already exists" });
       } else {
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password
+          password: req.body.password,
+          phone: req.body.phone,
+          address: req.body.address,
+          zip: req.body.zip
         });
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -64,7 +67,7 @@ console.log("req",req)
   User.findOne({ email }).then(user => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ errorMessage: "Email not found, please register" });
     }
 
     // Check password
@@ -72,8 +75,7 @@ console.log("req",req)
       if (isMatch) {
         // User matched
         // Create JWT Payload
-        console.log(user.email);
-        const payload = {
+        const payload = {   
           id: user.id,
           name: user.name,
           email: user.email
@@ -96,7 +98,7 @@ console.log("req",req)
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+          .json({ errorMessage: "Password incorrect" });
       }
     });
   });

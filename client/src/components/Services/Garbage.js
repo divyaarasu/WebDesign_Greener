@@ -152,7 +152,7 @@ class Garbage extends React.Component {
       <input type="text" class="form-control" id="inputWaste" value={this.state.wasteType} disabled/>
       <span id="errorMsg">{this.state.formErrors.wType}</span>
         </div>
-        <label class="col-sm-2 col-form-label weightClass gLabel">Approx. weight (kg)</label>
+        <label class="col-sm-3 col-form-label weightClass gLabel">Approx. weight (kg)</label>
     <div class="col-sm-10">
       <input type="number" name="weight"class="form-control" id="inputWeight" onChange={this.handleChange} min="1" max="20" value={this.state.weight}/>
       <span id="errorMsg">{this.state.formErrors.weigh}</span>
