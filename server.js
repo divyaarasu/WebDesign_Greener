@@ -9,8 +9,12 @@ const garbage = require("./routes/api/garbageData");
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
+<<<<<<< HEAD
 const donations=require("./routes/api/Donationdata")
 
+=======
+const nodemailer = require("nodemailer");
+>>>>>>> 468d55ecd243153ee9cc9e5ce28212e464c9823f
 const app = express();
 
 app.use(cors());
@@ -43,7 +47,55 @@ app.use("/api/garbageData", garbage);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
 app.use("/api/productsData",products);
+<<<<<<< HEAD
 app.use("/api/Donationdata",donations);
+=======
+app.post("/api/sendmail", (req, res) => {
+  var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'gogreenerapp@gmail.com',
+          pass: 'greener123'
+        }
+      });
+      var mailOptions = {
+        from: 'gogreenerapp@gmail.com',
+        to: req.body.email,
+        subject: 'Thank you for making a difference!',
+        text: req.body.wasteType + 'waste (' + req.body.weight + 'kg) is scheduled for ' + req.body.pickType + ' at ' +req.body.time
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    });
+    app.post("/api/newusermail", (req, res) => {
+      console.log(req.body);
+      var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'gogreenerapp@gmail.com',
+              pass: 'greener123'
+            }
+          });
+          var mailOptions = {
+            from: 'gogreenerapp@gmail.com',
+            to: req.body.email,
+            subject: 'Welcome to the Greener family!',
+            text:  'Hi ' + req.body.name + '\n\xA0' + 'We are really happy that you are a part of the Greener family. You are one step closer in making our planet more healthy. Kudos! In our website you have wide range of eco-friendly products, you can track your electricity bills and many more. We alse have a safe way of disposing your waste which prevents damaging our planet. So start surfing!'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+        });
+>>>>>>> 468d55ecd243153ee9cc9e5ce28212e464c9823f
 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there

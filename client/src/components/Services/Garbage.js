@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
 import { connect } from "react-redux";
 import {Alert} from "react-bootstrap";
-import { submitGarbageData } from "../../actions/garbageActions";
+import { submitGarbageData, sendMail } from "../../actions/garbageActions";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 const mapStyles = {
     width: '80%',
@@ -64,9 +64,18 @@ class Garbage extends React.Component {
             wasteType: this.state.wasteType,
             weight: this.state.weight
           };
+          const mData = {
+            usermail: this.props.auth.user.email,
+            wasteType: this.state.wasteType,
+            weight: this.state.weight,
+            pickType: this.state.pickType,
+            time: this.state.time
+          };
+          this.props.sendMail(mData);
           this.props.submitGarbageData(gData);
           this.setState({wasteType: '', weight: '', alertS: true});
         } else {
+            console.log(this.props.auth);
             this.setState({alertF: true});
         }
       }
@@ -177,6 +186,7 @@ class Garbage extends React.Component {
 
 Garbage.propTypes = {
     submitGarbageData: PropTypes.func.isRequired,
+    sendMail: PropTypes.func.isRequired,
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
   };
@@ -185,7 +195,7 @@ Garbage.propTypes = {
   });
   export default connect(
     mapStateToProps,
-    { submitGarbageData, logoutUser }
+    { submitGarbageData, sendMail, logoutUser }
   )(
     GoogleApiWrapper({
         apiKey: ("AIzaSyDiqjm-md1hFlBudX6E31MQiCWZNsqPgAA")
