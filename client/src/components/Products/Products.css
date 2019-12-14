@@ -19,6 +19,12 @@
     margin: 0%;
 }
 
+#windbg{
+    background-color:	#7FFFD4; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right,	#7FFFD4, white);
+
+  }
+
 .rP{
     padding: 0.5rem;
 }
