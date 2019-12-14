@@ -1,7 +1,11 @@
 .cart-container {
-    min-height: 45rem;
+    min-height: 35rem;
+    padding-top: 5rem;
   }
-  
+  .cartBg{
+    margin-top: -1rem;
+    background-image: linear-gradient( #F7F8FF , #ebb8b0 );
+  }
   .cart-container h1 {
     margin-top: 1rem;
   }
@@ -19,7 +23,10 @@
     height:100%;
     margin-left: 5rem;
     min-height: auto;
-    background: #f5f5f5;
+    border: 0.1rem solid black;
+    padding-left: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   
   
@@ -32,6 +39,7 @@
   .cart-info .btn {
     width: 150px;
     margin: 10px auto;
+    margin-left: 0.5rem;
   }
   
   .cart-items {
