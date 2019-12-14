@@ -24,10 +24,6 @@ class History extends React.Component {
             });
     }
 
-    closeAlertCart = () => {
-        this.setState({ showSuccess: false });
-      }
-
     render() {
         return (
             <div className="prevOrders">

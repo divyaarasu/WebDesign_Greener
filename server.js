@@ -102,7 +102,7 @@ app.post("/api/sendmail", (req, res) => {
                 from: 'gogreenerapp@gmail.com',
                 to: req.body.email,
                 subject: 'Order placed successfully!',
-                text:  'Hi ' + req.body.name + '\n\xA0' + 'Your order for ' + req.body.products + ' has been sucessfully placed.'
+                text:  'Hi ' + req.body.name + '\n\xA0' + 'Your order has been sucessfully placed.'
               };
               transporter.sendMail(mailOptions, function(error, info){
                 if (error) {

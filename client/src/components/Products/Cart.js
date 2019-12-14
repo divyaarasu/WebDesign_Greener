@@ -107,11 +107,10 @@ class Cart extends React.Component {
 
     return (
       <div className="cartBg">
+        <div className="container cart-container">
         {(this.state.showSuccess ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
           : '')}
-        <div className="container cart-container">
-
           <h1>Your Cart</h1>
           <div className="cart">
 
@@ -125,7 +124,7 @@ class Cart extends React.Component {
                       <th>Price</th>
                       <th>Quantity</th>
                       <th>Total</th>
-                      <th></th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -137,7 +136,7 @@ class Cart extends React.Component {
                           <td>{numeral(item.productPrice).format('$0,0.00')}</td>
                           <td>{item.quantity}</td>
                           <td>{numeral(item.productPrice * item.quantity).format('$0,0.00')}</td>
-                          <td><button title="Remove this item from the cart" onClick={() => this.removeItem(item._id)}><i className="fa fa-trash"></i></button></td>
+                          
                         </tr>
                       );
                     })}
