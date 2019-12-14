@@ -9,8 +9,14 @@ const garbage = require("./routes/api/garbageData");
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
+<<<<<<< HEAD
 const nodemailer = require("nodemailer");
 const donations=require("./routes/api/Donationdata")
+=======
+const donations=require("./routes/api/Donationdata")
+
+const nodemailer = require("nodemailer");
+>>>>>>> 61c6cc2397a5e0dfc0671d560b86b77e9039dddd
 const app = express();
 
 app.use(cors());

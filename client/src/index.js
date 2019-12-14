@@ -32,6 +32,8 @@ import Product from './components/Products/Product';
 import donate from './components/Donate/donate';
 import BuyNow from './components/Products/BuyNow';
 import Cart from './components/Products/Cart';
+import Orders from './components/Products/Orders';
+import History from './components/Products/History';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -75,6 +77,8 @@ const routing = (
         <PrivateRoute exact path="/buyNow" component={BuyNow} />   
         <Route path="/donate" component={donate} />  
         <PrivateRoute exact path="/cart" component={Cart}/>
+        <PrivateRoute exact path="/orders" component={Orders}/>
+        <PrivateRoute exact path="/history" component={History}/>
       </Switch>
         <Footer></Footer>
       </div>

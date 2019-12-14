@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Card, Carousel, Dropdown, Form, Media, Button } from 'react-bootstrap';
 import './Products.css';
+import { Link } from "react-router-dom";
 import img from '../../assets/images/cardLayoutportal.jpg'
 import img1 from '../../assets/images/bambooCar1.jpg'
 import img2 from '../../assets/images/bambooCar2.jpg'
@@ -14,11 +15,17 @@ class Product extends React.Component {
         super(props);
 
         this.state={
-            products:props.location.state.p
+            products:props.location.state.p,
+            value:1
         }
         const products = props.location.state.p
         console.log(products);
     }
+
+    handleChange=event=>{
+        this.setState({value:event.target.value})
+        this.state.products.quantity=event.target.value;
+    };
 
     render() {
         return (
@@ -28,28 +35,28 @@ class Product extends React.Component {
                         <Carousel>
                             <Carousel.Item>
                                 <img
-                                    className="d-block w-100"
+                                    className="d-block w-100 imgPTop"
                                     src={process.env.PUBLIC_URL + this.state.products.image1}
                                     alt="First slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
-                                    className="d-block w-100"
+                                    className="d-block w-100 imgPTop"
                                     src={process.env.PUBLIC_URL + this.state.products.image2}
                                     alt="Second slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
-                                    className="d-block w-100"
+                                    className="d-block w-100 imgPTop"
                                     src={process.env.PUBLIC_URL + this.state.products.image3}
                                     alt="Third slide"
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
-                                    className="d-block w-100"
+                                    className="d-block w-100 imgPTop"
                                     src={process.env.PUBLIC_URL + this.state.products.image4}
                                     alt="Fourth slide"
                                 />
@@ -68,18 +75,34 @@ class Product extends React.Component {
                         </div>
                         <hr />
                         <div className="row mt-2">
-                            <Form className="m dd">
-                                <Form.Group controlId="exampleForm.ControlSelect1">
-                                    <Form.Label>Select Sizes</Form.Label>
-                                    <Form.Control as="select">
-                                        <option>XS</option>
-                                        <option>S</option>
-                                        <option>M</option>
-                                        <option>L</option>
-                                        <option>XL</option>
-                                    </Form.Control>
-                                </Form.Group>
-                            </Form>
+                            <div className="col-md-6">
+                                <Form className="m dd">
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>Select Sizes</Form.Label>
+                                        <Form.Control as="select">
+                                            <option>XS</option>
+                                            <option>S</option>
+                                            <option>M</option>
+                                            <option>L</option>
+                                            <option>XL</option>
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Form>
+                            </div>
+                            <div className="col-md-6">
+                                <Form className="m dd">
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>Select Quantity</Form.Label>
+                                        <Form.Control as="select" value={this.state.value} onChange={this.handleChange}>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                            <option value={5}>5</option>
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Form>
+                            </div>
                         </div>
                         <div className="row mt-2 m">
                             <h5>Seller: &nbsp; <i>{this.state.products.seller}</i></h5>
@@ -104,7 +127,9 @@ class Product extends React.Component {
                             </ul>
                         </div>
                         <Button variant="secondary">Add to cart</Button> &nbsp; &nbsp;
+                        <Link to={{ pathname: "/Orders", state: { p: this.state.products } }} className="link">
                         <Button variant="primary">Buy Now</Button>
+                        </Link>
                     </div>
                 </div>
             </div>
