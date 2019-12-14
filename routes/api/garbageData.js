@@ -9,7 +9,7 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const Garbage = require("../../models/Garbage");
 
-router.post("/", (req, res) => {
+router.post("/garbage", (req, res) => {
     // Form validation
         const newgcollection = new Garbage({
           userid: req.body.userid,
