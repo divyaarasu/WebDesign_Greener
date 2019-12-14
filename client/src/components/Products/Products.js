@@ -23,9 +23,6 @@ class Products extends React.Component {
     this.getProductsData();
   }
 
-
-
-
   getProductsData() {
     axios
       .get("/api/productsData/submitProducts").then((response) => {
@@ -116,7 +113,9 @@ class Products extends React.Component {
                         </div>
                       </div>
                     </div>
+                    <Link to={{ pathname: "/Orders", state: { p: p } }} className="link">
                     <Button className="buy" variant="secondary" onClick={this.buyNow}>Buy Now</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </div>
