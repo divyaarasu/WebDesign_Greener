@@ -19,7 +19,7 @@
     width:50%;
     margin-left: auto;
 margin-right: auto;
-text-align: right;
+text-align: center;
   }
   #hist{
     float:right;
@@ -46,3 +46,9 @@ text-align: right;
     background-color: #4CAF50;
     color: white;
   }
+#donatebg{
+  padding-top: 25px;
+}
+#title{
+  padding-top: 25px;
+}

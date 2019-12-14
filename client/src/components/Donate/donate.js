@@ -86,9 +86,29 @@ class donate extends React.Component {
           <div class="col-md-6">
             <div id="qr"><img src={qr} alt="qr"></img>
             </div>
+            
           </div>
+          
           <div class="col-md-6">
+          <div id="dbtn">
+            <form>
+            
+              <input type="text" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
+              <div><h1>                                                                                 </h1></div>
 
+
+              <PaypalButton
+                client={CLIENT}
+                env={ENV}
+                commit={true}
+                currency={'USD'}
+                total={this.state.amount}
+                onSuccess={onSuccess}
+                onError={onError}
+                onCancel={onCancel}
+              />
+            </form>
+          </div>
             <div class="column">
               <h1>Your Donations</h1>
               <div className="donation">
@@ -126,24 +146,7 @@ class donate extends React.Component {
             </div>
           </div>
           <div><h1>                                                  </h1></div>
-          <div id="dbtn">
-            <form>
-              <input type="text" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
-              <div><h1>                                                                                 </h1></div>
-
-
-              <PaypalButton
-                client={CLIENT}
-                env={ENV}
-                commit={true}
-                currency={'USD'}
-                total={this.state.amount}
-                onSuccess={onSuccess}
-                onError={onError}
-                onCancel={onCancel}
-              />
-            </form>
-          </div>
+          
         </div>
         <div id="title">
         <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
