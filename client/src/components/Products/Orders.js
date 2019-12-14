@@ -10,6 +10,7 @@ import { logoutUser } from "../../actions/authActions";
 import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { Alert } from 'react-bootstrap';
 
 const CLIENT = {
     sandbox: 'AXLG5l9gXCMut3IBoDyqmqKyq0fP5tl4E1V_U0UInnEtNymfLXmNKVrMbDYL0Ehoelv98tYl3t-j-p8R',
@@ -35,18 +36,21 @@ class Orders extends React.Component {
                     productPrice: props.location.state.p.price,
                     quantity: props.location.state.p.quantity
                 }]
-            }
+            },
+            ordersCreated:false
         }
         const products = props.location.state.p
         console.log(this.props.auth.user.id);
     }
 
+    closeAlertCart = () => {
+        this.setState({ ordersCreated: false });
+      }
+
     render() {
         const onSuccess = (payment) => {
             console.log('Successful payment!', payment);
-            alert("Payment was successfull!")
-            console.log("wwww")
-            console.log(this.state.ordersData)
+            this.setState({ordersCreated:true})
             axios
             .post("/api/order", this.state.ordersData)
             .then((response) => {
@@ -65,6 +69,10 @@ class Orders extends React.Component {
 
         return (
             <div>
+            {(this.state.ordersCreated ?
+                (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
+                : '')}
+
                 <h1 className="head">Review Order</h1>
 
                 <div className="container">

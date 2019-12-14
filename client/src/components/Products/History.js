@@ -1,23 +1,90 @@
 import React from 'react';
+import './Products.css';
+import axios from "axios";
+import * as numeral from 'numeral';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
-class History extends React.Component{
-    constructor(props){
+class History extends React.Component {
+    constructor(props) {
         super(props)
-        this.setState({
-
-        })
+        this.state = {
+            products: [],
+            orderExists: false
+        }
         this.getOrders()
     }
 
-    getOrders(){
-        console.log("getting orders here!")
+    getOrders() {
+        axios
+            .get("/api/order?id=" + this.props.auth.user.id).then((response) => {
+                this.setState({ products: response.data, orderExists: true })
+                console.log(response.data)
+            });
     }
 
-    render(){
+    closeAlertCart = () => {
+        this.setState({ showSuccess: false });
+      }
+
+    render() {
         return (
-            <div><p>Hi!</p></div>
+            <div>
+                <h1>Your Orders</h1>
+                <div className="cart">
+
+                    <div className="cart-items">
+                        {this.state.orderExists ?
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.products.map((p) => {
+                                        return (
+                                            p.items.map((i) => {
+                                                return (
+                                                    <tr key={i.productName} >
+                                                        <td></td>
+                                                        <td>{i.productName}</td>
+                                                        <td>{numeral(i.productPrice).format('$0,0.00')}</td>
+                                                        <td>{i.quantity}</td>
+                                                        <td>{numeral(i.productPrice * i.quantity).format('$0,0.00')}</td>
+                                                        <td>{p.dateCreated}</td>
+                                                    </tr>
+                                                );
+                                            })
+                                        )
+                                    })}
+                                </tbody>
+                            </table> :
+                            <h1>No Orders to show.</h1>
+                        }
+                    </div>
+                </div>
+            </div>
         )
     }
 }
 
-export default History;
+History.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+export default connect(
+    mapStateToProps,
+    { logoutUser }
+)(History);
+
+//export default History;
