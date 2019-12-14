@@ -88,7 +88,7 @@ class Register extends Component {
           
             <div className="col s12" style={{  }}>
               <h4>
-                <b>Register below</b>
+                <b>Register</b> below
               </h4>
               <p className="subheading">
                 Already have an account? <Link to="/login">Log in</Link>
