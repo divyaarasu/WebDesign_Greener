@@ -13,14 +13,36 @@
   }
   #qr{
     float: left;
+    margin-left: 200px;
   }
   #dbtn{
     width:50%;
     margin-left: auto;
 margin-right: auto;
-text-align: center;
+text-align: right;
   }
   #hist{
     float:right;
   }
+  #donationTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
   
+  #donationTable td, #donationTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #donationTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #donationTable tr:hover {background-color: #ddd;}
+  
+  #donationTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
