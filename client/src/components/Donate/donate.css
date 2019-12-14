@@ -1,3 +1,17 @@
+.input-line {
+  background: none;
+  border: none;
+  width: 20rem;
+  font-weight: 300;
+  letter-spacing: 0px;
+  letter-spacing: 0.02rem;
+  border-bottom: 1px solid black;
+}
+
+.container {
+  min-height: 38rem;
+}
+
 .column {
     width:50%;
       margin-left: auto;
@@ -13,13 +27,14 @@
   }
   #qr{
     float: left;
-    margin-left: 200px;
+    margin-left: 15rem;
   }
   #dbtn{
-    width:50%;
+    width:100%;
     margin-left: auto;
 margin-right: auto;
-text-align: right;
+text-align: center;
+
   }
   #hist{
     float:right;
@@ -27,7 +42,8 @@ text-align: right;
   #donationTable {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: auto;
+    margin-left:25rem;
   }
   
   #donationTable td, #donationTable th {
@@ -35,7 +51,7 @@ text-align: right;
     padding: 8px;
   }
   
-  #donationTable tr:nth-child(even){background-color: #f2f2f2;}
+  #donationTable tr{background-color: #f2f2f2;}
   
   #donationTable tr:hover {background-color: #ddd;}
   

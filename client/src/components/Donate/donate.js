@@ -2,20 +2,17 @@ import React from 'react';
 import './donate.css';
 import PaypalButton from '../../components/Jobs/pay';
 import axios from "axios";
-import qr from '../../assets/images/donation.jpg';
+import donatinImg from '../../assets/images/donation.jpg';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import { donationReq } from "../../actions/donationActions";
+
 const CLIENT = {
   sandbox: 'AXLG5l9gXCMut3IBoDyqmqKyq0fP5tl4E1V_U0UInnEtNymfLXmNKVrMbDYL0Ehoelv98tYl3t-j-p8R',
-
 };
 const ENV = 'sandbox';
 
-
 class donate extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +40,8 @@ class donate extends React.Component {
         }
       }).then((response) => {
         const r = response.data;
-        this.setState({ userDonation: r, donationExists: true });
+        if (response.data.length > 0)
+          this.setState({ userDonation: r, donationExists: true });
 
       });
 
@@ -51,9 +49,6 @@ class donate extends React.Component {
 
     console.log(this.state.userDonation)
   }
-  // onSubmit = async(e) => {
-  //      e.preventDefault();
-  //    } 
 
   render() {
     const { user } = this.props.auth;
@@ -71,68 +66,21 @@ class donate extends React.Component {
       }
       else
         this.props.history.push("/login");
-
-      console.log('Successful payment!', payment);
     }
     const onError = (error) =>
       console.log('Erroneous payment OR failed to load script!', error);
     const onCancel = (data) =>
       console.log('Cancelled payment!', data);
     return (
-      <div id="donatebg">
-        
-        <div><h1>                                                 </h1></div>
-        <div class="row">
-          <div class="col-md-6">
-            <div id="qr"><img src={qr} alt="qr"></img>
-            </div>
-          </div>
-          <div class="col-md-6">
-
-            <div class="column">
-              <h1>Your Donations</h1>
-              <div className="donation">
-
-                <div className="donation-items">
-                  {this.state.donationExists ?
-                    <table id="donationTable">
-                      <thead>
-                        <tr>
-                          <th>Donation Amount</th>
-                          <th>Donation Date</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.state.userDonation.map((donation) => {
-                          return (
-                            <tr key={donation.amount} >
-                              <td>{donation.amount}</td>
-                              <td>{donation.date}</td>
-
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table> :
-                    <h1>No Donations</h1>
-                  }
-
-                  <div class="column">
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div><h1>                                                  </h1></div>
-          <div id="dbtn">
+      <div className="container">
+           <div id="dbtn">
+            <div id="title">
+              <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
+            </div><br></br>
             <form>
-              <input type="text" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
-              <div><h1>                                                                                 </h1></div>
+              <input type="text" className="input-line" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
 
-
-              <PaypalButton
+              <div><br></br></div><PaypalButton
                 client={CLIENT}
                 env={ENV}
                 commit={true}
@@ -142,13 +90,32 @@ class donate extends React.Component {
                 onError={onError}
                 onCancel={onCancel}
               />
-            </form>
-          </div>
+            </form><br></br>
+
+          <strong>Your Donations</strong>
+          {this.state.donationExists ?
+            <table id="donationTable">
+              <thead>
+                <tr>
+                  <th>Donation Amount</th>
+                  <th>Donation Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.userDonation.map((donation) => {
+                  return (
+                    <tr key={donation.amount} >
+                      <td>{donation.amount}</td>
+                      <td>{donation.date}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table> :
+            <p>You do not have any donations at this time! Start sharing today!</p>
+          }
         </div>
-        <div id="title">
-        <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
-      </div>
-      </div>
+        </div>
     )
   }
 }

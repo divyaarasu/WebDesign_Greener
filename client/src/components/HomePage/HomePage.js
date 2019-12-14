@@ -89,11 +89,12 @@ function HomePage() {
               </Col>
               <Col>
               <Card className="cardlayout cardInfo" style={{ width: '18rem' }}>
+              <Link to="/services">
               <img
                   className="d-block w-100"
                   src={card2}
                   alt="Second card"
-               />
+               /></Link>
                   <Card.Body>
                       <Card.Title>Trim your bill</Card.Title>
                         <Card.Text>
@@ -106,11 +107,12 @@ function HomePage() {
             <Row>
               <Col>
                   <Card className="cardlayout cardInfo" style={{ width: '18rem' }}>
+                  <Link to="/info">
                   <img
                       className="d-block w-100"
                       src={card3}
                       alt="Third card"
-                  />
+                  /></Link>
                       <Card.Body>
                           <Card.Title> The time is NOW </Card.Title>
                             <Card.Text>
@@ -122,7 +124,7 @@ function HomePage() {
               <Col>
                 <Card className="container cardlayout cardInfo" style={{ width: '18rem' }}>
                     <Card.Body>
-                            <a className="twitter-timeline " data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
+                            <a className="twitter-timeline " data-tweet-limit="2" data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
                     </Card.Body>
                 </Card>
               </Col>
