@@ -1,28 +1,35 @@
 import React from 'react';
 import './Header.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Modal } from 'react-bootstrap'
 import { NavLink, withRouter } from 'react-router-dom'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { logoutUser } from "../../actions/authActions";
+import classnames from "classnames";
 //import classnames from "classnames";
 
 class Header extends React.Component {
     constructor() {
         super();
         this.state = {
-            lpassword: "",
-            lemail: "",
+            password: "",
+            email: "",
             errors: {},
-            showModal: false 
+            showModal: false,
+            show: false
         }
     }
 
 
-    close(){
+    handleShow = () => {
+        this.setState({ showModal: true });
+    }
+
+    handleClose = () => {
         this.setState({ showModal: false });
-      }
+    }
+
 
     onLogoutClick = e => {
         e.preventDefault();
@@ -31,11 +38,14 @@ class Header extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
         if (nextProps.auth.isAuthenticated) {
+            this.handleClose();
             //this.props.history.push("/"); // push user to dashboard when they login
         }
 
         if (nextProps.errors) {
+            console.log("here")
             this.setState({
                 errors: nextProps.errors
             });
@@ -47,19 +57,24 @@ class Header extends React.Component {
 
     };
 
-    onLogin = e => {
+    onLogin = async (e) => {
         e.preventDefault();
         const userData = {
-            email: this.state.lemail,
-            password: this.state.lpassword
+            email: this.state.email,
+            password: this.state.password
         };
         this.props.loginUser(userData);
-        this.close();
-    };
+        if (this.props.auth.isAuthenticated) {
 
+            this.handleClose();
+        } else {
+
+        }
+    };
     render() {
         const { errors } = this.state;
         const { user } = this.props.auth;
+
         return (
             <div className="a">
                 <Navbar className="nav" expand="md" sticky="top">
@@ -67,7 +82,7 @@ class Header extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link className="navLink" href="/products">Products</Nav.Link>                            
+                            <Nav.Link className="navLink" href="/products">Products</Nav.Link>
                             <NavDropdown title={
                                 <span className="navLink">Services</span>} id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
@@ -83,65 +98,61 @@ class Header extends React.Component {
                             (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark" onClick={this.onLogoutClick}>
                                 Logout
                         </button></p>)
-                            : (<button type="button" className="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                            : (<button type="button" className="btn btn-dark" onClick={this.handleShow}>
                                 <i className="fa fa-user userIcon"></i> Sign In
                         </button>)}
                     </Navbar.Collapse>
 
                 </Navbar>
+                <Modal show={this.state.showModal} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Sign In</Modal.Title>
+                    </Modal.Header>
 
-                <div show={this.state.showModal} className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Sign In</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="login-form">
-                                    <form onSubmit={this.onLogin}>
-                                        <div className="text-center social-btn">
-                                            <a href="#" className="btn btn-danger btn-block"><i className="fa fa-google"></i> Sign in with <b>Google</b></a>
-                                        </div>
-                                        <div className="text-center"><i><br /></i></div>
-                                        <div className="form-group">
-                                            <div className="input-group">
-                                                <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                                                <input type="email" className="form-control"
-                                                    onChange={this.onLoginChange}
-                                                    value={this.state.lemail}
-                                                    error={errors.lemail}
-                                                    id="lemail"
-                                                    name="lemail" placeholder="Email" required="required" />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="input-group">
-                                                <span className="input-group-addon"><i className="fa fa-lock"></i></span>
-                                                <input type="password" className="form-control"
-                                                    onChange={this.onLoginChange}
-                                                    value={this.state.lpassword}
-                                                    error={errors.lpassword}
-                                                    id="lpassword"
-                                                    name="lpassword" placeholder="Password" required="required" />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
-                                        </div>
-                                        <div className="clearfix">
-                                            <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-                                            <a href="#" className="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
-                                        </div>
-                                    </form>
-                                    <div className="hint-text small">Don't have an account? <a href="/register">Register Now!</a></div>
+                    <Modal.Body>
+                        <div className="login-form">
+                            <form onSubmit={this.onLogin}>
+
+                                <div className="text-center"><i><br /></i></div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                                        <input type="email" className="form-control"
+                                            onChange={this.onLoginChange}
+                                            value={this.state.email}
+                                            error={errors.email}
+                                            id="email"
+                                            name="email" 
+                                            placeholder="Email"
+                                            required="required" />
+                                    </div>
                                 </div>
-                            </div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <span className="input-group-addon"><i className="fa fa-lock"></i></span>
+                                        <input type="password" className="form-control"
+                                            onChange={this.onLoginChange}
+                                            value={this.state.password}
+                                            error={errors.password}
+                                            id="password"
+                                            name="password" 
+                                            placeholder="Password" 
+                                            required="required" />
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
+                                </div>
+                                <div className="clearfix">
+                                    <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
+                                    <a href="#" className="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
+                                </div>
+                            </form>
+                            <div className="hint-text small">Don't have an account? <a href="/register">Register Now!</a></div>
                         </div>
-                    </div>
-                </div>
+                    </Modal.Body>
+                </Modal>
+
             </div>
         );
     }
