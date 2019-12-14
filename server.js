@@ -9,12 +9,8 @@ const garbage = require("./routes/api/garbageData");
 const cart = require('./routes/api/cart');
 const order = require('./routes/api/order');
 const products = require("./routes/api/productsData");
-<<<<<<< HEAD
-const donations=require("./routes/api/Donationdata")
-
-=======
 const nodemailer = require("nodemailer");
->>>>>>> 468d55ecd243153ee9cc9e5ce28212e464c9823f
+const donations=require("./routes/api/Donationdata")
 const app = express();
 
 app.use(cors());
@@ -47,9 +43,8 @@ app.use("/api/garbageData", garbage);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
 app.use("/api/productsData",products);
-<<<<<<< HEAD
+
 app.use("/api/Donationdata",donations);
-=======
 app.post("/api/sendmail", (req, res) => {
   var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -95,7 +90,6 @@ app.post("/api/sendmail", (req, res) => {
             }
           });
         });
->>>>>>> 468d55ecd243153ee9cc9e5ce28212e464c9823f
 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
