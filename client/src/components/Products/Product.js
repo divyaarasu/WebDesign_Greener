@@ -68,7 +68,7 @@ class Product extends React.Component {
                             <h2>{this.state.products.title}</h2>
                         </div>
                         <div className="row m">
-                            <h2>${this.state.products.price}</h2> &nbsp; &nbsp; <h4><del>$10</del></h4> &nbsp; &nbsp; <h2 className="text-success">50% off</h2>
+                            <h2>${this.state.products.price}</h2> &nbsp; &nbsp; <h4><del>${this.state.products.price*2}</del></h4> &nbsp; &nbsp; <h2 className="text-success">50% off</h2>
                         </div>
                         <div className="row m">
                             <h3 class="text-warning"><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star"></i></span><span><i class="fa fa-star-o"></i></span></h3>

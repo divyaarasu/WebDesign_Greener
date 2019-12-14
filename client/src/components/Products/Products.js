@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 
 class Products extends React.Component {
@@ -67,7 +68,9 @@ class Products extends React.Component {
   render() {
     //  console.log(this.state.products)
     return (
-      <div class="videoBack">
+      <div className={classnames("videoBack", {
+        "videoBack-alert": this.state.showCartAlert
+      })}>
         {(this.state.showCartAlert ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>)
           : '')}

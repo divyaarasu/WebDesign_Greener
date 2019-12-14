@@ -49,6 +49,18 @@ class Cart extends React.Component {
     this.setState({ showSuccess: false });
   }
 
+  setActiveModal(){
+    axios.delete("/api/cart?id=" + this.state.products._id)
+            .then((response) => {
+              this.setState({
+                products: [],
+                cartExists: false,
+                cartTotal: 0,
+                showSuccess: false
+              })
+            })
+  }
+
 
   render() {
 
@@ -152,7 +164,7 @@ class Cart extends React.Component {
               /> : []}
               <button type="Button"
                 className="empty"
-                onClick={() => this.setActiveModal('dialog')}
+                onClick={() => this.setActiveModal()}
                 className="btn btn-danger"
                 disabled={!this.state.cartExists}
               > Empty cart</button>

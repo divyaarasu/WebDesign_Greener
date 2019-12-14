@@ -124,7 +124,7 @@ function HomePage() {
               <Col>
                 <Card className="container cardlayout cardInfo" style={{ width: '18rem' }}>
                     <Card.Body>
-                            <a className="twitter-timeline " data-tweet-limit="2" data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
+                            <a className="twitter-timeline " data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
                     </Card.Body>
                 </Card>
               </Col>

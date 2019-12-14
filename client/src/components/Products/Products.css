@@ -9,8 +9,13 @@
     z-index: -1;
     transform: translateX(calc((100% - 100vw) / 2));
 }
+
 .videoBack {
     margin-top: -3rem;
+    background-image: linear-gradient( #DCDDEF, #ebb8b0 );
+}
+
+.videoBack-alert {
     background-image: linear-gradient( #DCDDEF, #ebb8b0 );
 }
 

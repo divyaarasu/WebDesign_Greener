@@ -55,7 +55,7 @@ class Header extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
 
     };
-
+//  <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
     onLogin = async (e) => {
         e.preventDefault();
         const userData = {
@@ -83,7 +83,7 @@ class Header extends React.Component {
                             </NavDropdown>
                             <Nav.Link className="navLink" href="/info">Awareness</Nav.Link>
                             <Nav.Link className="navLink" href="/donate">Donate</Nav.Link>
-                            <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
+                          
                         </Nav>
 
                         {(this.props.auth.isAuthenticated) ?
