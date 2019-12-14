@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, resu) => {
-    Order.findOne({ user: req.query.id }, function (err, result) {
+    Order.find({ user: req.query.id }, function (err, result) {
         if (err) throw err;
         console.log(result);
         return (resu.send(result));

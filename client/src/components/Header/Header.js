@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { logoutUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 //import classnames from "classnames";
 
 class Header extends React.Component {
@@ -96,7 +97,7 @@ class Header extends React.Component {
                         {(this.props.auth.isAuthenticated) ?
                             (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark" onClick={this.onLogoutClick}>
                                 Logout
-                        </button></p>)
+                        </button><Link to="/history" className="link"><button>Your Orders</button></Link></p>)
                             : (<button type="button" className="btn btn-dark" onClick={this.handleShow}>
                                 <i className="fa fa-user userIcon"></i> Sign In
                         </button>)}

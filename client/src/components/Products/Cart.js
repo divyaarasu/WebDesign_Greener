@@ -33,15 +33,10 @@ class Cart extends React.Component {
       var add = 0;
       await axios.get("/api/cart?id=" + this.props.auth.user.id).then((response) => {
         this.setState({ products: response.data, cartExists: true });
-        if(this.state.products.length > 0) {
         this.state.products.items.map((item) => {
           add = add + (item.productPrice * item.quantity);
         });
-        this.setState({ cartTotal: numeral(add).format('$0,0.00') }); }
-        else {
-          let items = [];
-          this.setState({products: {items:{}}})
-        }
+        this.setState({ cartTotal: numeral(add).format('$0,0.00') }); 
       });
     }
     else {
@@ -93,8 +88,6 @@ class Cart extends React.Component {
 
           <h1>Your Cart</h1>
           <div className="cart">
-
-
 
             <div className="cart-items">
               {this.state.cartExists ?
