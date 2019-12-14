@@ -48,7 +48,10 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      phone: this.state.phone,
+      address: this.state.address,
+      zip: this.state.zip,
     };
     const mData = {
       name: this.state.name,
@@ -63,7 +66,7 @@ class Register extends Component {
 
     return (
       <div className="container">
-       <br/><div className="row">
+       <br/><div className="row input-fields">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
@@ -82,11 +85,11 @@ class Register extends Component {
                   error={errors.name}
                   id="name"
                   type="text"
-                  className={classnames("", {
-                    invalid: errors.name
+                  className={classnames("input-line", {
+                    "input-line-error": errors.name
                   })}
                 />
-                <span className="red-text">{errors.name}</span>
+                <span className="error">{errors.name}</span>
               </div>
              <br/><div className="row">
               <label>Email</label>
@@ -100,7 +103,7 @@ class Register extends Component {
                     invalid: errors.email
                   })}
                 />
-                <span className="red-text">{errors.email}</span>
+                <span className="error">{errors.email}</span>
               </div>
              <br/><div className="row">
               <label>Password</label>
@@ -114,7 +117,7 @@ class Register extends Component {
                     invalid: errors.password
                   })}
                 />
-                <span className="red-text">{errors.password}</span>
+                <span className="error">{errors.password}</span>
               </div>
              <br/><div className="row">
               <label>Confirm Password</label>
@@ -128,7 +131,7 @@ class Register extends Component {
                     invalid: errors.password2
                   })}
                 />
-                <span className="red-text">{errors.password2}</span>
+                <span className="error">{errors.password2}</span>
               </div>
              <br/><div className="row">
               <label>Phone</label>
@@ -143,7 +146,7 @@ class Register extends Component {
                   })}
                 />
               
-                <span className="red-text">{errors.phone}</span>
+                <span className="error">{errors.phone}</span>
               </div>
              <br/><div className="row">
               <label>Address</label>
@@ -157,7 +160,7 @@ class Register extends Component {
                     invalid: errors.address
                   })}
                 />
-                <span className="red-text">{errors.address}</span>
+                <span className="error">{errors.address}</span>
               </div>
              <br/><div className="row">
               <label>Zip Code</label>
@@ -171,7 +174,7 @@ class Register extends Component {
                     invalid: errors.zip
                   })}
                 />
-                <span className="red-text">{errors.zip}</span>
+                <span className="error">{errors.zip}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button

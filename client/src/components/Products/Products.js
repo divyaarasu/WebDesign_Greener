@@ -11,7 +11,6 @@ import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
 
 
-
 class Products extends React.Component {
   constructor(props) {
     super(props)

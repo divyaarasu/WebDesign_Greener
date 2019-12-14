@@ -63,7 +63,7 @@ const routing = (
         <Route path="/products" component={Products} />
         <Route path="/jobs" component={Jobs}/>
         <PrivateRoute exact path="/services" component={Services}/>
-        <Route path="/collection" component={Garbage}/>
+        <PrivateRoute exact path="/collection" component={Garbage}/>
         <Route path="/products/product" component={Jobs}/>   
         <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
