@@ -1,6 +1,6 @@
 #bg{
   background-color:	#7FFFD4; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom right,	#7FFFD4, white);
+  background-image: linear-gradient(#7FFFD4, white);
 }
 
 #a{
