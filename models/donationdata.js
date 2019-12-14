@@ -9,6 +9,10 @@ const donationSchema = new Schema({
   amount: {
     type: Number,
     required: true
+  },
+  date: {
+    type: Date,
+    required: true
   }
 });
 module.exports = Donation = mongoose.model("donationData", donationSchema);

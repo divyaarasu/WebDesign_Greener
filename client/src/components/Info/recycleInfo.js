@@ -6,11 +6,11 @@ import{BrowserRouter as Router,Link} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 function recycleInfo() {
     return (
-        <div >
+      <div id = "windbg">
         
-        <h1>Reuse</h1>
+      <h3 id="head1"><i>REUSE</i></h3>
         <div id="wind">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src={wind1} alt="First slide"/>
@@ -19,12 +19,20 @@ function recycleInfo() {
       <img class="d-block w-100" src={wind2} alt="Second slide"/>
     </div>
   </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 </div>        
 
-        <div id="con">
-        <p>
-        Wind power or wind energy is the use of wind to provide the mechanical power through wind turbines to turn electric generators and traditionally to do other work, like milling or pumping. Wind power is a sustainable and renewable energy, and has a much smaller impact on the environment compared to burning fossil fuels.Wind farms consist of many individual wind turbines, which are connected to the electric power transmission network. Onshore wind is an inexpensive source of electric power, competitive with or in many places cheaper than coal or gas plants.Onshore wind farms also have an impact on the landscape, as typically they need to be spread over more land than other power stations[7][8] and need to be built in wild and rural areas, which can lead to "industrialization of the countryside"[9] and habitat loss.[8] Offshore wind is steadier and stronger than on land and offshore farms have less visual impact, but construction and maintenance costs are higher. Small onshore wind farms can feed some energy into the grid or provide electric power to isolated off-grid locations.Wind is an intermittent energy source, which cannot make electricity nor be dispatched on demand. It also gives variable power, which is consistent from year to year but varies greatly over shorter time scales. Therefore, it must be used together with other electric power sources or storage to give a reliable supply. As the proportion of wind power in a region increases, more conventional power sources are needed to back it up (such as fossil fuel power and nuclear power), and the grid may need to be upgraded.[11][12] Power-management techniques such as having dispatchable power sources, enough hydroelectric power, excess capacity, geographically distributed turbines, exporting and importing power to neighboring areas, energy storage, or reducing demand when wind production is low, can in many cases overcome these problems.Weather forecasting permits the electric-power network to be readied for the predictable variations in production that occur.In 2018, global wind power capacity grew 9.6% to 591 GW.In 2017, yearly wind energy production grew 17%, reaching 4.4% of worldwide electric power usage, and providing 11.6% of the electricity in the European Union. Denmark is the country with the highest penetration of wind power, with 43.4% of its consumed electricity from wind in 2017.At least 83 other countries are using wind power to supply their electric power grids.
+        <div id="head2">
+        <p >
+        The most effective way to reduce waste is to not create it in the first place. Making a new product requires a lot of materials and energy - raw materials must be extracted from the earth, and the product must be fabricated then transported to wherever it will be sold. As a result, reduction and reuse are the most effective ways you can save natural resources, protect the environment and save money.One person's trash is another person's treasure. Instead of discarding unwanted appliances, tools or clothes, try selling or donating them. Not only will you be reducing waste, you'll be helping others. Local churches, community centers, thrift stores, schools and nonprofit organizations may accept a variety of donated items, including used books, working electronics and unneeded furniture.Reuse is the action or practice of using an item, whether for its original purpose (conventional reuse) or to fulfil a different function (creative reuse or repurposing). It should be distinguished from recycling, which is the breaking down of used items to make raw materials for the manufacture of new products. Reuse – by taking, but not reprocessing, previously used items – helps save time, money, energy and resources. In broader economic terms, it can make quality products available to people and organizations with limited means, while generating jobs and business activity that contribute to the economy.Historically, financial motivation was one of the main drivers of reuse. In the developing world this driver can lead to very high levels of reuse, however rising wages and consequent consumer demand for the convenience of disposable products has made the reuse of low value items such as packaging uneconomic in richer countries, leading to the demise of many reuse programs. Current environmental awareness is gradually changing attitudes and regulations, such as the new packaging regulations, are gradually beginning to reverse the situation.
         </p>
         
         </div>
