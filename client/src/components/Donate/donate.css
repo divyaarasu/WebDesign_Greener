@@ -13,17 +13,10 @@
   
 }
 #topic{
-  color: white;
+  color: black;
 }
 #full{
-  background-image: url("../../assets/images/plant.jpg");
-  background-repeat: no-repeat;
-  height: 100%;
-  width:100%;
-  /* Center and scale the image nicely */
-  background-position: center;
-  
-  background-size: cover;
+  background: linear-gradient(to bottom, #F7F8FF 0%, #ebb8b0 100%);
 }
 
 .column {
@@ -72,7 +65,7 @@ text-align: center;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #7DA89E;
     color: white;
   }
 #donatebg{
