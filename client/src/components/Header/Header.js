@@ -140,10 +140,6 @@ class Header extends React.Component {
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
                                 </div>
-                                <div className="clearfix">
-                                    <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-                                    <a href="#" className="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
-                                </div>
                             </form>
                             <div className="hint-text small">Don't have an account? <a href="/register">Register Now!</a></div>
                         </div>

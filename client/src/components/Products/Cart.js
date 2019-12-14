@@ -29,6 +29,7 @@ class Cart extends React.Component {
   }
 
   getCartsData = async () => {
+    console.log(this.props.auth);
     if (this.props.auth.isAuthenticated) {
       var add = 0;
       await axios.get("/api/cart?id=" + this.props.auth.user.id).then((response) => {
@@ -54,6 +55,19 @@ class Cart extends React.Component {
     const onSuccess = (payment) => {
       console.log('Successful payment!', payment);
       this.setState({ showSuccess: true })
+      const oData = {
+        email: this.props.auth.user.email,
+        name: this.props.auth.user.name,
+        products: this.state.products
+      };
+      axios
+      .post("/api/sendordermail", oData)
+      .then((response)=> {
+        console.log(response);
+      })
+      .catch(err =>
+        console.log(err)
+      );
       axios
         .post("/api/order", this.state.products)
         .then((response) => {
@@ -80,7 +94,7 @@ class Cart extends React.Component {
       console.log('Cancelled payment!', data);
 
     return (
-      <div>
+      <div className="cartBg">
         {(this.state.showSuccess ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
           : '')}

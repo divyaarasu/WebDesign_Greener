@@ -71,9 +71,9 @@ class Products extends React.Component {
         {(this.state.showCartAlert ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>)
           : '')}
-        <video class="video-fluid z-depth-1 video-background" autoPlay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
+        {/* <video class="video-fluid z-depth-1 video-background" autoPlay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
           <source src="Background_09.mov" type="video/mp4" />
-        </video>
+        </video> */}
 
 
         <div class="container mt-5">

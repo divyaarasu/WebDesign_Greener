@@ -54,7 +54,7 @@ app.post("/api/sendmail", (req, res) => {
       });
       var mailOptions = {
         from: 'gogreenerapp@gmail.com',
-        to: req.body.email,
+        to: req.body.usermail,
         subject: 'Thank you for making a difference!',
         text: req.body.wasteType + 'waste (' + req.body.weight + 'kg) is scheduled for ' + req.body.pickType + ' at ' +req.body.time
       };
@@ -89,6 +89,29 @@ app.post("/api/sendmail", (req, res) => {
             }
           });
         });
+        app.post("/api/sendordermail", (req, res) => {
+          console.log(req.body);
+          var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'gogreenerapp@gmail.com',
+                  pass: 'greener123'
+                }
+              });
+              var mailOptions = {
+                from: 'gogreenerapp@gmail.com',
+                to: req.body.email,
+                subject: 'Order placed successfully!',
+                text:  'Hi ' + req.body.name + '\n\xA0' + 'Your order for ' + req.body.products + ' has been sucessfully placed.'
+              };
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
+            });
 
 
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
