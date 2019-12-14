@@ -77,7 +77,7 @@ const routing = (
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/buyNow" component={BuyNow} />   
-        <Route path="/donate" component={donate} />  
+        <PrivateRoute exact path="/donate" component={donate} />  
         <Route path="/contactUs" component={ContactUs} />  
         <Route path="/about" component={About} />  
         <PrivateRoute exact path="/cart" component={Cart}/>

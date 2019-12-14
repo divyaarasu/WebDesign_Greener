@@ -87,9 +87,14 @@ class Header extends React.Component {
                         </Nav>
 
                         {(this.props.auth.isAuthenticated) ?
-                            (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark" onClick={this.onLogoutClick}>
-                                Logout
-                        </button><Link to="/history" className="link"><button>Your Orders</button></Link></p>)
+                            (<NavDropdown title={
+                            <span className="navLink">Hello, {user.name.split(" ")[0]}! </span>} id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/cart"><i class="fa fa-shopping-cart"></i> Items in your cart</NavDropdown.Item>
+                            <NavDropdown.Item href="/history"><i class="fa fa-server"></i> Your Orders</NavDropdown.Item>
+                            <NavDropdown.Item  onClick={this.onLogoutClick}><i class="fa fa-power-off"></i> Logout</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                        )
                             : (<button type="button" className="btn btn-dark" onClick={this.handleShow}>
                                 <i className="fa fa-user userIcon"></i> Sign In
                         </button>)}
