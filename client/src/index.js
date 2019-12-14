@@ -34,6 +34,8 @@ import BuyNow from './components/Products/BuyNow';
 import Cart from './components/Products/Cart';
 import Orders from './components/Products/Orders';
 import History from './components/Products/History';
+import ContactUs from './components/ContactUs/ContactUs';
+import About from './components/About/About';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -65,7 +67,7 @@ const routing = (
         <Route path="/products" component={Products} />
         <Route path="/jobs" component={Jobs}/>
         <PrivateRoute exact path="/services" component={Services}/>
-        <Route path="/collection" component={Garbage}/>
+        <PrivateRoute exact path="/collection" component={Garbage}/>
         <Route path="/products/product" component={Jobs}/>   
         <Route path="/product" component={Product}/>      
         <Route path="/windInfo" component={windInfo} />
@@ -75,7 +77,9 @@ const routing = (
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/buyNow" component={BuyNow} />   
-        <Route path="/donate" component={donate} />  
+        <PrivateRoute exact path="/donate" component={donate} />  
+        <Route path="/contactUs" component={ContactUs} />  
+        <Route path="/about" component={About} />  
         <PrivateRoute exact path="/cart" component={Cart}/>
         <PrivateRoute exact path="/orders" component={Orders}/>
         <PrivateRoute exact path="/history" component={History}/>

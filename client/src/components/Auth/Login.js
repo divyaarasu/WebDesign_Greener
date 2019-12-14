@@ -19,18 +19,18 @@ class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     }
-
-    if (nextProps.errors) {
+    console.log(nextProps)
+    if (nextProps.errors.response) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors.response.data
       });
     }
   }
@@ -54,52 +54,56 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div className="col s8 offset-s2">
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+      <div className="container allCenter">
+     
+      <div className="row">
+     
+        <div className="col s8 offset-s2">
+        
+          <div className="col s12" style={{  }}>
               <h4>
                 <b>Login</b> below
               </h4>
-              <p className="grey-text text-darken-1">
+              <p className="subheading">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
-                <input
+            <div className="row">
+              <label className={classnames("", {
+                "error": errors.email
+              })}>Email *
+              <input
                   onChange={this.onChange}
                   value={this.state.email}
                   error={errors.email}
                   id="email"
                   type="email"
-                  className={classnames("", {
-                    invalid: errors.email || errors.emailnotfound
+                  className={classnames("input-line", {
+                    "input-line-error": errors.email
                   })}
-                />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
-              </div>
-              <div className="input-field col s12">
-                <input
+                /></label></div><div className="row">
+              <span className="error-msg">{errors.email}</span>
+            </div>
+            <br /><div className="row">
+              <label className={classnames("", {
+                "error": errors.password
+              })}>Password *
+              <input
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
                   id="password"
                   type="password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-              </div>
+                  className={classnames("input-line", {
+                    "input-line-error": errors.password
+                  }, {"input-line-error": errors.errorMessage
+                })}
+                /></label></div><div className="row">
+              <span className="error-msg">{errors.password}</span>
+              <span className="error-msg">{errors.errorMessage}</span>
+            </div>
+            <br />
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{

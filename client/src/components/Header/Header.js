@@ -16,9 +16,10 @@ class Header extends React.Component {
         this.state = {
             password: "",
             email: "",
-            errors: {},
+            error: "",
             showModal: false,
-            show: false
+            show: false,
+            isErr:""
         }
     }
 
@@ -39,20 +40,17 @@ class Header extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         if (nextProps.auth.isAuthenticated) {
             this.handleClose();
-            //this.props.history.push("/"); // push user to dashboard when they login
+            this.setState({ isErr:false});
         }
 
-        if (nextProps.errors) {
-            console.log("here")
-            this.setState({
-                errors: nextProps.errors
-            });
+        if (nextProps.errors.response) {  
+            this.setState({ isErr:true, error: nextProps.errors.response.data.errorMessage });  
         }
     }
 
+    
     onLoginChange = e => {
         this.setState({ [e.target.name]: e.target.value });
 
@@ -65,15 +63,9 @@ class Header extends React.Component {
             password: this.state.password
         };
         this.props.loginUser(userData);
-        if (this.props.auth.isAuthenticated) {
-
-            this.handleClose();
-        } else {
-
-        }
     };
     render() {
-        const { errors } = this.state;
+        //const { errors } = this.state;
         const { user } = this.props.auth;
 
         return (
@@ -95,9 +87,14 @@ class Header extends React.Component {
                         </Nav>
 
                         {(this.props.auth.isAuthenticated) ?
-                            (<p className="navLink"> Hello, {user.name.split(" ")[0]}! <button type="button" className="btn btn-dark" onClick={this.onLogoutClick}>
-                                Logout
-                        </button><Link to="/history" className="link"><button>Your Orders</button></Link></p>)
+                            (<NavDropdown title={
+                            <span className="navLink">Hello, {user.name.split(" ")[0]}! </span>} id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/cart"><i class="fa fa-shopping-cart"></i> Items in your cart</NavDropdown.Item>
+                            <NavDropdown.Item href="/history"><i class="fa fa-server"></i> Your Orders</NavDropdown.Item>
+                            <NavDropdown.Item  onClick={this.onLogoutClick}><i class="fa fa-power-off"></i> Logout</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                        )
                             : (<button type="button" className="btn btn-dark" onClick={this.handleShow}>
                                 <i className="fa fa-user userIcon"></i> Sign In
                         </button>)}
@@ -120,7 +117,6 @@ class Header extends React.Component {
                                         <input type="email" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.email}
-                                            error={errors.email}
                                             id="email"
                                             name="email" 
                                             placeholder="Email"
@@ -133,13 +129,14 @@ class Header extends React.Component {
                                         <input type="password" className="form-control"
                                             onChange={this.onLoginChange}
                                             value={this.state.password}
-                                            error={errors.password}
                                             id="password"
                                             name="password" 
                                             placeholder="Password" 
                                             required="required" />
                                     </div>
                                 </div>
+                                {(this.state.isErr) ?
+                                    (<span className="error">{this.state.error}</span>) : ''}
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
                                 </div>
