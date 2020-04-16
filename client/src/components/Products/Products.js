@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { submitProducts } from "../../actions/productsActions";
 import { logoutUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 
 class Products extends React.Component {
@@ -68,15 +69,11 @@ class Products extends React.Component {
     //  console.log(this.state.products)
     return (
       <div class="videoBack">
+
+        <div class="container mt-5">
         {(this.state.showCartAlert ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Added to Cart!  <Link type="Button" to="/cart">View Cart</Link></Alert>)
           : '')}
-        <video class="video-fluid z-depth-1 video-background" autoPlay="autoplay" loop="loop" controls="controls" muted="muted" id="vid">
-          <source src="Background_09.mov" type="video/mp4" />
-        </video>
-
-
-        <div class="container mt-5">
           <div className="row">
             {this.state.products.map((p, i) => (
               <div className="col-sm-4 product">
@@ -127,11 +124,6 @@ class Products extends React.Component {
     );
   }
 }
-Products.propTypes = {
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
-
 Products.propTypes = {
   submitProducts: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,

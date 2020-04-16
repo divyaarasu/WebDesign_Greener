@@ -10,6 +10,14 @@
     transform: translateX(calc((100% - 100vw) / 2));
 }
 
+.videoBack {
+    margin-top: -3rem;
+    background-image: linear-gradient( #DCDDEF, #ebb8b0 );
+}
+
+.videoBack-alert {
+    background-image: linear-gradient( #DCDDEF, #ebb8b0 );
+}
 
 .product{
     padding: 1rem 0.5rem 0.5rem 0.5rem;
@@ -117,4 +125,8 @@ ul{
 
 .imgPTop{
     height: 35rem;
+}
+.ReviewOrder {
+    background-image: linear-gradient( #DCDDEF, #ebb8b0 );
+    margin-top: -1rem;
 }

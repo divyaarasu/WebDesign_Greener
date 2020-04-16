@@ -116,7 +116,9 @@ function HomePage() {
                       <Card.Body>
                           <Card.Title> The time is NOW </Card.Title>
                             <Card.Text>
+                            <br></br>
                                 Understand why global sustainability is the need of the hour.
+                                <br></br> Learn the importance of renewable resources like wind, solar, biogas and other reusables<br></br>
                             </Card.Text>
                       </Card.Body>
                 </Card>
@@ -124,7 +126,7 @@ function HomePage() {
               <Col>
                 <Card className="container cardlayout cardInfo" style={{ width: '18rem' }}>
                     <Card.Body>
-                            <a className="twitter-timeline " data-tweet-limit="2" data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
+                            <a className="twitter-timeline " data-theme="light" data-link-color="#19CF86" href="https://twitter.com/Greener18660194?ref_src=twsrc%5Etfw">Tweets by Greener18660194</a>
                     </Card.Body>
                 </Card>
               </Col>

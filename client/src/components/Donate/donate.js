@@ -20,7 +20,10 @@ class donate extends React.Component {
       amount: '',
       date: Date.now(),
       donationExists: false,
-      userDonation: []
+      userDonation: [],
+      formErrors: {
+        amount:''
+      }
 
     };
     this.handleChangeAmount = this.handleChangeAmount.bind(this);
@@ -29,7 +32,20 @@ class donate extends React.Component {
   }
 
   handleChangeAmount = event => {
-    this.setState({ amount: event.target.value });
+    
+    const a =event.target.value;
+    
+    let formErrors = this.state.formErrors;
+
+    formErrors.amount =  a > 0 ? "" : "Please Enter a valid Amount";
+        if(a< 0){
+          document.getElementById("inputM").style.borderColor = "red";
+        }else {
+          document.getElementById("inputM").style.borderColor = "";
+        }
+        this.setState({ amount: event.target.value });
+        
+    
   };
 
   loadDonationHistory = async () => {
@@ -72,14 +88,19 @@ class donate extends React.Component {
     const onCancel = (data) =>
       console.log('Cancelled payment!', data);
     return (
+      <div id="full">
       <div className="container">
            <div id="dbtn">
             <div id="title">
-              <h4><q>No one is useless in this world who lightens the burdens of another.</q></h4>
+              <h4 id="topic"><q>No one is useless in this world who lightens the burdens of another.</q></h4>
             </div><br></br>
             <form>
-              <input type="text" className="input-line" name="Amount" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount} />
-
+              <div class="form-group">
+    <div class="col-sm-4 amountClass">
+      <input type="number" name="amount" class="form-control" id="inputM" placeholder="Amount" onBlur={this.onSubmit} onChange={this.handleChangeAmount}/>
+        <span id="errorMsg">{this.state.formErrors.amount}</span>
+    </div>
+  </div>
               <div><br></br></div><PaypalButton
                 client={CLIENT}
                 env={ENV}
@@ -92,7 +113,7 @@ class donate extends React.Component {
               />
             </form><br></br>
 
-          <strong>Your Donations</strong>
+          <strong id="topic">Your Donations</strong>
           {this.state.donationExists ?
             <table id="donationTable">
               <thead>
@@ -112,8 +133,9 @@ class donate extends React.Component {
                 })}
               </tbody>
             </table> :
-            <p>You do not have any donations at this time! Start sharing today!</p>
+            <p id="topic">You do not have any donations at this time! Start sharing today!</p>
           }
+        </div>
         </div>
         </div>
     )

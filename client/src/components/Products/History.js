@@ -1,5 +1,5 @@
 import React from 'react';
-import './Products.css';
+import './Orders.css';
 import axios from "axios";
 import * as numeral from 'numeral';
 import PropTypes from "prop-types";
@@ -24,13 +24,9 @@ class History extends React.Component {
             });
     }
 
-    closeAlertCart = () => {
-        this.setState({ showSuccess: false });
-      }
-
     render() {
         return (
-            <div>
+            <div className="prevOrders">
                 <h1>Your Orders</h1>
                 <div className="cart">
 

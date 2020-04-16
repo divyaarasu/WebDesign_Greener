@@ -40,10 +40,17 @@ class Register extends Component {
   componentWillReceiveProps(nextProps) {
     console.log(nextProps)
     if (nextProps.errors) {
-      this.setState({ isErr:true,
-        errorMessage:  nextProps.errors.errorMessage
+      this.setState({ errorMessage:  nextProps.errors.errorMessage,
+        errors:  nextProps.errors
       });
+
+      if(nextProps.errors.errorMessage) {
+        this.setState({ isErr:true});
+      }
     }
+
+
+
   }
 
   onChange = e => {

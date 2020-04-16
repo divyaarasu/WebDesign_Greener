@@ -68,14 +68,14 @@ class Orders extends React.Component {
             console.log('Cancelled payment!', data);
 
         return (
-            <div>
-            {(this.state.ordersCreated ?
-                (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
-                : '')}
+            <div class="">
 
                 <h1 className="head">Review Order</h1>
 
                 <div className="container">
+                {(this.state.ordersCreated ?
+                (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
+                : '')}
                     <div className="row mt-5">
                         <div className="col-md-3 cc">
                             <Card.Img className="img cc" variant="top" src={process.env.PUBLIC_URL + this.state.products.image1} rounded />

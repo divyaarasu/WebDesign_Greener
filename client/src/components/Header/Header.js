@@ -55,7 +55,7 @@ class Header extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
 
     };
-
+//  <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
     onLogin = async (e) => {
         e.preventDefault();
         const userData = {
@@ -78,12 +78,12 @@ class Header extends React.Component {
                             <Nav.Link className="navLink" href="/products">Products</Nav.Link>
                             <NavDropdown title={
                                 <span className="navLink">Services</span>} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/services">Bill Analyis</NavDropdown.Item>
+                                <NavDropdown.Item href="/services">Bill Tracking</NavDropdown.Item>
                                 <NavDropdown.Item href="/collection">Garbage Collection</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link className="navLink" href="/info">Awareness</Nav.Link>
                             <Nav.Link className="navLink" href="/donate">Donate</Nav.Link>
-                            <Nav.Link className="navLink" href="/jobs">Jobs</Nav.Link>
+                          
                         </Nav>
 
                         {(this.props.auth.isAuthenticated) ?
@@ -139,10 +139,6 @@ class Header extends React.Component {
                                     (<span className="error">{this.state.error}</span>) : ''}
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-success btn-block login-btn">Sign in</button>
-                                </div>
-                                <div className="clearfix">
-                                    <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-                                    <a href="#" className="pull-right text-success" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">Forgot Password?</a>
                                 </div>
                             </form>
                             <div className="hint-text small">Don't have an account? <a href="/register">Register Now!</a></div>

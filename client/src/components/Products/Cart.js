@@ -29,6 +29,7 @@ class Cart extends React.Component {
   }
 
   getCartsData = async () => {
+    console.log(this.props.auth);
     if (this.props.auth.isAuthenticated) {
       var add = 0;
       await axios.get("/api/cart?id=" + this.props.auth.user.id).then((response) => {
@@ -48,12 +49,37 @@ class Cart extends React.Component {
     this.setState({ showSuccess: false });
   }
 
+  setActiveModal(){
+    axios.delete("/api/cart?id=" + this.state.products._id)
+            .then((response) => {
+              this.setState({
+                products: [],
+                cartExists: false,
+                cartTotal: 0,
+                showSuccess: false
+              })
+            })
+  }
+
 
   render() {
 
     const onSuccess = (payment) => {
       console.log('Successful payment!', payment);
       this.setState({ showSuccess: true })
+      const oData = {
+        email: this.props.auth.user.email,
+        name: this.props.auth.user.name,
+        products: this.state.products
+      };
+      axios
+      .post("/api/sendordermail", oData)
+      .then((response)=> {
+        console.log(response);
+      })
+      .catch(err =>
+        console.log(err)
+      );
       axios
         .post("/api/order", this.state.products)
         .then((response) => {
@@ -80,12 +106,11 @@ class Cart extends React.Component {
       console.log('Cancelled payment!', data);
 
     return (
-      <div>
+      <div className="cartBg">
+        <div className="container cart-container">
         {(this.state.showSuccess ?
           (<Alert variant="success" onClose={() => this.closeAlertCart()} dismissible>Payment was successful!</Alert>)
           : '')}
-        <div className="container cart-container">
-
           <h1>Your Cart</h1>
           <div className="cart">
 
@@ -99,7 +124,7 @@ class Cart extends React.Component {
                       <th>Price</th>
                       <th>Quantity</th>
                       <th>Total</th>
-                      <th></th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -111,7 +136,7 @@ class Cart extends React.Component {
                           <td>{numeral(item.productPrice).format('$0,0.00')}</td>
                           <td>{item.quantity}</td>
                           <td>{numeral(item.productPrice * item.quantity).format('$0,0.00')}</td>
-                          <td><button title="Remove this item from the cart" onClick={() => this.removeItem(item._id)}><i className="fa fa-trash"></i></button></td>
+                          
                         </tr>
                       );
                     })}
@@ -138,7 +163,7 @@ class Cart extends React.Component {
               /> : []}
               <button type="Button"
                 className="empty"
-                onClick={() => this.setActiveModal('dialog')}
+                onClick={() => this.setActiveModal()}
                 className="btn btn-danger"
                 disabled={!this.state.cartExists}
               > Empty cart</button>

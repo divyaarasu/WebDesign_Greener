@@ -1,4 +1,4 @@
-.input-line {
+/* .input-line {
   background: none;
   border: none;
   width: 20rem;
@@ -6,10 +6,17 @@
   letter-spacing: 0px;
   letter-spacing: 0.02rem;
   border-bottom: 1px solid black;
-}
+} */
 
 .container {
   min-height: 38rem;
+  
+}
+#topic{
+  color: black;
+}
+#full{
+  background: linear-gradient(to bottom, #F7F8FF 0%, #ebb8b0 100%);
 }
 
 .column {
@@ -34,7 +41,6 @@
     margin-left: auto;
 margin-right: auto;
 text-align: center;
-
   }
   #hist{
     float:right;
@@ -59,6 +65,15 @@ text-align: center;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #7DA89E;
     color: white;
   }
+#donatebg{
+  padding-top: 25px;
+}
+#title{
+  padding-top: 25px;
+}
+.amountClass {
+  margin-left: 23.5rem;
+}
