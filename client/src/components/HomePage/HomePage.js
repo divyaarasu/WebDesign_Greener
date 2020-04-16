@@ -1,9 +1,10 @@
 import React from 'react';
 import { Jumbotron, Carousel, Card, Button, Container, Row, Col } from 'react-bootstrap';
-import carousel1 from '../../assets/images/carousel1.jpeg'
+import {Link} from 'react-router-dom';
+import carousel1 from '../../assets/images/carouselN2.jpg'
 import carousel2 from '../../assets/images/carousel2.jpg'
 import carousel3 from '../../assets/images/carousel3.jpg'
-import carousel4 from '../../assets/images/carousel4.jpg'
+import carousel4 from '../../assets/images/carouselN1.jpeg'
 import card1 from '../../assets/images/cardlayouteproducts.jpeg'
 import card2 from '../../assets/images/cardlayouteanalysis.jpeg'
 import card3 from '../../assets/images/cardLayoutInfo.jpg'
@@ -69,12 +70,14 @@ function HomePage() {
           <Container>
             <Row>
               <Col>
+             
                 <Card className="cardlayout cardInfo" style={{ width: '18rem' }}>
+                <Link to="/products">
                 <img
                 className="d-block w-100"
                     src={card1}
                     alt="First slide"
-                  />
+                  />  </Link>
                     <Card.Body>
                         <Card.Title>Go Greener!</Card.Title>
                           <Card.Text>
@@ -82,14 +85,16 @@ function HomePage() {
                           </Card.Text>
                     </Card.Body>
                 </Card>
+              
               </Col>
               <Col>
               <Card className="cardlayout cardInfo" style={{ width: '18rem' }}>
+              <Link to="/services">
               <img
                   className="d-block w-100"
                   src={card2}
                   alt="Second card"
-               />
+               /></Link>
                   <Card.Body>
                       <Card.Title>Trim your bill</Card.Title>
                         <Card.Text>
@@ -102,15 +107,18 @@ function HomePage() {
             <Row>
               <Col>
                   <Card className="cardlayout cardInfo" style={{ width: '18rem' }}>
+                  <Link to="/info">
                   <img
                       className="d-block w-100"
                       src={card3}
                       alt="Third card"
-                  />
+                  /></Link>
                       <Card.Body>
                           <Card.Title> The time is NOW </Card.Title>
                             <Card.Text>
+                            <br></br>
                                 Understand why global sustainability is the need of the hour.
+                                <br></br> Learn the importance of renewable resources like wind, solar, biogas and other reusables<br></br>
                             </Card.Text>
                       </Card.Body>
                 </Card>

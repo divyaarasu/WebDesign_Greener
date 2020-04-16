@@ -10,9 +10,14 @@ const BillSchema = new Schema({
     type: String,
     required: true
   },
+  year: {
+    type: Number,
+    required: true
+  },
   watts: {
     type: Number,
     required: true
   }
 });
+
 module.exports = Bill = mongoose.model("billData", BillSchema);

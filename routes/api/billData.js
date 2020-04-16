@@ -14,15 +14,22 @@ router.post("/submitbill", (req, res) => {
         const newbill = new Bill({
           userid: req.body.userid,
           month: req.body.month,
+          year: req.body.year,
           watts: req.body.watts
         });
-        newbill.save().then(console.log(res));
-});
+        newbill.save().then(res.json({
+          success: true
+        }))
+        });
+
 router.get("/submitbill", (req, res) => {
-    // Form validation
-    Bill.find({}, function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    })
+  // userid: req.query.id
+    Bill.find({userid: req.query.id}, function(err, result) {
+      if (err) throw err;
+      return res
+      .status(200)
+      .json(result)
+    });
 });
+
 module.exports = router;
